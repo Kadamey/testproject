@@ -13,7 +13,7 @@
 	controllerName="orderReleaseScreen.controller.Main">
 	<App>
 		<pages>
-			<Page  title="Consumption Result Screen" showHeader="false">
+			<Page  title="Tüketim Ekranı"/>
 		<content>
 			<HBox width="97%" justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
 				<VBox>
