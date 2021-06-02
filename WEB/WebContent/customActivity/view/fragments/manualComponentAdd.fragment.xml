@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout">
+    <Dialog state="Warning" id="idManualComponentAdd" title="Yeni Bileşen Ekle" draggable="true">
+        <content>
+            <form:SimpleForm editable="true">
+                <l:VerticalLayout class="sapUiContentPadding" width="100%">
+                    <l:content>
+                        <Label text="Malzeme Bilgisi" tooltip="" design="Bold"/>
+                        <ComboBox id="idMaterialNo" width="400px" textAlign="Center" items="{path:'/Rowsets/Rowset/Row'}" placeholder="Malzeme Kodu - Malzeme Tanımı giriniz" change="onManualMaterialSelected">
+                            <core:Item key="{MATCODE}" text="{MATCODE} - {MATDESC}"/>
+                        </ComboBox>
+                        <Label text="Tüketim Miktarı" tooltip="" design="Bold"/>
+                        <Input id="idManualQuantity" placeholder="Miktar giriniz" textAlign="Center" width="400px" type="Number"/>
+                        <Label text="Malzeme Birimi" design="Bold"/>
+                        <Input id="idManualUnit" placeholder="Birim giriniz" textAlign="Center" width="400px" value="{MSEHI}" enabled="false"/>
+                        <Label id="idTextManualBatch" text="Döküm No / Parti No" design="Bold"/>
+                        <Input id="idManualBatch" placeholder="Döküm No / Parti No giriniz" textAlign="Center" width="400px" change="getCastValue" type="Number"/>
+                    </l:content>
+                </l:VerticalLayout>
+            </form:SimpleForm>
+        </content>
+        <buttons>
+            <Button type="Accept" width="100px" icon="sap-icon://add" text="Ekle" press="onManualAdd"/>
+            <Button type="Reject" width="100px" icon="sap-icon://sys-cancel" text="İptal" press="onManualCancel"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

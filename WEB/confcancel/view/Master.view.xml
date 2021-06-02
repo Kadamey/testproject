@@ -1,0 +1,95 @@
+<mvc:View
+	controllerName="editConfirmation.controller.Master"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc">
+	<f:DynamicPage id="dynamicPageId" toggleHeaderOnTitleClick="false">
+		<!-- DynamicPage Title -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="Products ({products>/ProductCollectionStats/Counts/Total})"/>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<!-- DynamicPage Content -->
+		<f:content>
+			<VBox fitContainer="true">
+				<OverflowToolbar class="sapFDynamicPageAlignContent">
+                         <Label width="50px" text="İş Yeri : " design="Bold" class="sapUiTinyMargin"/>
+                            <ComboBox id="workCenterComboBox" textAlign="Center" items="{path: '/Rowsets/Rowset/Row'}" width="200px" change="onWorkCenterComboBoxChange" placeholder="İş Yeri Seçiniz..." fieldGroupIds="1">
+                                <core:Item key="{WORK_CENTER}" text="{WORK_CENTER}"/>
+                            </ComboBox>
+				</OverflowToolbar>
+
+            <Table id="idOrderHeaderTable" inset="false" items="{	path: '/Rowsets/Rowset/Row'}" sticky="ColumnHeaders" mode="SingleSelectMaster" selectionChange="onPressOrderHeaderTable" fixedLayout="false"
+					class="sapFDynamicPageAlignContent"
+					width="auto" >
+
+                                        <columns>
+                                            <Column hAlign="Center">
+                                                <Text text="ME Teyit Sayacı" />
+                                            </Column>
+                                            <Column hAlign="Center">
+                                                <Text text="Statü" />
+                                            </Column>
+                                            <Column hAlign="Center">
+                                                <Text text="Sipariş No" />
+                                            </Column>
+
+                                            <Column hAlign="Center">
+                                                <Text text="Malzeme Kodu" />
+                                            </Column>
+                                            <Column hAlign="Center">
+                                                <Text text="Malzeme Açıklaması" />
+                                            </Column>
+
+                                            <Column hAlign="Center" >
+                                                <Text text="İş Yeri" />
+                                            </Column>
+
+                                            <Column hAlign="Center">
+                                                <Text text="Teyit Tarihi" />
+                                            </Column>
+                                            <Column hAlign="Center">
+                                                <Text text="Kullanıcı" />
+                                            </Column>
+                                             <Column hAlign="Center">
+                                                <Text text="İptal Statüsü" />
+                                            </Column>
+
+
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem vAlign="Middle">
+                                                <cells>
+                                                    <Text  text="{ME_CONF_COUNT}" wrapping="false" />
+                                                    <core:Icon src="{= ${CONF_STATUS} === 'QUEUE' ? 'sap-icon://arrow-down' :  ${CONF_STATUS} === 'QUEUE'  ?  'sap-icon://arrow-down' :  'sap-icon://arrow-down'}" wrapping="false" />
+                                                    <Text text="{ORDERID}" wrapping="false" />
+                                                    <Text  text="{MATCODE}" wrapping="false" />
+                                                    <Text  text="{MATDESC}" wrapping="false" />
+                                                    <Text text="{WORK_CENTER}" wrapping="false" />
+                                                    <Text text="{CONF_TIME}" wrapping="false" />
+                                                    <Text text="{CONF_USER}" wrapping="false" />
+				<core:Icon src="{= ${CANCEL_STATUS} === 'Success' ? 'sap-icon://message-success' : 'sap-icon://status-error' }" color="{= ${CANCEL_STATUS} === 'Success' ? '#0ed145' :  '#F7370E' }" press="onDeleteRow" visible="{= !!${CANCEL_STATUS} }"/>
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+
+
+			</VBox>
+		</f:content>
+
+		<!-- DynamicPage Footer -->
+		<f:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button type="Accept" text="Accept"/>
+				<Button type="Reject" text="Reject"/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>

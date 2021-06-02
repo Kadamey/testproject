@@ -1,0 +1,60 @@
+	<core:FragmentDefinition
+	  xmlns:l="sap.ui.layout"
+	  xmlns="sap.m"
+	  xmlns:form="sap.ui.layout.form"
+	  xmlns:core="sap.ui.core" >
+
+	  <Dialog  contentHeight="60%" contentWidth="60%" >
+	   <content>
+	   <Bar>
+			<contentRight>
+					<Button icon="sap-icon://refresh" press="onRefresh"/>
+			</contentRight>
+		</Bar> 
+		
+	   <Table id = "notifTable" editable="false" selectionChange="onSelectNotification" items="{/notificationDetails}"
+			mode="SingleSelectLeft"  fixedLayout="false"  >
+			
+	   <columns>
+				<Column> 
+					 <Label text="{i18n>OEE_LABEL_TECHNICAL_OBJECT}"/>
+				</Column>
+				<Column>
+					 <Label text="{i18n>OEE_LABEL_STATUSH}"/>
+				</Column>
+				<Column>
+					 <Label text="{i18n>OEE_LABEL_NOTIFICATION}"/>
+				</Column>
+				<Column>
+					 <Label text="ERP Status"/>
+				</Column>
+				
+			</columns>
+			
+			<items>
+				<ColumnListItem>
+				<cells >
+					<Text text="{parts : [{path : 'flocID'},{path:'equipmentID'}], formatter : '.formatTechnicalObject'}" class="notificationTextPadding"/>
+					<Text text="{path:'oeeStatus',formatter:'.formatOeeStatus'}"/>
+					<Text text="{path :'notificationNo', formatter:'sap.oee.ui.Formatter.formatRemoveLeadingZero'}"/>
+					<Text text="{path:'erpStatus',formatter:'.formatOeeStatus'}"/>
+					
+				</cells>
+				</ColumnListItem>
+			</items>
+
+		</Table>
+	   
+	   
+	   </content>
+	   <buttons>
+			<Button text="{i18n>OEE_BTN_NOTIF_APPROVE}" id="approveButtonNotification" press="onApproveNotification" type="Accept" enabled="false" icon="sap-icon://approvals"/>
+			<Button text="{i18n>OEE_BUTTON_REJECT}" id="rejectButtonNotification" press="onRejectNotification" type="Reject" enabled="false" icon="sap-icon://sys-cancel"/>
+			<Button text="{i18n>OEE_BUTTON_DELETE}" id="deleteButtonNotification" press="onDeleteNotification" enabled="false" icon="sap-icon://delete"/>
+			<Button  id="syncButtonNotification" text="{i18n>OEE_BTN_NOTIF_SYNC}" 	icon="sap-icon://synchronize" press="onSyncNotification" enabled="false" />
+			<Button  id="updateButtonNotification" text="{i18n>OEE_BTN_NOTIF_UPDATE}" icon="sap-icon://edit" press="onUpdateNotification" enabled="false" />
+			<Button text="{i18n>OEE_BTN_CANCEL}" press="handleCancelForPMNotifictionDetailsDilaog"></Button>
+		</buttons>
+	  </Dialog>
+	</core:FragmentDefinition>
+

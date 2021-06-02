@@ -1,0 +1,54 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:ui="sap.ui.table"
+    xmlns:l="sap.ui.layout">
+    <Dialog state="Information" title="Hata Kayıtları" id="idLogFragment" contentWidth="80%">
+        <content>
+            <form:SimpleForm editable="true">
+                <l:VerticalLayout>
+                    <l:content>
+                        <VBox>
+                            <ui:Table id="idLogTable" rows="{path:'/Rowsets/Rowset/Row'}" alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly" columnHeaderHeight="50px" rowHeight="40px">
+                                <ui:Column hAlign="Center" width="15%">
+                                    <Label text="Tarih" textAlign="Center" design="Bold" class="TableText"/>
+                                    <ui:template>
+                                        <Text text="{INSDATE}" textAlign="Center"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" width="10%">
+                                    <Label text="Döküm No" textAlign="Center" design="Bold" class="TableText"/>
+                                    <ui:template>
+                                        <Text text="{CASTNO}" textAlign="Center"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" width="50%">
+                                    <Label text="Hata Açıklaması" textAlign="Center" design="Bold" class="TableText"/>
+                                    <ui:template>
+                                        <Text text="{ERROR_DESCRIPTION}" textAlign="Center"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" width="15%">
+                                    <Label text="Kaynak" textAlign="Center" design="Bold" class="TableText"/>
+                                    <ui:template>
+                                        <Text text="{SOURCE}" textAlign="Center"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" width="10%">
+                                    <Label text="Durum" textAlign="Center" design="Bold" class="TableText"/>
+                                    <ui:template>
+                                        <core:Icon size="20px" src="{= ${TYPE} === 'Warning' ? 'sap-icon://alert' : 'sap-icon://error' }" color="{= ${TYPE} === 'Warning' ? '#ff9933' : '#ff0000' }"/>
+                                    </ui:template>
+                                </ui:Column>
+                            </ui:Table>
+                        </VBox>
+                    </l:content>
+                </l:VerticalLayout>
+            </form:SimpleForm>
+        </content>
+        <buttons>
+            <Button type="Reject" width="100px" icon="sap-icon://accept" text="Kapat" press="onFragmentCancel"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

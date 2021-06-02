@@ -1,0 +1,57 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout">
+    <Dialog state="Warning" title="Dese Detay" id="fragmentBilletAdd">
+        <content>
+            <form:SimpleForm editable="true">
+                <l:VerticalLayout class="sapUiContentPadding" width="100%">
+                    <l:content>
+                        <VBox >
+                          				<Table id="idBobinDeseDetailsTable" inset="false" items="{ path: '/Rowsets/Rowset/Row'}" sticky="ColumnHeaders" 
+							mode="SingleSelectMaster">
+						 <columns>
+                <Column hAlign="Center">
+                    <Text text ="Bobin No"  />
+
+                </Column>
+                <Column hAlign="Center">
+                    <Text text="Bölüm"  />
+                </Column>
+                <Column hAlign="Center">
+                    <Text text="Miktar"   />
+                </Column>
+                <Column hAlign="Center">
+                    <Text text="Sebep"  />
+                </Column>
+                 <Column hAlign="Center">
+                    <Text text="Tarih" />
+                </Column>
+               
+
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{INVENTORY_ID}" />
+                        <Text text="{DEPARTMENT}"  />
+                        <Text text="{QTY}" />
+                        <Text text="{REASON}" />
+            <Text text="{TIME}" />
+             
+                    </cells>
+                </ColumnListItem>
+            </items>
+						</Table>
+                            
+                        </VBox>
+                    </l:content>
+                </l:VerticalLayout>
+            </form:SimpleForm>
+        </content>
+        <buttons>
+            <Button id="cancelBilletButton" icon="sap-icon://sys-cancel" text="Kapat" press="onPressCancelScrapt"></Button>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

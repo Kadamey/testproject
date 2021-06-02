@@ -1,0 +1,49 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:ui="sap.ui.table">
+    <Dialog state="Information" id="idFragmentRemDatepicker" title="Toplam Üretim" draggable="true">
+        <content>
+            <form:SimpleForm editable="true" class="sapUiTinyMargin" id="dateSimpleForm">
+                <l:VerticalLayout width="100%">
+                    <l:content>
+                        <Label text="Başlangıç" design="Bold" class="sapUiTinyMarginBottom sapUiSmallMarginEnd sapUiSmallMarginTop"/>
+                        <DateTimePicker id="datePickerStart" placeholder="Başlangıç Zamanı" class="sapUiSmallMarginBottom" change="onChangeStartDate"/>
+                        <Label text="Bitiş" design="Bold" class="sapUiTinyMarginBottom sapUiSmallMarginEnd sapUiSmallMarginTop"/>
+                        <DateTimePicker id="datePickerEnd" placeholder="Bitiş Zamanı" class="sapUiSmallMarginBottom" enabled="false"/>
+                    </l:content>
+                </l:VerticalLayout>
+            </form:SimpleForm>
+            <VBox id="vBoxToplam" class="sapUiTinyMargin" alignItems="Center" justifyContent="Center" visible="false">
+                <Label text="Toplam" design="Bold"/>
+                <Text id="toplam" class="kukurtDateResultText"/>
+            </VBox>
+            <FlexBox id="flexBoxTable" direction="Column" alignItems="Center" width="300px" class="sapUiSmallMarginTop sapUiSmallMarginBottom" visible="false">
+                <ui:Table id="idPacalTable" selectionMode="Single" selectionBehavior="RowOnly" rowHeight="40px" rows="{ path: '/Rowsets/Rowset/Row', events: { change: '.onPacalBindingChange' } }">
+                    <ui:columns>
+                        <ui:Column hAlign="Center" width="auto">
+                            <Label text="Döküm Numarası" design="Bold"/>
+                            <ui:template>
+                                <Text text="{CASTNO}" wrapping="false"/>
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column hAlign="Center" width="auto">
+                            <Label text="Miktar" design="Bold"/>
+                            <ui:template>
+                                <Text text="{QUANTITY}" wrapping="false"/>
+                            </ui:template>
+                        </ui:Column>
+                    </ui:columns>
+                </ui:Table>
+            </FlexBox>
+        </content>
+        <beginButton>
+            <Button icon="sap-icon://sys-cancel" text="İptal" press="onPressCancelDate"/>
+        </beginButton>
+        <endButton>
+            <Button id="buttonCalc" icon="sap-icon://simulate" text="Hesapla" press="onPressCalculateFromDate"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,67 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:form="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<Dialog state="Warning" id="fragmentDivideStoppage" draggable="true" title="Duruş Böl">
+		<content>
+			<form:SimpleForm editable="true">
+				<l:VerticalLayout class="sapUiContentPadding">
+					<l:content>
+						<HBox>
+							<VBox>
+								<HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+									<Label text="" design="Bold" width="160px"/>
+									<Label text="Mevcut Duruşun Zamanları" design="Bold" width="330px" textAlign="Center"/>
+								</HBox>
+								<HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+									<Label text="Başlangıç Zamanı : " design="Bold" width="160px"/>
+									<HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" width="330px">
+										<DatePicker id="idStartDate2" displayFormat="dd/MM/yy" width="160px" enabled="false"/>
+										<TimePicker id="idStartTime2" displayFormat="HH:mm:ss" width="160px" enabled="false"/>
+									</HBox>
+								</HBox>
+								<HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+									<Label text="Bitiş Zamanı : " design="Bold" width="160px"/>
+									<HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" width="330px">
+										<DatePicker id="idEndDate2" displayFormat="dd/MM/yy" width="160px" enabled="false"/>
+										<TimePicker id="idEndTime2" displayFormat="HH:mm:ss" width="160px" enabled="false"/>
+									</HBox>
+								</HBox>
+								<HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+									<Label text="Kalan Süre : " design="Bold" width="160px"/>
+									<Input id="idTimeInMinutes2" textAlign="Center" width="330px" enabled="false"/>
+								</HBox>
+							</VBox>
+							<VBox>
+								<HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+									<Label text="" design="Bold" width="50px"/>
+									<Label text="Yaratılacak Duruşun Zamanları" design="Bold" width="330px" textAlign="Center"/>
+								</HBox>
+								<HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+									<Label text="" design="Bold" width="50px"/>
+									<HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" width="330px">
+										<DatePicker id="idStartDate3" displayFormat="dd/MM/yy" width="160px" enabled="false"/>
+										<TimePicker id="idStartTime3" displayFormat="HH:mm:ss" width="160px" enabled="false"/>
+									</HBox>
+								</HBox>
+								<HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+									<Label text="" design="Bold" width="50px"/>
+									<HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" width="330px">
+										<DatePicker id="idEndDate3" displayFormat="dd/MM/yy" width="160px" enabled="false"/>
+										<TimePicker id="idEndTime3" displayFormat="HH:mm:ss" width="160px" enabled="false"/>
+									</HBox>
+								</HBox>
+								<HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+									<Label text="" design="Bold" width="50px"/>
+									<Input id="idTimeInMinutes3" textAlign="Center" width="330px" liveChange="onPressSplitTime" type="Number" placeholder="Süre (dk) Giriniz..."/>
+								</HBox>
+							</VBox>
+						</HBox>
+					</l:content>
+				</l:VerticalLayout>
+			</form:SimpleForm>
+		</content>
+		<buttons>
+			<Button width="125px" type="Accept" icon="sap-icon://save" text="Kaydet" press="onPressStoppageSplitButton"></Button>
+			<Button width="125px" type="Reject" icon="sap-icon://sys-cancel" text="İptal" press="onPressCancelDownTimeButton"></Button>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

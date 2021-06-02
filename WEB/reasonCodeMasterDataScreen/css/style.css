@@ -1,0 +1,25 @@
+/* Enter your custom styles here */
+.testText {
+	color: red !important;
+}
+.orderReleaseScreenRowColor{
+background: ec1c24 !important;
+font-weight: bold;
+}
+.orderReleaseScreenHeaderColor{
+background: 4b4949 !important;
+font-weight: bold;
+}
+
+.redBackground {
+    background-color: #b0b1b5  !important;
+}
+.greenBackground {
+    background-color:#b3e8a9 !important;
+}
+.yellowBackground {
+    background-color: #ffffb3 !important;
+}
+.blueBackground {
+    background-color: #66c2ff !important;
+}

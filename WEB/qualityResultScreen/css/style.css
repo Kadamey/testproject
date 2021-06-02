@@ -1,0 +1,23 @@
+/* Enter your custom styles here */
+
+
+.greenBackground {
+    background-color: #2ECC71 !important;
+}
+
+.redBackground {
+    background-color: #FF5733 !important;
+}
+
+.yellowBackground {
+    background-color: #FFC300 !important;
+}
+
+.grayBackground {
+    background-color: #E5E5E5 !important;
+}
+
+.customHeightInput .sapMInputBaseInner {
+    font-size: 1.5rem;
+    font-weight: bold  !important;
+}

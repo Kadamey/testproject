@@ -1,0 +1,35 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:form="sap.ui.layout.form">
+<Dialog title="GRUP EKLE" id="addGroupNoDialog">
+<content>
+<form:Form width="100%" editable="true">
+	<form:formContainers>
+		<form:FormContainer>
+			<form:formElements>
+				<form:FormElement >
+
+					<form:fields>
+					            <ComboBox id="idLineComboBox" textAlign="Center" items="{path: '/Rowsets/Rowset/Row'}" change="onSelectLine" placeholder="Grup No Seçiniz..." fieldGroupIds="1">
+                <core:Item key="{BOBBINGROUP}" text="{BOBBINGROUP}" />
+            </ComboBox>
+					</form:fields>
+					</form:FormElement>
+				</form:formElements>
+				<form:title/>
+			</form:FormContainer>
+			</form:formContainers>
+		<form:layout>
+			<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+		</form:layout>
+	</form:Form>
+</content>
+<beginButton>
+	<Button text= "Kaydet" press="handleAddConfirm"></Button>
+</beginButton>
+<endButton>
+	<Button text= "İptal" press="onCloseDialog"></Button>
+</endButton>
+</Dialog>
+</core:FragmentDefinition>

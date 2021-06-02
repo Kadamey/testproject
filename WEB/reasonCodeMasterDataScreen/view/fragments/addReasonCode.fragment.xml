@@ -1,0 +1,133 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:form="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<Dialog state="Warning" id="fragmentCreateNotification" draggable="true" contentWidth="620px">
+		<content>
+			<form:SimpleForm editable="true">
+				<l:VerticalLayout class="sapUiContentPadding">
+					<l:content>
+						<VBox>
+							<HBox fitContainer="true" justifyContent="Start" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Lokasyon : " design="Bold" width="150px"/>
+								<HBox fitContainer="true" justifyContent="Start" alignItems="Center">
+									<ComboBox id="idToolComboBox" textAlign="Center" width="350px" items="{path : '/Rowsets/Rowset/Row', length: 999}"
+										placeholder="Lokasyon Seçiniz...">
+										<core:ListItem key="{TOOL_NUMBER}" text="{TOOL_NUMBER} - {DESCRIPTION}"/>
+									</ComboBox>
+								</HBox>
+							</HBox>
+							<HBox fitContainer="true" justifyContent="Start" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Duruş Tipi 1 : " design="Bold" width="150px"/>
+								<HBox fitContainer="true" justifyContent="Start" alignItems="Center">
+									<Input id="idreasonCode1" textAlign="Center" width="350px" change="changeReasonCode" placeholder="Duruş Tipi Kodunu Giriniz..."
+										showSuggestion="true" suggestionItems="{path : '/Rowsets/Rowset/Row', length: 5000}">
+										<suggestionItems>
+											<core:Item text="{REASON_CODE_ID}"/>
+										</suggestionItems>
+									</Input>
+									<core:Icon id="idAcceptIcon1" size="30px" src="sap-icon://accept" color="#0ed145" class="sapUiSmallMarginBeginEnd"
+										tooltip="Duruş Tipi Tanımlı"/>
+									<core:Icon id="idRejectIcon1" size="30px" src="sap-icon://decline" color="#ec1c24" class="sapUiSmallMarginBeginEnd"
+										tooltip="Duruş Tipi Tanımsız"/>
+								</HBox>
+							</HBox>
+							<HBox fitContainer="true" justifyContent="Start" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Duruş Tipi 2 : " design="Bold" width="150px"/>
+								<HBox fitContainer="true" justifyContent="Start" alignItems="Center">
+									<Input id="idreasonCode2" textAlign="Center" width="350px" change="changeReasonCode" placeholder="Duruş Tipi Kodunu Giriniz..."
+										showSuggestion="true" suggestionItems="{path : '/Rowsets/Rowset/Row', length: 5000}">
+										<suggestionItems>
+											<core:Item text="{REASON_CODE_ID}"/>
+										</suggestionItems>
+									</Input>
+									<core:Icon id="idAcceptIcon2" size="30px" src="sap-icon://accept" color="#0ed145" class="sapUiSmallMarginBeginEnd"
+										tooltip="Duruş Tipi Tanımlı"/>
+									<core:Icon id="idRejectIcon2" size="30px" src="sap-icon://decline" color="#ec1c24" class="sapUiSmallMarginBeginEnd"
+										tooltip="Duruş Tipi Tanımsız"/>
+								</HBox>
+							</HBox>
+							<HBox fitContainer="true" justifyContent="Start" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Duruş Tipi 3 : " design="Bold" width="150px"/>
+								<HBox fitContainer="true" justifyContent="Start" alignItems="Center">
+									<Input id="idreasonCode3" textAlign="Center" width="350px" change="changeReasonCode" placeholder="Duruş Tipi Kodunu Giriniz..."
+										showSuggestion="true" suggestionItems="{path : '/Rowsets/Rowset/Row', length: 5000}">
+										<suggestionItems>
+											<core:Item text="{REASON_CODE_ID}"/>
+										</suggestionItems>
+									</Input>
+									<core:Icon id="idAcceptIcon3" size="30px" src="sap-icon://accept" color="#0ed145" class="sapUiSmallMarginBeginEnd"
+										tooltip="Duruş Tipi Tanımlı"/>
+									<core:Icon id="idRejectIcon3" size="30px" src="sap-icon://decline" color="#ec1c24" class="sapUiSmallMarginBeginEnd"
+										tooltip="Duruş Tipi Tanımsız"/>
+								</HBox>
+							</HBox>
+							<HBox fitContainer="true" justifyContent="Start" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Duruş Tipi 4 : " design="Bold" width="150px"/>
+								<HBox fitContainer="true" justifyContent="Start" alignItems="Center">
+									<Input id="idreasonCode4" textAlign="Center" width="350px" change="changeReasonCode" placeholder="Duruş Tipi Kodunu Giriniz..."
+										showSuggestion="true" suggestionItems="{path : '/Rowsets/Rowset/Row', length: 5000}">
+										<suggestionItems>
+											<core:Item text="{REASON_CODE_ID}"/>
+										</suggestionItems>
+									</Input>
+									<core:Icon id="idAcceptIcon4" size="30px" src="sap-icon://accept" color="#0ed145" class="sapUiSmallMarginBeginEnd"
+										tooltip="Duruş Tipi Tanımlı"/>
+									<core:Icon id="idRejectIcon4" size="30px" src="sap-icon://decline" color="#ec1c24" class="sapUiSmallMarginBeginEnd"
+										tooltip="Duruş Tipi Tanımsız"/>
+								</HBox>
+							</HBox>
+							<HBox fitContainer="true" justifyContent="Start" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Duruş Tipi 5 : " design="Bold" width="150px"/>
+								<HBox fitContainer="true" justifyContent="Start" alignItems="Center">
+									<Input id="idreasonCode5" textAlign="Center" width="350px" change="changeReasonCode" placeholder="Duruş Tipi Kodunu Giriniz..."
+										showSuggestion="true" suggestionItems="{path : '/Rowsets/Rowset/Row', length: 5000}">
+										<suggestionItems>
+											<core:Item text="{REASON_CODE_ID}"/>
+										</suggestionItems>
+									</Input>
+									<core:Icon id="idAcceptIcon5" size="30px" src="sap-icon://accept" color="#0ed145" class="sapUiSmallMarginBeginEnd"
+										tooltip="Duruş Tipi Tanımlı"/>
+									<core:Icon id="idRejectIcon5" size="30px" src="sap-icon://decline" color="#ec1c24" class="sapUiSmallMarginBeginEnd"
+										tooltip="Duruş Tipi Tanımsız"/>
+								</HBox>
+							</HBox>
+							<HBox fitContainer="true" justifyContent="Start" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Duruş Türü : " design="Bold" width="150px"/>
+								<HBox fitContainer="true" justifyContent="Start" alignItems="Center">
+									<ComboBox id="idStoppageType" textAlign="Center" width="350px" placeholder="Duruş Türü Seçiniz...">
+										<core:ListItem key="Z1" text="Z1 - Arıza Duruşu"/>
+										<!--<core:ListItem key="Z4" text="Z4 - Planlı Duruş"/>-->
+									</ComboBox>
+								</HBox>
+							</HBox>
+							<HBox fitContainer="true" justifyContent="Start" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Katalog Kodu : " design="Bold" width="150px"/>
+								<HBox fitContainer="true" justifyContent="Start" alignItems="Center">
+									<Input id="idCatalogCode" textAlign="Center" width="350px" placeholder="Katalog Kodu Giriniz..."/>
+								</HBox>
+							</HBox>
+							<HBox fitContainer="true" justifyContent="Start" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Kod Grubu : " design="Bold" width="150px"/>
+								<HBox fitContainer="true" justifyContent="Start" alignItems="Center">
+									<Input id="idCodeGroup" textAlign="Center" width="350px" placeholder="Kod Grubu Giriniz..."/>
+								</HBox>
+							</HBox>
+							<HBox fitContainer="true" justifyContent="Start" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="PM İş Yeri : " design="Bold" width="150px"/>
+								<HBox fitContainer="true" justifyContent="Start" alignItems="Center">
+									<ComboBox id="idPMWorkplace" textAlign="Center" width="350px" items="{path : '/Rowsets/Rowset/Row', length: 999}"
+										placeholder="Sorumlu İş Yeri Seçiniz...">
+										<core:ListItem key="{PM_WORKPLACE}" text="{PM_WORKPLACE} - {DESCRIPTION}"/>
+									</ComboBox>
+								</HBox>
+							</HBox>
+						</VBox>
+					</l:content>
+				</l:VerticalLayout>
+			</form:SimpleForm>
+		</content>
+		<buttons>
+			<Button id="saveReasonCode" width="125px" type="Accept" icon="sap-icon://save" text="Kaydet" press="onPressSaveReasonCodeButton"></Button>
+			<Button id="cancelReasonCode" width="125px" type="Reject" icon="sap-icon://sys-cancel" text="İptal" press="onPressCancelReasonCodeButton"></Button>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,230 @@
+<mvc:View
+	controllerName="editConfirmation.controller.Detail"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+	xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc">
+	<ObjectPageLayout
+		id="ObjectPageLayout"
+		showTitleInHeaderContent="true"
+		alwaysShowContentHeader="false"
+		preserveHeaderStateOnScroll="false"
+		headerContentPinnable="false"
+		isChildPage="true"
+		upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:Title text="Sayaç : {header>/ME_CONF_COUNT}" wrapping="true" class="sapUiSmallMarginEnd"/>
+				</expandedHeading>
+
+				<snappedHeading>
+					<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+						<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
+							<f:Avatar
+								src="sap-icon://accept"
+								displaySize="S"
+								displayShape="Square"
+								class="sapUiTinyMarginEnd"/>
+							<m:Title text="Sayaç : {header>/ME_CONF_COUNT}" wrapping="true"/>
+						</m:FlexBox>
+					</m:FlexBox>
+				</snappedHeading>
+
+				<navigationActions>
+					<m:OverflowToolbarButton
+						type="Transparent"
+						icon="sap-icon://full-screen"
+						press=".handleFullScreen"
+						tooltip="Enter Full Screen Mode"
+						visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }"/>
+					<m:OverflowToolbarButton
+						type="Transparent"
+						icon="sap-icon://exit-full-screen"
+						press=".handleExitFullScreen"
+						tooltip="Exit Full Screen Mode"
+						visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
+					<m:OverflowToolbarButton
+						type="Transparent"
+						icon="sap-icon://decline"
+						press=".handleClose"
+						tooltip="Close column"
+						visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
+				</navigationActions>
+
+				<actions>
+					<m:ToggleButton
+						text="Düzenle"
+						type="Emphasized"
+						press=".onEditToggleButtonPress"/>
+					<m:Button
+						text="Belgeyi İptal Et"
+						type="Reject"/>
+				</actions>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+
+		<headerContent>
+			<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+				<f:Avatar
+					src="sap-icon://begin"
+					displaySize="L"
+					displayShape="Square"
+					class="sapUiTinyMarginEnd">
+				</f:Avatar>
+				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+					<m:Label text="Sipariş No"/>
+					<m:Text text="{header>/ORDERID}"/>
+				</m:VBox>
+				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+					<m:Label text="Malzeme"/>
+					<m:Text text="{header>/MATCODE} / {header>/MATDESC}"/>
+				</m:VBox>
+				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+					<m:Label text="İşyeri"/>
+					<m:ObjectNumber number="{header>/WORK_CENTER}" emphasized="false"/>
+				</m:VBox>
+			</m:FlexBox>
+		</headerContent>
+
+		<sections>
+			<ObjectPageSection title="Teyit ve Aktivite">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+        <m:Table id="idOrderTimeTicketsTable" inset="false" items="{	path: '/'}" sticky="ColumnHeaders" mode="None" >
+
+                                        <m:columns>
+                                            <m:Column hAlign="Center">
+                                                <m:Text text="Sipariş No" />
+                                            </m:Column>
+                                            <m:Column hAlign="Center">
+                                                <m:Text text="Teyit Miktarı" />
+                                            </m:Column>
+                                            <m:Column hAlign="Center">
+                                                <m:Text text="Ölçü Birimi" />
+                                            </m:Column>
+
+
+                                            <m:Column hAlign="Center" width="150px">
+                                                <m:Text text="ERP Operasyon No" />
+                                            </m:Column>
+
+                                            <m:Column hAlign="Center">
+                                                <m:Text text="ERP Teyit Tarihi" />
+                                            </m:Column>
+
+
+
+
+                                        </m:columns>
+                                        <m:items>
+                                            <m:ColumnListItem vAlign="Middle">
+                                                <m:cells>
+                                                    <m:Text id="orderNoFieldTimeTicket" text="{ORDERID}" wrapping="false" />
+
+
+                                                    <m:Text id="confQuantitiyTimeTicket" text="{YIELD}" wrapping="true" />
+                                                    <m:Text id="unitOfMeasureTimeTicket" text="{CONF_QUAN_UNIT}" wrapping="false" />
+
+                                                    <m:Text id="erpOperationNoTimeTicket" text="{OPERATION}" wrapping="false" />
+
+                                                    <m:Text id="erpConfDateTimeTicket" text="{POSTG_DATE}" wrapping="false" />
+
+
+                                                </m:cells>
+                                            </m:ColumnListItem>
+                                        </m:items>
+                                    </m:Table>
+                       
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection title="Mal Hareketleri">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+						    <m:Table id="idGoodsMovementTable" inset="false" items="{	path: '/GoodsMovements/Rowsets/Rowset/Row'}" sticky="ColumnHeaders" mode="None" >
+
+                                    <m:columns>
+                                        <m:Column hAlign="Center">
+                                            <m:Text text="Sipariş No" />
+                                        </m:Column>
+
+
+                                        <m:Column hAlign="Center" width="150px">
+                                            <m:Text text="Malzeme" />
+                                        </m:Column>
+                                         <m:Column hAlign="Center" width="150px">
+                                            <m:Text text="Malzeme Tanimi" />
+                                        </m:Column>
+
+                                        <m:Column hAlign="Center" width="150px">
+                                            <m:Text text="Parti" />
+                                        </m:Column>
+
+
+                                        <m:Column hAlign="Center">
+                                            <m:Text text="Depo Yeri" />
+                                        </m:Column>
+                                        <m:Column hAlign="Center">
+                                            <m:Text text="Hareket Tipi" />
+                                        </m:Column>
+                                        <m:Column hAlign="Center">
+                                            <m:Text text="Miktar" />
+                                        </m:Column>
+
+                                        <m:Column hAlign="Center">
+                                            <m:Text text="Ölçü Birimi" />
+                                        </m:Column>
+                                        <m:Column hAlign="Center">
+                                            <m:Text text="Rezervasyon No" />
+                                        </m:Column>
+                                        <m:Column hAlign="Center">
+                                            <m:Text text="Rezervasyon Item" />
+                                        </m:Column>
+
+
+                                    </m:columns>
+                                    <m:items>
+                                        <m:ColumnListItem vAlign="Middle">
+                                            <m:cells>
+                                                <m:Text id="orderNoFieldGoodsMvt" text="{ORDERID}" wrapping="false" />
+                                                 <m:Text id="materialFieldGoodsMvt" text="{ITEM}" wrapping="true" />
+
+                                                <m:Text id="materialDescFieldGoodsMvt" text="{ITEM_DESCRIPTION}" wrapping="true" />
+                                                <m:Text id="batchNoFieldGoodsMvt" text="{BATCH}" wrapping="false" />
+
+                                                <m:Text id="storageLocationFieldGoodsMvt" text="{STGE_LOC}" wrapping="false" />
+                                                <m:Text id="moveTypeFieldGoodsMvt" text="{MOVE_TYPE}" wrapping="false" />
+                                                <m:Input id="quantityFieldGoodsMvt" value="{ENTRY_QNT}" wrapping="false" editable="{EDITABLE}"/>
+
+                                                 <m:Text id="unitOfMeasureFieldGoodsMvt" text="{ENTRY_UOM}" wrapping="true" />
+                                                <m:Text id="reservationNoFieldGoodsMvt" text="{RESERV_NO}" wrapping="false" />
+
+                                                <m:Text id="reservationItemFieldGoodsMvt" text="{RESERV_ITEM}" wrapping="false" />
+                                             
+
+                                            </m:cells>
+                                        </m:ColumnListItem>
+                                    </m:items>
+                                </m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+
+		<footer>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer/>
+				<m:Button type="Accept" text="Kaydet"/>
+				<m:ToolbarSeparator/>
+				<m:Button type="Reject" text="İptal"/>
+			</m:OverflowToolbar>
+		</footer>
+	</ObjectPageLayout>
+</mvc:View>

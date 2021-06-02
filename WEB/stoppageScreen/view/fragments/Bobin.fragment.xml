@@ -1,0 +1,59 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog id="bobinDialog" showHeader="false">
+		<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+			<Label width="auto" text="Parti No : " design="Bold" class="testText"/>
+			<ComboBox id="idBobbinCombobox" textAlign="Center" items="{path:'/'}" width="70%" change="handleBobbinCbChange"
+				placeholder="Parti Numarası Seçiniz..." fieldGroupIds="1" class="customHeightInput">
+				<core:Item key="{INVENTORY_ID}" text="{INVENTORY_ID}" class="customHeightInput"/>
+			</ComboBox>
+			<Label width="auto" text="Ünite Adı : " design="Bold" class="testText"/>
+			<ComboBox id="idBobbinCombobox1" textAlign="Center" items="{path:'/'}" width="70%" change="handleBobbinCbChange"
+				placeholder="Lokasyon Seçiniz..." fieldGroupIds="1" class="customHeightInput">
+				<core:Item key="{resourceRef}" text="{resourceRef}" class="customHeightInput"/>
+			</ComboBox>
+		</HBox>
+		<Table id="idProductsTable" inset="false" items="{ path: '/' }" mode="SingleSelectMaster" selectionChange="handleBobbinSelectionChange"
+			noDataText="Aktif sipariş bulunmamaktadır">
+			<columns>
+				<Column hAlign="Center">
+					<Text text="Bobin Id" class="testText"/>
+				</Column>
+				<Column hAlign="Center">
+					<Text text="Üretim Zamanı" class="testText"/>
+				</Column>
+				<Column hAlign="Center">
+					<Text text="Yarı Ürün Kodu" class="testText"/>
+				</Column>
+				<Column hAlign="Center">
+					<Text text="Miktar" class="testText"/>
+				</Column>
+				<Column hAlign="Center">
+					<Text text="Depo Yeri" class="testText"/>
+				</Column>
+				<Column hAlign="Center">
+					<Text text="Makine" class="testText"/>
+				</Column>
+				<Column hAlign="Center">
+					<Text text="Birim" class="testText"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{BATCH_ID}" class="testText"/>
+						<Text text="{RECEIVE_DATE_TIME}" class="testText"/>
+						<Text text="{ITEM_BO}" class="testText"/>
+						<Text text="{QTY_ON_HAND}" class="testText"/>
+						<Text text="{STORAGE_LOCATION_BO}" class="testText"/>
+						<Text text="{= ${REPORTING_CENTER_BO}.split(',')[1] }" class="testText"/>
+						<Text text="{UOM_ID}" class="testText"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<buttons>
+			<Button icon="sap-icon://save" width="125px" type="Accept" text="Kaydet" press="handleSavePress"/>
+			<Button icon="sap-icon://sys-cancel" width="125px" type="Reject" text="İptal" press="onCloseDialog"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

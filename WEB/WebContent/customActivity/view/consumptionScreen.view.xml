@@ -1,0 +1,127 @@
+<mvc:View controllerName="customActivity.controller.consumptionScreen" height="100%"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:f="sap.f.semantic"
+	xmlns:mvc="sap.ui.core.mvc">
+	<App>
+		<pages>
+			<Page showHeader="false">
+				<HBox width="100%" class="sapUiContentPadding PanelBackground" alignItems="Center" justifyContent="SpaceBetween">
+					<Button id="navigateToManageOrders" icon="sap-icon://sys-back-2" width="180px" text="Sipariş Ekranına Dön" press="navigateToManageOrders" class="sapUiSmallMarginBeginEnd"/>
+					<HBox alignItems="Center">
+						<Label text="Sipariş No: " design="Bold" class="sapUiSmallMarginBeginEnd"/>
+						<Input id="idOrderNoArea" value="---" width="200px" textAlign="Center" editable="false" class="sapUiSmallMarginBeginEnd"/>
+					</HBox>
+					<HBox alignItems="Center">
+						<Label text="Döküm No: " design="Bold" class="sapUiSmallMarginBeginEnd"/>
+						<Input id="idCastNoArea" value="---" width="200px" textAlign="Center" editable="false" class="sapUiSmallMarginBeginEnd"/>
+					</HBox>
+					<HBox alignItems="Center">
+						<Label text="Malzeme Bilgisi: " design="Bold" class="sapUiSmallMarginBeginEnd"/>
+						<Input id="idMaterialArea" value="---" width="400px" textAlign="Center" editable="false" class="sapUiSmallMarginBeginEnd"/>
+					</HBox>
+					<HBox alignItems="Center">
+						<Label text="Sipariş Miktarı: " design="Bold" class="sapUiSmallMarginBeginEnd"/>
+						<Input id="idQuantity" value="---" width="200px" textAlign="Center" editable="false" class="sapUiSmallMarginBeginEnd"/>
+					</HBox>
+				</HBox>
+				<Table id="idProductsTable" inset="false" fixedLayout="false" items="{path: '/Rowsets/Rowset/Row'}">
+					<headerToolbar>
+						<OverflowToolbar>
+							<Label text="Tüketim Bileşenleri Tablosu"/>
+							<ToolbarSpacer/>
+							<Label text="Otomasyon Verileri" class="sapUiSmallMarginEnd"/>
+							<core:Icon size="20px" id="automationStatusPositive" src="sap-icon://status-error" color="#0ed145" visible="false"/>
+							<core:Icon size="20px" id="automationStatusNegative" src="sap-icon://status-error" color="#ec1c24" visible="false"/>
+                            <ToolbarSpacer/>
+							<Button id="operationChange1" width="250px" text="Fırın Şarj Operasyonu (0010)" type="Accept" press="changeOperation1" class="sapUiSmallMarginEnd"/>
+							<Button id="operationChange2" width="250px" text="Döküm Operasyonu (0020)" type="Reject" press="changeOperation2" class="sapUiSmallMarginEnd"/>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column hAlign="Center">
+							<Label text="Tüketim Teyidi"/>
+							<!-- 1.kolon -->
+						</Column>
+                        <Column hAlign="Center">
+							<Label text="Operasyon No"/>
+							<!-- 2.kolon -->
+						</Column>
+						<Column hAlign="Center">
+							<Label text="Malzeme Kodu"/>
+							<!-- 3.kolon -->
+						</Column>
+						<Column hAlign="Center">
+							<Label text="Malzeme Tanımı"/>
+							<!-- 4.kolon -->
+						</Column>
+						<Column hAlign="Center">
+							<Label text="Planlı Tüketim Miktarı"/>
+							<!-- 5.kolon -->
+						</Column>
+						<Column hAlign="Center">
+							<Label text="Gerçek Tüketim Miktarı"/>
+							<!-- 6.kolon -->
+						</Column>
+						<Column hAlign="Center">
+							<Label text="Birim"/>
+							<!-- 7.kolon -->
+						</Column>
+						<Column hAlign="Center">
+							<Label text="Parti Numarası"/>
+							<!-- 8.kolon -->
+						</Column>
+						<Column hAlign="Center">
+							<Label text=""/>
+							<!-- 9.kolon -->
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem vAlign="Middle">
+							<cells>
+								<core:Icon size="20px" src="{= ${PROCESSED} === true ? 'sap-icon://accept' : 'sap-icon://decline' }" color="{= ${PROCESSED} === true ? 'green' : 'red' }"/>
+								<!-- 1.kolon -->
+                                <Text text="{VORNR}" wrapping="false"/>
+								<!-- 2.kolon -->
+								<Text text="{MATNR}" wrapping="false"/>
+								<!-- 3.kolon -->
+								<Text text="{MAKTX}" wrapping="false"/>
+								<!-- 4.kolon -->
+								<Text text="{BDMNG}" wrapping="false"/>
+								<!-- 5.kolon -->
+								<Input value="{QTY_IN_REPORT_UOM}" width="200px" textAlign="Center" placeholder="Tüketim Miktarını Giriniz" change="quantityChange" type="Number" editable="{= ${BATCH} === null ? true : false }"/>
+								<!-- 6.kolon -->
+								<Text text="{MSEHI}" wrapping="false"/>
+								<!-- 7.kolon -->
+								<Input value="{BATCH}" width="200px" textAlign="Center" placeholder="Parti Numarasını Girin" visible="{=!!${XCHPF}}" editable="false"/>
+								<!-- 8.kolon -->
+								<core:Icon size="20px" src="sap-icon://sys-cancel-2" color="red" hoverColor="orange" press="onDeleteRow" visible="{=!!${MANUAL}}"/>
+								<!-- 9.kolon -->
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<footer>
+					<OverflowToolbar>
+						<Button width="150px" icon="sap-icon://add" press="onAdd" text="Yeni Bileşen Ekle" class="sapUiSmallMarginBeginEnd"/>
+                        <ToolbarSeparator/>
+						<Button width="150px" icon="sap-icon://add" press="onAdd2" text="Sıvı Çelik Ekle" class="sapUiSmallMarginBeginEnd"/>
+                        <ToolbarSeparator/>
+						<Button width="150px" id="idAddScrap" icon="sap-icon://radar-chart" press="onAddScrap" text="Sıvı Çelik Zai" class="sapUiSmallMarginBeginEnd"/>
+                        <ToolbarSeparator/>
+                        <Button width="150px" id="idPacalInfo" icon="sap-icon://cancel-share" press="onPacalScreen" text="Paçal Bileşen" class="sapUiSmallMarginBeginEnd"/>
+                        <ToolbarSeparator/>
+                        <Button width="150px" type="Reject" icon="sap-icon://sys-monitor" press="onLogScreen" text="Hata Kayıtları" class="sapUiSmallMarginBeginEnd"/>
+						<ToolbarSeparator/>
+                        <Button width="150px" type="Accept" icon="sap-icon://excel-attachment" text="Excele Aktar" press="onExport" class="sapUiSmallMarginBeginEnd"/>
+                        <ToolbarSpacer/>
+                        <Label text="Son Kaydedilme Zamanı" class="sapUiSmallMarginBeginEnd"/>
+						<Text id="lastSavedTime" textAlign="Center" text="---" width="15rem" class="sapUiSmallMarginBeginEnd"/>
+						<ToolbarSeparator/>
+						<Button width="150px" type="Accept" icon="sap-icon://save" press="saveConsumption" text="Tüketimleri Kaydet" class="sapUiSmallMarginBeginEnd"/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

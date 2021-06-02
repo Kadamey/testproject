@@ -1,0 +1,121 @@
+<mvc:View xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:c="sap.ui.commons"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:ui="sap.ui.table"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
+    xmlns:tnt="sap.tnt" height="100%" controllerName="customOrderScreen.controller.usageDecision">
+    <tnt:ToolHeader>
+        <Image width="100px" src="data:image/png;base64,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"></Image>
+        <FlexBox alignItems="Start" justifyContent="Center" width="100%" displayInline="Center">
+            <items>
+                <Text text="Standart Dışı Bobin Yönetimi" wrapping="true" class="orderReleaseScreenHeaderColor"/>
+            </items>
+        </FlexBox>
+        <ToolbarSpacer/>
+        <Image width="100px" src="/XMII/CM/ECZ_MES-4.0/orderReleaseScreen/images/ecz.png"></Image>
+    </tnt:ToolHeader>
+    <App>
+        <pages>
+            <Page title="Sipariş Onay Ekranı" showHeader="false">
+
+                <content>
+                    <HBox alignItems="Center" justifyContent="Center" height="7%">
+                        <Button width="150px" text="Karar Ekle" icon="sap-icon://add" press="onPressAddDecision" class="sapUiSmallMargin"/>
+                        <Button type="Transparent" icon="sap-icon://delete" text="Sil" press="onDeleteFromTable" visible="false"/>
+                        <ToolbarSpacer/>
+                        <Button icon="sap-icon://save" text="Sisteme Kaydet" press="onSaveDecision" class="sapUiSmallMargin" visible="false"/>
+                    </HBox>
+                    <VBox class="sapUiTinyMargin" alignItems="Center" width="100%">
+
+                        <ScrollContainer height="50rem" width="100%" vertical="true" focusable="true">
+                            <Table id="idUsageDeciTable" inset="true" items="{/Rowsets/Rowset/Row}" sticky="ColumnHeaders" selectionChange="onSelectFromTable" mode="SingleSelectMaster">
+                                <columns>
+                                    <Column hAlign="Center">
+                                        <Text text="Malzeme Kodu"/>
+                                    </Column>
+                                    <Column hAlign="Center" width="20%">
+                                        <Text text="Malzeme Adı"/>
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="Bobin ID"/>
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="Bobin NO"/>
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="Mal Giriş Miktarı (Kg)"/>
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="Depo Yeri"/>
+                                    </Column>
+                                    <Column hAlign="Center" width="10%">
+                                        <Text text="Üretim Tarihi"/>
+                                    </Column>
+                                    <Column hAlign="Center" width="10%">
+                                        <Text text="Bildirim Tarihi"/>
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="Kalan Miktar (Kg)"/>
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="Bidirim Açıklaması"/>
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="Karar Açıklaması"/>
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="Kullanım Kararı"/>
+                                    </Column>
+                                    <Column hAlign="Center" visible="false">
+                                        <Text text="Miktar"/>
+                                    </Column>
+                                    <Column hAlign="Center" width="10%">
+                                        <Text text="Bildirimde Bulunan Operatör"/>
+                                    </Column>
+                                    <Column hAlign="Center" visible="false">
+                                        <Text text="Düzenle"/>
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem vAlign="Middle">
+                                        <cells>
+                                            <Text text="{ITEM}" wrapping="false"/>
+                                            <Text text="{DESCRIPTION}"/>
+                                            <Text text="{INVENTORY_ID}" wrapping="false"/>
+                                            <Text text="{bobinnr}" wrapping="false"/>
+                                            <Text text="{QTY_ORDERED}" wrapping="false"/>
+                                            <Text text="{STORAGE}" wrapping="false"/>
+                                            <Text text="{DATE_TIME}" wrapping="false"/>
+                                            <Text text="{NOTIF_DATE_TIME}" wrapping="false"/>
+                                            <Text text="{QTY_ON_HAND}" wrapping="false"/>
+                                            <Text text="{COMMENTS}" wrapping="false"/>
+                                            <Text text="{DECIDESC}" wrapping="false"/>
+                                            <Text text="{DATA_TAG}" wrapping="false"/>
+                                            <Text text="{miktar}" wrapping="false"/>
+                                            <Text text="{USER_BO}" wrapping="false"/>
+                                            <Button type="Transparent" icon="sap-icon://edit" press="onEditDecision"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </ScrollContainer>
+                    </VBox>
+                    <!-- <VBox class="sapUiSmallMargin" alignItems="Center" width="96%">
+                    </VBox> -->
+                </content>
+                <!-- <footer>
+                    <OverflowToolbar>
+                        <Button width="150px" text="Karar Ekle" icon="sap-icon://add" press="onPressAddDecision" class="sapUiSmallMargin"/>
+                        <Button type="Transparent" icon="sap-icon://delete" text="Sil" press="onDeleteFromTable" visible="false"/>
+                        <ToolbarSpacer/>
+                        <Button icon="sap-icon://save" text="Sisteme Kaydet" press="onSaveDecision" class="sapUiSmallMargin"/>
+                    </OverflowToolbar>
+                </footer> -->
+            </Page>
+        </pages>
+    </App>
+</mvc:View>

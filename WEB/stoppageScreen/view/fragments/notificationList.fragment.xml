@@ -1,0 +1,68 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:form="sap.ui.layout.form"
+	xmlns:ui="sap.ui.table" xmlns:l="sap.ui.layout">
+	<Dialog state="Information" id="idNotificationFragment" draggable="true" title="Bildirim Listesi" contentWidth="90%">
+		<content>
+			<form:SimpleForm editable="true">
+				<l:VerticalLayout>
+					<l:content>
+						<Table id="idNotificaitonTable" inset="false" items="{ path: '/Rowsets/Rowset/Row'}" sticky="ColumnHeaders" mode="SingleSelectMaster">
+							<headerToolbar>
+								<OverflowToolbar>
+									<ToolbarSpacer/>
+									<Button icon="sap-icon://synchronize" width="200px" text="Tabloyu Yenile" press="onPressRefreshNotifTable" type="Accept"/>
+								</OverflowToolbar>
+							</headerToolbar>
+							<columns>
+								<Column hAlign="Center">
+									<Label text="Bildirim No" design="Bold" textAlign="Center" width="100%"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Lokasyon" design="Bold" textAlign="Center" width="100%"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Ekipman" design="Bold" textAlign="Center" width="100%"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Duruş Tipi 1" design="Bold" textAlign="Center" width="100%"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Duruş Tipi 2" design="Bold" textAlign="Center" width="100%"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Duruş Tipi 3" design="Bold" textAlign="Center" width="100%"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Duruş Tipi 4" design="Bold" textAlign="Center" width="100%"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Duruş Tipi 5" design="Bold" textAlign="Center" width="100%"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Açıklama" design="Bold" textAlign="Center" width="100%"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{NOTIF_ID}" wrapping="false" class="sapUiSmallMargin"/>
+										<Text text="{FUNC_LOC_DESC}" wrapping="true" class="sapUiSmallMargin"/>
+										<Text text="{TOOL_DESC}" wrapping="true" class="sapUiSmallMargin"/>
+										<Text text="{REASON_CODE1_TEXT}" wrapping="true" class="sapUiSmallMargin"/>
+										<Text text="{REASON_CODE2_TEXT}" wrapping="true" class="sapUiSmallMargin"/>
+										<Text text="{REASON_CODE3_TEXT}" wrapping="true" class="sapUiSmallMargin"/>
+										<Text text="{REASON_CODE4_TEXT}" wrapping="true" class="sapUiSmallMargin"/>
+										<Text text="{REASON_CODE5_TEXT}" wrapping="true" class="sapUiSmallMargin"/>
+										<Text text="{COMMENT}" wrapping="true" class="sapUiSmallMargin"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</l:content>
+				</l:VerticalLayout>
+			</form:SimpleForm>
+		</content>
+		<buttons>
+			<Button type="Reject" width="100px" icon="sap-icon://decline" text="Kapat" press="onFragmentCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

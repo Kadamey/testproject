@@ -1,0 +1,144 @@
+<mvc:View controllerName="customActivity.controller.Z_SINTER_SCREEN"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:ui="sap.ui.table"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns="sap.m">
+    <Page id="page" showHeader="false" enableScrolling="true">
+        <HBox width="97%" justifyContent="Center" alignItems="Center" class="PanelBackground sapUiMediumMarginBeginEnd sapUiMediumMarginTop">
+            <VBox alignItems="Center" class="sapUiSmallMargin">
+                <Label text="Malzeme Bilgileri" design="Bold"/>
+                <HBox alignItems="Center">
+                    <Label text="163" design="Bold" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+                    <ComboBox id="idBesleyiciKantar1" placeholder="Malzeme Kodu Giriniz." items="{path : '/Rowsets/Rowset/Row'}" change="onClick" width="50rem" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop" fieldGroupIds="1">
+                        <core:Item key="{MATCODE}" text="{MATCODE} - {MATDESC}"/>
+                    </ComboBox>
+                </HBox>
+                <HBox alignItems="Center">
+                    <Label text="164" design="Bold" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+                    <ComboBox id="idBesleyiciKantar2" placeholder="Malzeme Kodu Giriniz." items="{path : '/Rowsets/Rowset/Row'}" change="onClick" width="50rem" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop" fieldGroupIds="2">
+                        <core:Item key="{MATCODE}" text="{MATCODE} - {MATDESC}"/>
+                    </ComboBox>
+                </HBox>
+                <HBox alignItems="Center">
+                    <Label text="165" design="Bold" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+                    <ComboBox id="idBesleyiciKantar3" placeholder="Malzeme Kodu Giriniz." items="{path : '/Rowsets/Rowset/Row'}" change="onClick" width="50rem" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop" fieldGroupIds="3">
+                        <core:Item key="{MATCODE}" text="{MATCODE} - {MATDESC}"/>
+                    </ComboBox>
+                </HBox>
+                <HBox alignItems="Center">
+                    <Label text="166" design="Bold" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+                    <ComboBox id="idBesleyiciKantar4" placeholder="Malzeme Kodu Giriniz." items="{path : '/Rowsets/Rowset/Row'}" change="onClick" width="50rem" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop" fieldGroupIds="4">
+                        <core:Item key="{MATCODE}" text="{MATCODE} - {MATDESC}"/>
+                    </ComboBox>
+                </HBox>
+                <HBox alignItems="Center">
+                    <Label text="167" design="Bold" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+                    <ComboBox id="idBesleyiciKantar5" placeholder="Malzeme Kodu Giriniz." items="{path : '/Rowsets/Rowset/Row'}" change="onClick" width="50rem" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop" fieldGroupIds="5">
+                        <core:Item key="{MATCODE}" text="{MATCODE} - {MATDESC}"/>
+                    </ComboBox>
+                </HBox>
+            </VBox>
+             <VBox alignItems="Center" class="sapUiSmallMargin">
+                <Label text="{timeModel>/today}" design="Bold"/>
+                <Input id="idSclr5" type="Number" placeholder="Miktar Giriniz..." textAlign="Center" class="sapUiSmallMarginTop" />
+                <Input id="idSclr6" type="Number" placeholder="Miktar Giriniz..." textAlign="Center" class="sapUiSmallMarginTop" />
+                <Input id="idSclr7" type="Number" placeholder="Miktar Giriniz..." textAlign="Center" class="sapUiSmallMarginTop" />
+                <Input id="idSclr8" type="Number" placeholder="Miktar Giriniz..." textAlign="Center" class="sapUiSmallMarginTop" />
+                <Input id="idSclr9" type="Number" placeholder="Miktar Giriniz..." textAlign="Center" class="sapUiSmallMarginTop" />
+            </VBox>
+            <VBox alignItems="Center" class="sapUiSmallMargin">
+                <Label text="{timeModel>/yesterday}" design="Bold"/>
+                <Input id="idSclr0" type="Number" textAlign="Center" class="sapUiSmallMarginTop" enabled="false"/>
+                <Input id="idSclr1" type="Number" textAlign="Center" class="sapUiSmallMarginTop" enabled="false"/>
+                <Input id="idSclr2" type="Number" textAlign="Center" class="sapUiSmallMarginTop" enabled="false"/>
+                <Input id="idSclr3" type="Number" textAlign="Center" class="sapUiSmallMarginTop" enabled="false"/>
+                <Input id="idSclr4" type="Number" textAlign="Center" class="sapUiSmallMarginTop" enabled="false"/>
+            </VBox>
+            <VBox alignItems="Center" class="sapUiSmallMargin">
+                <Label text="Birim" design="Bold"/>
+                <Input width="50px" value="TO" textAlign="Center" class="sapUiSmallMarginTop" editable="false"/>
+                <Input width="50px" value="TO" textAlign="Center" class="sapUiSmallMarginTop" editable="false"/>
+                <Input width="50px" value="TO" textAlign="Center" class="sapUiSmallMarginTop" editable="false"/>
+                <Input width="50px" value="TO" textAlign="Center" class="sapUiSmallMarginTop" editable="false"/>
+                <Input width="50px" value="TO" textAlign="Center" class="sapUiSmallMarginTop" editable="false"/>
+            </VBox>
+        </HBox>
+        <HBox width="97%" justifyContent="End" alignItems="Center" class="PanelBackground sapUiMediumMarginBeginEnd">
+            <Button type="Transparent" icon="sap-icon://synchronize" text="Bilgileri Güncelle" press="onRefresh" class="sapUiLargeMarginBeginEnd"/>
+        </HBox>
+        <HBox width="97%" alignItems="Center" justifyContent="SpaceBetween" class="sapUiMediumMarginBeginEnd sapUiSmallMarginTopBottom">
+            <HBox alignItems="Center">
+                <VBox alignItems="Center" class="sapUiSmallMarginBeginEnd">
+                    <Label text="Toplam" design="Bold"/>
+                    <Label text="Cevher Ağırlığı:" design="Bold"/>
+                </VBox>
+                <VBox alignItems="Center" class="sapUiSmallMarginBeginEnd">
+                    <Label text="{timeModel>/today}" design="Bold"/>
+                    <Input id="idSclrInput2" type="Number" placeholder="Miktar Giriniz..." value="{Model1>/WEIGHT}" textAlign="Center"/>
+                </VBox>
+                <VBox alignItems="Center" class="sapUiSmallMarginBeginEnd">
+                    <Label text="{timeModel>/yesterday}" design="Bold"/>
+                    <Input id="idSclrInput" type="Number" placeholder="Miktar Giriniz..."  textAlign="Center" enabled="false"/>
+                </VBox>
+                <VBox alignItems="Center" class="sapUiSmallMarginBeginEnd">
+                    <Label text="Birim" design="Bold"/>
+                    <Input width="50px" value="TO" textAlign="Center" editable="false"/>
+                </VBox>
+            </HBox>
+            <HBox alignItems="Center">
+                <Label text="Son Değişiklik Tarihi:" design="Bold"/>
+                <Label id="lastChange" text="NaN" wrapping="false" class="sapUiSmallMarginBeginEnd"/>
+            </HBox>
+        </HBox>
+        <VBox width="120px" class="sapUiMediumMarginBeginEnd">
+            <Button id="buttonEdit" type="{= ${view>/enabled} ? 'Reject' : 'Accept'}" text="{= ${view>/enabled} ? 'Değişiklikleri Tamamla' : 'Bilgileri Düzenle'}" press="onPressEdit" width="200px"/>
+        </VBox>
+        <Table id="idSinterTable" items="{path : '/Rowsets/Rowset/Row'}" fixedLayout="false" selectionChange="onPressTableRow" mode="SingleSelectMaster" headerText="Toplam : %{/Rowsets/Rowset/Row/0/TOTAL}" class="sapUiTinyMarginTop sapUiMediumMarginBeginEnd sapUiMediumMarginBottom" width="97%">
+            <columns>
+                <Column hAlign="Center" width="20%">
+                    <Label text="Malzeme No" design="Bold"/>
+                </Column>
+                <Column hAlign="Center" width="20%">
+                    <Label text="Malzeme Tanımı" design="Bold"/>
+                </Column>
+                <Column hAlign="Center" width="15%">
+                    <Label text="Değer (%)" width="" design="Bold"/>
+                </Column>
+                <Column hAlign="Center" width="15%">
+                    <Label text="Sonuç" design="Bold"/>
+                </Column>
+                <Column hAlign="Center" width="15%">
+                    <Label text="Birim" design="Bold"/>
+                </Column>
+                <Column hAlign="Center" width="15%">
+                    <Label text="Kaldır" design="Bold"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text id="textMalzemeNo" text="{MATCODE}" wrapping="false"/>
+                        <Text id="textMalzemeAdi" text="{MATDESC}" wrapping="false"/>
+                        <Input id="inputValue" value="{VALUE}" submit="onSubmitInput" width="150px" textAlign="Center" editable="false" enabled="{view>/enabled}"/>
+                        <Text id="textSonuc" text="{ parts: ['VALUE','Model1>/WEIGHT'], formatter: '.formatter.result' }"/>
+                        <Text text="{UNIT}" wrapping="false"/>
+                        <core:Icon id="iconKaldir" size="23px" src="sap-icon://sys-cancel-2" color="{= ${view>/enabled} ? '#e57373' : '#9e9e9e'}" hoverColor="{= ${view>/enabled} ? '#c62828' : '#9e9e9e'}" press="onDeleteRow" visible="true"/>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+        <footer>
+            <OverflowToolbar>
+                <Button id="buttonAdd" icon="sap-icon://add" text="Malzeme Ekle" press="onAddSave" enabled="{view>/enabled}" class="sapUiSmallMargin"/>
+                <ComboBox id="comboAdd" items="{path : '/Rowsets/Rowset/Row'}" placeholder="Malzeme Seçiniz..." width="300px" class="sapUiSmallMargin" enabled="{view>/enabled}">
+                    <core:Item key="{MATCODE}" text="{MATCODE} - {MATDESC}"/>
+                </ComboBox>
+                <Input id="inputAdd" width="200px" textAlign="Center" placeholder="Değer Giriniz..." submit="onAddSave" class="sapUiSmallMargin" enabled="{view>/enabled}"/>
+                <!-- <Button type="Transparent" icon="sap-icon://delete" text="Malzemeyi Sil" press="onDeleteRow"/> -->
+                <ToolbarSpacer/>
+                <!-- <Button icon="sap-icon://save" text="Sisteme Kaydet" press="onSave" class="sapUiSmallMargin"/> -->
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

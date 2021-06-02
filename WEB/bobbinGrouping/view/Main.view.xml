@@ -1,0 +1,79 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ui="sap.ui.table" xmlns:f="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt" height="100%" controllerName="bobbinGrouping.controller.Main">
+	<App>
+		<pages>
+			<Page title="Bobin Gruplama Ekranı" showHeader="false">
+				<content>
+					<tnt:ToolHeader>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ntt.png"></Image>
+						<ToolbarSpacer/>
+						<Text id="idTitleText" text="Bobin Gruplama Ekranı" wrapping="true"/>
+						<ToolbarSpacer/>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ecz.png"></Image>
+					</tnt:ToolHeader>
+					<HBox class="PanelBackground" alignItems="Center" justifyContent="Center">
+						<form:SimpleForm editable="true">
+							<l:VerticalLayout>
+								<l:content>
+									<VBox fitContainer="true" alignItems="Center" justifyContent="Center">
+										<Table id="idBobbinTable" sticky="ColumnHeaders" items="{ path: '/Rowsets/Rowset/Row' }" mode="MultiSelect">
+											<columns>
+												<Column hAlign="Center">
+													<Label text="Grup No" design="Bold" wrapping="true"/>
+												</Column>
+												<Column hAlign="Center">
+													<Label text="Bobin ID" design="Bold" wrapping="true"/>
+												</Column>
+												<Column hAlign="Center">
+													<Label text="Malzeme Tanımı (Yarı Ürün Tanımı)" design="Bold" wrapping="true"/>
+												</Column>
+												<Column hAlign="Center">
+													<Label text="Malzeme No (Yarı Ürün Kodu)" design="Bold" wrapping="true"/>
+												</Column>
+												<Column hAlign="Center">
+													<Label text="Ağırlık" design="Bold" wrapping="true"/>
+												</Column>
+												<Column hAlign="Center">
+													<Label text="Ebat" design="Bold" wrapping="true"/>
+												</Column>
+												<Column hAlign="Center">
+													<Label text="İş Yeri" design="Bold" wrapping="true"/>
+												</Column>
+											</columns>
+											<items>
+												<ColumnListItem>
+													<cells>
+														<Text text="{GROUPNO}"/>
+														<Text text="{INVENTORY}"/>
+														<Text text="{DESCRIPTION}"/>
+														<Text text="{ITEM}"/>
+														<Text text="{WEIGHT}"/>
+														<Text text="{EBAT}"/>
+														<Text text="{WORK_CENTER}"/>
+													</cells>
+												</ColumnListItem>
+											</items>
+										</Table>
+									</VBox>
+								</l:content>
+							</l:VerticalLayout>
+						</form:SimpleForm>
+					</HBox>
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<Button text="Bobin Grupla" icon="sap-icon://add-product" width="150px" press="onPressCreateButton"/>
+						<Button text="Bobin Ekle" icon="sap-icon://add" width="150px" press="onPressAddButton"/>
+						<ToolbarSpacer/>
+						<Button text="Bobin Çıkar" icon="sap-icon://sys-minus" width="150px" press="onPressDeleteButton" type="Reject"/>
+						<Button text="Grup Sil" icon="sap-icon://delete" width="150px" press="onPressDeleteGroup" type="Reject"/>
+						<ToolbarSpacer/>
+						<Button text="FIS'a Gönder" icon="sap-icon://accept" width="150px" press="onPressSaveButton" type="Accept"/>
+						<Button text="Yazdır" icon="sap-icon://print" width="150px" press="onClickPrintButton" type="Accept"/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -1,0 +1,219 @@
+<mvc:View controllerName="paletteScreen.controller.Main" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:ui="sap.ui.table" xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt" height="100%">
+	<App>
+		<pages>
+			<Page title="Palet Etiket Ekranı" showHeader="false">
+				<content>
+					<tnt:ToolHeader>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ntt.png"></Image>
+						<Label text="Hat : " design="Bold" class="sapUiSmallMargin"></Label>
+						<ComboBox id="idLineComboBox" textAlign="Center" items="{path: '/Rowsets/Rowset/Row'}" width="200px" change="onSelectLine"
+							placeholder="Hat Seçiniz..." fieldGroupIds="1">
+							<core:Item key="{WORK_CENTER}" text="{WORK_CENTER} - {DESCRIPTION}"/>
+						</ComboBox>
+						<Label text="Makine : " design="Bold" class="sapUiSmallMargin"></Label>
+						<ComboBox id="idUnitComboBox" textAlign="Center" items="{path: '/'}" width="200px" change="onSelectUnit" placeholder="Ünite Seçiniz..."
+							fieldGroupIds="2">
+							<core:Item key="{= ${workCenterRef}.split(',')[1] }" text="{= ${workCenterRef}.split(',')[1] }"/>
+						</ComboBox>
+						<ToolbarSpacer/>
+						<Text text="Palet Etiket Ekranı" wrapping="true"/>
+						<ToolbarSpacer/>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ecz.png"></Image>
+					</tnt:ToolHeader>
+					<l:VerticalLayout id="containerLayout" width="100%">
+						<l:BlockLayout id="BlockLayout6" background="{/selectedBackground}">
+							<l:BlockLayoutRow accentCells="Accent1">
+								<l:BlockLayoutCell id="idLayout1">
+									<FlexBox alignItems="Center" justifyContent="SpaceBetween" width="100%">
+										<VBox width="75%">
+											<HBox fitContainer="true" class="sapUiTinyMarginTop" alignItems="Center">
+												<Label text="Makine / Ünite : " class="headerText" width="300px"/>
+												<Text id="idText1" text="{LINE}/{UNIT}" wrapping="true" class="tableText sapUiTinyMarginBeginEnd"/>
+											</HBox>
+											<HBox fitContainer="true" class="sapUiTinyMarginTop" alignItems="Center">
+												<Label text="Vardiyada Üretilen Koli : " class="headerText" width="300px"/>
+												<Text text="{PALLETQUANTITY}" wrapping="true" class="tableText sapUiTinyMarginBeginEnd"/>
+											</HBox>
+											<HBox fitContainer="true" class="sapUiTinyMarginTop" alignItems="Center">
+												<Label text="Sağma 1 YÜ ID/No : " class="headerText" width="300px"/>
+												<Text id="selectedBobinId1" text="{SAGMAID1}" wrapping="true" class="tableText sapUiTinyMarginBeginEnd"/>
+											</HBox>
+											<HBox fitContainer="true" class="sapUiTinyMarginTop" alignItems="Center">
+												<Label text="Sağma 2 YÜ ID/No :" class="headerText" width="300px"/>
+												<Text id="selectedBobinId2" text="{SAGMAID2}" wrapping="true" class="tableText sapUiTinyMarginBeginEnd"/>
+											</HBox>
+											<HBox fitContainer="true" class="sapUiTinyMarginTop" alignItems="Center">
+												<Label text="İş Emri No :" class="headerText" width="300px"/>
+												<Text id="shopOrderFieldID" text="{SHOPORDERNO}" wrapping="true" class="tableText sapUiTinyMarginBeginEnd"/>
+											</HBox>
+											<HBox fitContainer="true" class="sapUiTinyMarginTop" alignItems="Center">
+												<Label text="Ürün Kodu / Ürün Adı : " class="headerText" width="300px"/>
+												<Text id="materialCodeFieldId" text="{MATERIALCODE}" wrapping="true" class="tableText sapUiTinyMarginBeginEnd"/>
+											</HBox>
+											<HBox fitContainer="true" class="sapUiTinyMarginTop" alignItems="Center">
+												<Label text="İş Emri / Üretilen / Kalan : " class="headerText" width="300px"/>
+												<Text id="orderQuantityFieldID" text="{SHOPORDERQUANTITY}" wrapping="true" class="tableText sapUiTinyMarginBeginEnd"/>
+											</HBox>
+										</VBox>
+										<VBox width="25%" alignItems="Center" justifyContent="Center">
+											<Image id="palletteImageId" src="/XMII/CM/ECZ_MES-4.0//WebContent/2021-01-21_13-55-47.png" decorative="false" width="auto" height="225px"
+												densityAware="false">
+												<detailBox>
+													<LightBox>
+														<LightBoxItem id="palletteImageDetailId" imageSrc="/XMII/CM/ECZ_MES-4.0//WebContent/2021-01-21_13-55-47.png" alt="Etiket Talimatı"
+															title="Palet Etiket Dizilimi" subtitle="Paletler görsellerdeki gibi dizilecektir."/>
+													</LightBox>
+												</detailBox>
+												<!-- Fixes HBox layout on Android Stock Browser for Android 5.0 -->
+												<layoutData>
+													<FlexItemData growFactor="1" shrinkFactor="0"/>
+												</layoutData>
+											</Image>
+										</VBox>
+									</FlexBox>
+								</l:BlockLayoutCell>
+							</l:BlockLayoutRow>
+							<l:BlockLayoutRow>
+								<l:BlockLayoutCell>
+									<Table id="idPaletteTable" items="{ path: '/Rowsets/Rowset/Row'}" sticky="ColumnHeaders">
+										<columns>
+											<Column hAlign="Center">
+												<Label text="Palet No" design="Bold" wrapping="true"/>
+											</Column>
+											<Column hAlign="Center">
+												<Label text="Üretim Zamanı" design="Bold" wrapping="true"/>
+											</Column>
+											<Column hAlign="Center">
+												<Label text="Koli Adedi" design="Bold" wrapping="true"/>
+											</Column>
+											<Column hAlign="Center" visible="false" width="15%">
+												<Label text="Değiştir" design="Bold"/>
+											</Column>
+											<Column hAlign="Center" width="15%">
+												<Label text="Yazdır" design="Bold"/>
+											</Column>
+											<Column hAlign="Center" width="15%">
+												<Label text="Sil" design="Bold"/>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<Text text="{PACKAGENO}" wrapping="false" class="tableText sapUiSmallMargin"/>
+													<Text text="{DATE_TIME}" wrapping="true" class="tableText sapUiSmallMargin"/>
+													<Text text="{QTY}" wrapping="false" class="tableText sapUiSmallMargin"/>
+													<Button press="onClickEdit" icon="sap-icon://edit"/>
+													<Button press="onClickPrint" icon="sap-icon://print"/>
+													<Button press="onClickDelete" icon="sap-icon://delete"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</l:BlockLayoutCell>
+								<l:BlockLayoutCell >
+									<FlexBox direction="Column" alignItems="Center">
+										<FlexBox alignItems="Center">
+											<l:VerticalLayout class="sapUiContentPadding">
+												<Label text="Palet No:" labelFor="palletNoInput" class="testText"/>
+												<Input id="idPalletNo" width="100%" class="customHeightInput" editable="false" textAlign="Center">
+													<layoutData>
+														<FlexItemData growFactor="1"/>
+													</layoutData>
+												</Input>
+											</l:VerticalLayout>
+											<l:VerticalLayout class="sapUiContentPadding">
+												<Label text="Koli Adet:" labelFor="packagePcInput" class="testText"/>
+												<Input id="palletteQuantityFieldId" width="100%" class="customHeightInput" textAlign="Center">
+													<layoutData>
+														<FlexItemData growFactor="1"/>
+													</layoutData>
+												</Input>
+											</l:VerticalLayout>
+										</FlexBox>
+										<FlexBox alignItems="Center" width="100%" class="sapUiTinyMarginTop">
+											<Button text="1" width="100%" press="onPressNumbers" class="customButton">
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</Button>
+											<Button text="2" width="100%" press="onPressNumbers" class="customButton">
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</Button>
+											<Button text="3" width="100%" press="onPressNumbers" class="customButton">
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</Button>
+										</FlexBox>
+										<FlexBox alignItems="Center" width="100%" class="sapUiTinyMarginTop">
+											<Button text="4" width="100%" press="onPressNumbers" class="customButton">
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</Button>
+											<Button text="5" width="100%" press="onPressNumbers" class="customButton">
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</Button>
+											<Button text="6" width="100%" press="onPressNumbers" class="customButton">
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</Button>
+										</FlexBox>
+										<FlexBox alignItems="Center" width="100%" class="sapUiTinyMarginTop">
+											<Button text="7" width="100%" press="onPressNumbers" class="customButton">
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</Button>
+											<Button text="8" width="100%" press="onPressNumbers" class="customButton">
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</Button>
+											<Button text="9" width="100%" press="onPressNumbers" class="customButton">
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</Button>
+										</FlexBox>
+										<FlexBox alignItems="Center" width="100%" class="sapUiTinyMarginTop">
+											<Button text="&lt;" width="100%" press="onPressBack" class="customButton">
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</Button>
+											<Button text="0" width="100%" press="onPressNumbers" class="customButton">
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</Button>
+											<Button text="C" width="100%" press="onPressClear" class="customButton">
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</Button>
+										</FlexBox>
+										<FlexBox alignItems="Center" width="100%" class="sapUiTinyMarginTop">
+											<Button text="Yeni Palet Etiketi Bastır" width="100%" press="onPressPrintPaletteButton" class="customButton">
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</Button>
+										</FlexBox>
+									</FlexBox>
+								</l:BlockLayoutCell>
+							</l:BlockLayoutRow>
+						</l:BlockLayout>
+					</l:VerticalLayout>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

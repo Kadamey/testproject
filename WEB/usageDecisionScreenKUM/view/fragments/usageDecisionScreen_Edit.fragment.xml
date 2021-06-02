@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout">
+    <Dialog state="Warning" id="fragmentOnEdit" title="Kararı düzenle">
+        <content>
+            <form:SimpleForm editable="true" class="sapUiSmallMargin">
+                <l:VerticalLayout class="sapUiContentPadding" width="100%">
+                    <l:content>
+                        <Label text="Kullanım Kararı" tooltip=""/>
+                        <ComboBox id="idUsage" placeholder="Kullanım Kararı Giriniz." items="{	path: '/dummydata'}" width="500px" class="sapUiSmallMarginBottom">
+                            <core:Item key="{kolon1}" text="{kolon1}"/>
+                        </ComboBox>
+                        <Label text="Depo Yeri" tooltip=""/>
+                        <ComboBox id="idLager" placeholder="Depo Yeri Giriniz." items="{	path: '/dummydata'}" width="500px" class="sapUiSmallMarginBottom">
+                            <core:Item key="{kolon2}" text="{kolon2}"/>
+                        </ComboBox>
+                        <Label text="Miktar" tooltip=""/>
+                        <Input id="idQuantityEdit" placeholder="Miktar giriniz." width="500px" fieldWidth="80px" class="sapUiSmallMarginBottom" type="Number"/>
+                    </l:content>
+                </l:VerticalLayout>
+            </form:SimpleForm>
+        </content>
+        <buttons>
+            <Button icon="sap-icon://save" text="Kaydet" press="onFragmentEditSave"/>
+            <Button icon="sap-icon://sys-cancel" text="İptal" press="onFragmentEditCancel"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>
+
+

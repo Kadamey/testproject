@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog id="idSelectionBacth" title="Parti Numarası" items="{/ZPP_034_FM_HKOVA_INFO_RFC/TABLES/ET_HURDA_AKTIF/item/}"
+		confirm="onValueHelpClose" cancel="onValueHelpClose" search="onValueHelpSearch">
+		<StandardListItem title="{APARTI}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

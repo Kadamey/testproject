@@ -1,0 +1,52 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog state="Error" id="fragmentOrderMigration" title="Selüloz Ekleme">
+		<FlexBox alignItems="Center" backgroundDesign="Translucent" justifyContent="Center" class="sapUiMediumMargin">
+			<items>
+				<!--<Label width="auto" text="Bute Tipi : " design="Bold" class=""/>
+					<Text id="idButeType" text="" width="auto"/>-->
+				<Label width="auto" text="Selüloz Markası : " design="Bold" class="testText"/>
+				<ComboBox id="idMaterialCombobox" showSecondaryValues="true" width="auto" items="{ path: '/Rowsets/Rowset/Row', sorter: { path: 'Name' } }">
+					<core:ListItem key="{ITEM}" text="{ITEM}" additionalText="{WEIGHT}"/>
+				</ComboBox>
+				<!--<MaskInput id="dokumNO" mask="9999999" placeholderSymbol="_" placeholder="Döküm Numarası" width="auto"/>-->
+				<Input id="quantity" placeholder="Miktar" submit="" type="Number" width="auto"/>
+				<Button press="onPressAddSelulozButton" text="Ekle" type="Reject"/>
+				<Button icon="sap-icon://sys-minus" text="Satır Sil" type="Reject" press="onDelete"/>
+			</items>
+		</FlexBox>
+		<Table id="idSelulozAddTable" fixedLayout="false" inset="false" items="{path: '/'}" mode="MultiSelect">
+			<!--<headerToolbar>
+				<OverflowToolbar>
+					<Title level="H2" text="Paçal Dökümler Liste "/>
+				</OverflowToolbar>
+			</headerToolbar>-->
+			<columns>
+				<Column hAlign="Center" width="30%">
+					<Label text="Marka"/>
+				</Column>
+				<Column hAlign="Center" width="40%">
+					<Label text="Miktar (Adet)"/>
+					<!-- 1.kolon -->
+				</Column>
+				<Column hAlign="Center" width="40%">
+					<Label text="Miktar(Kg)"/>
+					<!-- 2.kolon -->
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle">
+					<cells>
+						<Text text="{MATERIAL}" wrapping="false"/>
+						<Text text="{QUANTITY}" wrapping="false"/>
+						<!-- 1.kolon -->
+						<Text text="{WEIGHT}" visible="{= !${MANUAL}}" wrapping="false"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<buttons>
+			<Button icon="sap-icon://sys-enter" press="onConfirmSelulozAddButton" text="Tamamla"/>
+			<Button icon="sap-icon://sys-cancel" press="onCancelSelulozButton" text="Vazgeç"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,31 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:form="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<Dialog state="Warning" id="fragmentDefineStoppage" draggable="true">
+		<content>
+			<form:SimpleForm editable="true">
+				<l:VerticalLayout class="sapUiContentPadding">
+					<l:content>
+						<VBox>
+							<HBox fitContainer="true" justifyContent="Start" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Duruş Tipi Kodu : " design="Bold" width="150px"/>
+								<HBox fitContainer="true" justifyContent="Start" alignItems="Center">
+									<Input id="idStoppageCode" textAlign="Center" width="350px" placeholder="Duruş Tipi Kodunu Giriniz..." liveChange="reasonCodeChange"/>
+								</HBox>
+							</HBox>
+							<HBox fitContainer="true" justifyContent="Start" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Duruş Tipi Tanımı : " design="Bold" width="150px"/>
+								<HBox fitContainer="true" justifyContent="Start" alignItems="Center">
+									<Input id="idStoppageCodeDef" textAlign="Center" width="350px" placeholder="Duruş Tipi Tanımını Giriniz..."/>
+								</HBox>
+							</HBox>
+						</VBox>
+					</l:content>
+				</l:VerticalLayout>
+			</form:SimpleForm>
+		</content>
+		<buttons>
+			<Button id="saveReasonCode" width="125px" type="Accept" icon="sap-icon://save" text="Kaydet" press="onPressSaveReasonCodeDefButton"></Button>
+			<Button id="cancelReasonCode" width="125px" type="Reject" icon="sap-icon://sys-cancel" text="İptal" press="onPressCancelReasonCodeDefButton"></Button>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

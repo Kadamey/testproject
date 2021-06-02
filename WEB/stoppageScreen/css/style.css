@@ -1,0 +1,62 @@
+/* Enter your custom styles here */
+.testText {
+	 font-size: 30px  !important;
+             font-weight: bold  !important;
+}
+
+.customHeightInput .sapMTitleStyleAuto {
+    font-size: 3rem;
+     font-weight: bold  !important;
+}
+
+.customHeightInput .sapMInputBaseInner {
+    font-size: 30px !important;
+}
+
+.customHeightInput  .sapUiLbxStd li.sapUiLbxI {
+    height: 8rem;
+font-size: 30px  !important;
+}
+
+
+
+.customHeightInput .sapMSLITitle, .sapMSLITitleOnly {
+    font-size: 2rem !important;
+    
+}
+
+.redcolor {
+	 color: red  !important;
+  font-weight: bold;
+}
+
+
+.orderReleaseScreenRowColor{
+background: ec1c24 !important;
+font-weight: bold;
+}
+.orderReleaseScreenHeaderColor{
+background: 4b4949 !important;
+font-weight: bold;
+}
+
+.customButtonType.sapMBtnInner {
+   font-size: 1.5rem !important;
+   height: 2.500rem !important;
+}
+
+.yellowBackground {
+    background-color: #FFFF33 !important;
+}
+
+.greenBackground {
+    background-color: #00CC66 !important;
+}
+
+.orangeBackground {
+    background-color: #FFB300 !important;
+}
+
+.blueBackground {
+    background-color: #29B6F6 !important;
+}

@@ -1,0 +1,182 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ui="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt"
+	height="100%" controllerName="customOrderScreen.controller.bobinList">
+	<App id="app">
+		<pages>
+			<Page title="Bobin Görüntüleme Ekranı" showHeader="false">
+				<content>
+					<tnt:ToolHeader>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ntt.png"></Image>
+						<ToolbarSpacer/>
+						<Text text="Bobin Görüntüleme Ekranı" wrapping="true"/>
+						<ToolbarSpacer/>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ecz.png"></Image>
+					</tnt:ToolHeader>
+					<Button text="Geri Dön" icon="sap-icon://nav-back" press="navBack" class="sapUiTinyMargin" width="150px"/>
+					<Panel id="expandablePanel" expandable="true" expand="onExpand" class="sapUiResponsiveMargin">
+						<headerToolbar>
+							<OverflowToolbar active="true" press="onOverflowToolbarPress">
+								<Title text="Filtreleme Seçenekleri"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<content>
+							<HBox justifyContent="SpaceAround" alignItems="Center">
+								<VBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="125px" text="Sipariş No : " design="Bold"/>
+										<Input width="200px" id="INP1" textAlign="Center" type="Number" submit="onPressSearchFilter" placeholder="Sipariş No Giriniz..."/>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="125px" text="Parti No : " design="Bold"/>
+										<Input width="200px" id="INP2" textAlign="Center" submit="onPressSearchFilter" placeholder="Parti No Giriniz..."/>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="125px" text="Depo Yeri : " design="Bold"/>
+										<Input width="200px" id="INP3" textAlign="Center" submit="onPressSearchFilter" placeholder="Depo Yeri Giriniz..."/>
+									</HBox>
+								</VBox>
+								<VBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="125px" text="Depo Yeri Tanımı : " design="Bold"/>
+										<Input width="200px" id="INP4" textAlign="Center" submit="onPressSearchFilter" placeholder="Depo Yer Tanımı Giriniz..."/>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="125px" text="Malzeme No : " design="Bold"/>
+										<Input width="200px" id="INP5" textAlign="Center" type="Number" submit="onPressSearchFilter" placeholder="Malzeme No Giriniz..."/>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="125px" text="Malz. Tanımı : " design="Bold"/>
+										<Input width="200px" id="INP6" textAlign="Center" submit="onPressSearchFilter" placeholder="Malzeme Tanımı Giriniz..."/>
+									</HBox>
+								</VBox>
+								<VBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="125px" text="Tarih : " design="Bold"/>
+										<DatePicker width="200px" id="INP7" displayFormat="dd/MM/yyyy" change="onPressSearchFilter"/>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="125px" text="Vardiya : " design="Bold"/>
+										<ComboBox width="200px" id="INP8" textAlign="Center" change="onPressSearchFilter" placeholder="Vardiya Seçiniz...">
+											<items>
+												<core:Item xmlns:core="sap.ui.core" key="1" text="1.Vardiya (00:00 - 08:00)"/>
+												<core:Item xmlns:core="sap.ui.core" key="2" text="2.Vardiya (08:00 - 16:00)"/>
+												<core:Item xmlns:core="sap.ui.core" key="3" text="3.Vardiya (16:00 - 00:00)"/>
+											</items>
+										</ComboBox>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="125px" text="Kul. Kararı : " design="Bold"/>
+										<ComboBox width="200px" id="INP9" textAlign="Center" change="onPressSearchFilter" placeholder="Kul. Kararı Seçiniz...">
+											<items>
+												<core:Item xmlns:core="sap.ui.core" key="UYGUN" text="UYGUN"/>
+												<core:Item xmlns:core="sap.ui.core" key="UYG.DEĞİL" text="UYG.DEĞİL"/>
+											</items>
+										</ComboBox>
+									</HBox>
+								</VBox>
+								<VBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Button icon="sap-icon://delete" class="sapUiTinyMargin" press="onPressCleanFilter" type="Reject" text="Temizle" width="150px"></Button>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Button icon="sap-icon://search" class="sapUiTinyMargin" press="onPressSearchFilter" type="Accept" text="Filtrele" width="150px"></Button>
+									</HBox>
+								</VBox>
+							</HBox>
+						</content>
+					</Panel>
+					<Table id="idInventoryListTable" items="{/Rowsets/Rowset/Row}" sticky="ColumnHeaders" mode="SingleSelectMaster" alternateRowColors="true">
+						<headerToolbar>
+							<OverflowToolbar>
+								<Label id="subTotal1" text="Toplam Orijinal Miktar : 0" class="customText" design="Bold"/>
+								<ToolbarSpacer/>
+								<Label id="subTotal3" text="Toplam Deşe : 0" class="customText" design="Bold"/>
+								<ToolbarSpacer/>
+								<Label id="subTotal4" text="Toplam Kalite Deşesi : 0" class="customText" design="Bold"/>
+								<ToolbarSpacer/>
+								<Label id="subTotal5" text="Toplam Diğer Deşe : 0" class="customText" design="Bold"/>
+								<ToolbarSpacer/>
+								<Label id="subTotal6" text="Toplam Trim Deşesi : 0" class="customText" design="Bold"/>
+								<ToolbarSpacer/>
+								<Button icon="sap-icon://synchronize" text="Yenile" press="handleRefresh"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<columns>
+							<Column hAlign="Center" width="100px">
+								<Label text="SAP Sip. No" design="Bold" textAlign="Center" width="100%"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Parti No" design="Bold" textAlign="Center" width="100%" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Bobin No" design="Bold" textAlign="Center" width="100%" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Orijinal Miktar" design="Bold" textAlign="Center" width="100%" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Depo Yeri" design="Bold" textAlign="Center" width="100%" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center" width="200px">
+								<Label text="Depo Yeri Tanımı" design="Bold" textAlign="Center" width="100%" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Malzeme No" design="Bold" textAlign="Center" width="100%" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center" width="200px">
+								<Label text="Malzeme Tanımı" design="Bold" textAlign="Center" width="100%" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Toplam Deşe" design="Bold" textAlign="Center" width="100%" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Kalite Deşesi" design="Bold" textAlign="Center" width="100%" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Trim Deşesi" design="Bold" textAlign="Center" width="100%" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Kullanım Kararı" design="Bold" textAlign="Center" width="100%" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Kayıt Zamanı" design="Bold" textAlign="Center" width="100%" wrapping="true"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Label text="{SHOP_ORDER}"/>
+									<Label text="{SFC}"/>
+									<Label text="{BOBINNO}"/>
+									<Label text="{ORIGINAL_QTY}"/>
+									<Label text="{STORAGE_LOCATION}"/>
+									<Label text="{STORAGEDESCRIPTION}" wrapping="true"/>
+									<Label text="{MATERIAL}"/>
+									<Label text="{MATERIALDESCRIPTION}" wrapping="true"/>
+									<Label text="{TOTALDEFECT}"/>
+									<Label text="{NC_GROUP001}"/>
+									<Label text="{NC_GROUP003}"/>
+									<Label text="{INV_STATUS}"/>
+									<Label text="{LAST_LOGTIME}" wrapping="true"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<Button width="150px" icon="sap-icon://add" text="Karar Ekle" press="onPressBobbinStatusChange" type="Accept"/>
+						<Button id="idEditButton" width="150px" icon="sap-icon://edit" text="Düzenle" press="onPressEditDecision" type="Accept"/>
+						<Button id="idDeleteButton" width="150px" icon="sap-icon://delete" text="Sil" press="onPressDeleteConfirmation" type="Reject"/>
+						<ToolbarSpacer/>
+						<Button width="150px" icon="sap-icon://bar-code" text="Barkod Çıkar" press="onDeletePrintBarcode"/>
+						<Button width="200px" icon="sap-icon://lab" text="Kalite Sonuçları" press="onPressQualityResults"/>
+						<Button width="200px" icon="sap-icon://journey-depart" text="Malzeme Dönüştür" press="onPressMaterialMovement" visible="false"/>
+						<ToolbarSpacer/>
+						<Button width="200px" icon="sap-icon://save" text="Sisteme Kaydet" press="onPressSaveDecision" type="Accept"/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

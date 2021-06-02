@@ -1,0 +1,205 @@
+sap.ui.define(
+	[
+		"jquery.sap.global",
+		"sap/ui/core/mvc/Controller",
+		"sap/ui/model/json/JSONModel",
+		"sap/m/MessageToast",
+		"sap/m/MessageBox",
+		"sap/ui/core/Fragment",
+		"sap/ui/model/Filter",
+		"sap/ui/model/FilterOperator",
+		"sap/ui/export/library",
+		"sap/ui/export/Spreadsheet",
+		"ItelliMES/scripts/transactionCaller",
+	],
+	function (
+		jQuery,
+		Controller,
+		JSONModel,
+		MessageToast,
+		MessageBox,
+		Fragment,
+		Filter,
+		FilterOperator,
+		exportLibrary,
+		Spreadsheet,
+		TransactionCaller
+	) {
+		"use strict";
+		var that, sPath;
+		return Controller.extend("ItelliMES.controller.paletteScreen_inWork", {
+			onInit: function () {
+				// that = this;
+				// this.setPaletteData();
+				this.mesaj();
+				this.setDummyData();
+				this.getAllLines();
+				//this.getAllUnits();
+			},
+			setDummyData: function () {
+				let dummyData = {
+					dummydata: [
+						{ kolon1: "1", kolon2: "2" },
+						{ kolon1: "1", kolon2: "2" },
+						{ kolon1: "1", kolon2: "2" },
+						{ kolon1: "1", kolon2: "2" },
+						{ kolon1: "1", kolon2: "2" },
+						{ kolon1: "1", kolon2: "2" },
+						{ kolon1: "1", kolon2: "2" },
+						{ kolon1: "1", kolon2: "2" },
+						{ kolon1: "1", kolon2: "2" },
+						{ kolon1: "1", kolon2: "2" },
+						{ kolon1: "1", kolon2: "2" },
+						{ kolon1: "1", kolon2: "2" },
+						{ kolon1: "1", kolon2: "2" },
+						{ kolon1: "1", kolon2: "2" },
+						{ kolon1: "1", kolon2: "2" },
+						{ kolon1: "1", kolon2: "2" },
+						{ kolon1: "1", kolon2: "2" },
+						{ kolon1: "1", kolon2: "2" },
+						{ kolon1: "1", kolon2: "2" },
+					],
+				};
+				var myModel = new sap.ui.model.json.JSONModel();
+				myModel.setData(dummyData);
+				this.getView().byId("idPaletteTable").setModel(myModel);
+			},
+			mesaj: function () {
+				MessageToast.show("Bilgiler Güncellendi");
+			},
+			setPaletteData: function () {
+				var response = TransactionCaller.async(
+					"xxxxxxxxxxxxxx",
+					{},
+					"O_JSON",
+					this.setPaletteDataCB,
+					this,
+					"GET"
+				);
+			},
+			setPaletteDataCB: function (iv_data, iv_scope) {
+				var myModel = new sap.ui.model.json.JSONModel();
+
+				if (Array.isArray(iv_data[0].Rowsets.Rowset.Row)) {
+					myModel.setData(iv_data[0]);
+				} else {
+					var obj_iv_data = iv_data[0];
+					var dummyData = [];
+					dummyData.push(iv_data[0].Rowsets.Rowset.Row);
+					obj_iv_data.Rowsets.Rowset.Row = dummyData;
+					myModel.setData(obj_iv_data);
+				}
+				// let qualityTable = sap.ui.core.Fragment.createId(
+				// 	"idqualityresultsfragment",
+				// 	"idQualityResultTable"
+				// );
+				// qualityTable.setModel(myModel);
+				iv_scope.getView().byId("idPaletteTable").setModel(myModel);
+				return myModel;
+			},
+
+			getAllLines: function (oEvent) {
+				TransactionCaller.async(
+					"ECZ_MES-4.0/KONVERTING/PALETTE_SCREEN/GET_CONV_WC/T_GET_CONVERT_WCS",
+					{},
+					"O_JSON",
+					this.getAllLinesCB,
+					this,
+					"GET"
+				);
+			},
+			getAllLinesCB: function (iv_data, iv_scope) {
+				var myModel = new sap.ui.model.json.JSONModel();
+
+				if (Array.isArray(iv_data[0])) {
+					myModel.setData(iv_data[0]);
+				} else {
+					var obj_iv_data = iv_data[0];
+					var dummyData = [];
+					dummyData.push(iv_data[0]);
+					obj_iv_data = dummyData;
+					myModel.setData(obj_iv_data);
+					myModel.refresh();
+				}
+
+				iv_scope.getView().byId("idLineComboBox").setModel(myModel);
+			},
+
+			getAllUnits: function (oEvent) {
+				TransactionCaller.async(
+					"ECZ_MES-4.0/KONVERTING/PALETTE_SCREEN/GET_CONV_WC/T_GET_CHILD_WCS",
+					{},
+					"O_JSON",
+					this.getAllUnitsCB,
+					this,
+					"GET"
+				);
+			},
+			getAllUnitsCB: function (iv_data, iv_scope) {
+				var myModel = new sap.ui.model.json.JSONModel();
+
+				if (Array.isArray(iv_data[0].Rowsets.Rowset.Row)) {
+					myModel.setData(iv_data[0]);
+				} else {
+					var obj_iv_data = iv_data[0];
+					var dummyData = [];
+					dummyData.push(iv_data[0].Rowsets.Rowset.Row);
+					obj_iv_data.Rowsets.Rowset.Row = dummyData;
+					myModel.setData(obj_iv_data);
+					myModel.refresh();
+				}
+
+				iv_scope.getView().byId("idUnitComboBox").setModel(myModel);
+			},
+
+			// onPressLineButton: function (oEvent) {
+			//     var line = this.getView().byId("idLineComboBox").getSelectedKey();
+			//     if (line == "") {
+			//         this.getAllLines();
+			//     }
+			//     else if (!!line) {
+			//         TransactionCaller.async(
+			//             "xxxxxxxxxxxxx", {
+			//             // I_QUALITY: quality,
+			//         },
+			//             "O_JSON",
+			//             this.onPressLineButtonCB,
+			//             this,
+			//             "GET"
+			//         );
+			//     }
+
+			// },
+			// onPressLineButtonCB: function (iv_data, iv_scope) {
+			//     var myModel = new sap.ui.model.json.JSONModel();
+
+			//     if (Array.isArray(iv_data[0].Rowsets.Rowset.Row)) {
+			//         myModel.setData(iv_data[0]);
+			//     }
+			//     else if (!(!!iv_data[0])) {
+			//         myModel.setData(null);
+			//     }
+			//     else {
+			//         var obj_iv_data = iv_data[0];
+			//         var dummyData = [];
+			//         dummyData.push(iv_data[0].Rowsets.Rowset.Row);
+			//         obj_iv_data.Rowsets.Rowset.Row = dummyData;
+			//         myModel.setData(obj_iv_data);
+			//     }
+			//     iv_scope.getView().byId("idCastNo").setModel(null);
+
+			//     myModel.oData.Rowsets.Rowset?.Row?.sort((a, b) => ((a.ZZ_Y_DOKUM > b.ZZ_Y_DOKUM) ? 1 : ((b.ZZ_Y_DOKUM) > a.ZZ_Y_DOKUM) ? -1 : 0));
+			//     iv_scope.getView().byId("idCastNo").setModel(myModel);
+
+			// },
+
+			// onPressUnitButton
+
+			ResourceBundle: function (iv_id) {
+				var oBundle = this.getView().getModel("i18n").getResourceBundle();
+				var txt = oBundle.getText(iv_id);
+				return txt;
+			},
+		});
+	}
+);

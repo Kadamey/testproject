@@ -1,0 +1,665 @@
+sap.ui.define(
+	[
+		"sap/m/MessageToast",
+		"sap/ui/core/mvc/Controller",
+		"sap/ui/model/json/JSONModel",
+		"sap/ui/model/resource/ResourceModel",
+		"customActivity/scripts/transactionCaller",
+		"customActivity/controller/fragments/qualityResultsFragment.controller",
+		'sap/ui/export/Spreadsheet'
+	],
+	function (
+		MessageToast,
+		Controller,
+		JSONModel,
+		ResourceModel,
+		TransactionCaller,
+		qualityResultsFragment,
+		Spreadsheet
+	) {
+		"use strict";
+		return Controller.extend("customActivity.controller.qualityResults", {
+			qualityResultsFragment: new qualityResultsFragment(this),
+
+			onInit: function (oEvent) {
+				this.appComponent = this.getView().getViewData().appComponent;
+				this.appData = this.appComponent.getAppGlobalData();
+
+				//jQuery.proxy(this.qualityResults.setDummyData, this);
+
+				this.qualityResultsFragment.setDummyData(this);
+				this.setBilletDummyData();
+				this.getBilletDetails();
+			},
+
+			getBilletDetails: function () {
+				var response = TransactionCaller.async(
+					"ItelliMES/UI/QUALITY_SCREEN/T_GET_ITE_TT_BILLET_TRACKING", {},
+					"O_JSON",
+					this.getBilletDetailsCB,
+					this
+				);
+			},
+
+			getBilletDetailsCB(iv_data, iv_scope) {
+				var myModel = new sap.ui.model.json.JSONModel();
+				if (Array.isArray(iv_data[0].Rowsets.Rowset.Row)) {
+					myModel.setData(iv_data[0]);
+				} else {
+					var obj_iv_data = iv_data[0];
+					var dummyData = [];
+					dummyData.push(iv_data[0].Rowsets.Rowset.Row);
+					obj_iv_data.Rowsets.Rowset.Row = dummyData;
+					myModel.setData(obj_iv_data);
+				}
+
+				iv_scope.getView().byId("idBilletQualityResults").setModel(myModel);
+				iv_scope.getView().byId("idBilletQualityResults").setBusy(false);
+				return myModel;
+			},
+
+			setBilletDummyData: function () {
+				let obj = {
+					Rowsets: {
+						Rowset: {
+							Row: [{
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param1",
+								LOWLIMIT: "100",
+								TARGETVAL: "110",
+								VAL: "112",
+								HIGHLIMIT: "120",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param2",
+								LOWLIMIT: "50",
+								TARGETVAL: "55",
+								VAL: "48",
+								HIGHLIMIT: "60",
+							}, {
+								CASTNO: "1",
+								PARAMETER: "Param3",
+								LOWLIMIT: "70",
+								TARGETVAL: "72",
+								VAL: "80",
+								HIGHLIMIT: "75",
+							}, ],
+						},
+					},
+				};
+
+				let jsonModel = new JSONModel();
+				jsonModel.setData(obj);
+				let billetTable = this.getView().byId("idBilletQualityResults");
+				billetTable.setModel(jsonModel);
+			},
+
+			createColumnConfig: function () {
+				return [{
+					label: 'Kütük ',
+					property: 'BILLETID'
+				}, {
+					label: 'Döküm No',
+					property: 'CASTNO'
+				}, {
+					label: 'Parametre',
+					property: 'PARAMETER'
+				}, {
+					label: 'Değer',
+					property: 'VAL'
+				}];
+			},
+
+			onDataExport: function () {
+
+				var aCols, aProducts, oSettings, oSheet;
+
+				aCols = this.createColumnConfig();
+				aProducts = this.getView().byId("idBilletQualityResults").getModel().getProperty('/Rowsets/Rowset/Row');
+
+				oSettings = {
+					workbook: {
+						columns: aCols
+					},
+					dataSource: aProducts
+				};
+
+				oSheet = new Spreadsheet(oSettings);
+				oSheet.build()
+					.then(function () {
+						MessageToast.show('Excel aktarımı başarılı');
+					})
+					.finally(function () {
+						oSheet.destroy();
+					});
+
+			},
+
+		});
+	}
+);

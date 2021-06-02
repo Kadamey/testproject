@@ -1,0 +1,80 @@
+<mvc:View controllerName="customActivity.controller.BilletMonitoringInsideOven"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.f"
+    xmlns:card="sap.f.cards"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout">
+    <Page showHeader="false" title="Fırın İçi Kütük Takip Ekranı">
+        <HBox fitContainer="true" alignItems="Center" justifyContent="Center">
+            <HBox alignItems="Stretch" justifyContent="Center">
+                <VBox fitContainer="true" alignItems="Center" class="sapUiSmallMargin">
+                    <Label class="ovenText" text="FIRIN ÇIKIŞ" width="200px" textAlign="Center"/>
+                    <core:Icon src="sap-icon://arrow-left" class="iconSize"></core:Icon>
+                </VBox>
+                <VBox fitContainer="true" alignItems="Center">
+                    <ScrollContainer vertical="true" focusable="true" height="42rem" width="100%">
+                        <HBox fitContainer="true" justifyContent="Center" class="insideOven">
+                            <l:Grid containerQuery="true" id="cardsGrid" defaultSpan="XL3 L4 M6 S12" content="{/cards}" position="Center">
+                                <f:Card class="sapUiSmallMarginTopBottom">
+                                    <f:content>
+                                        <VBox fitContainer="true" class="cardStyleContent">
+                                            <HBox fitContainer="true" justifyContent="SpaceBetween">
+                                                <VBox fitContainer="true" alignItems="Center">
+                                                    <Label class="sapUiTinyMargin cardStyleText" text="DÖKÜM NO"/>
+                                                    <Text class="sapUiTinyMargin cardStyleText" id="castNo" text="{CASTNO}"/>
+                                                </VBox>
+                                                <VBox fitContainer="true" alignItems="Center">
+                                                    <Label class="sapUiTinyMargin cardStyleText" text="SINIF"/>
+                                                    <Text class="sapUiTinyMargin cardStyleText" id="class1" text="{CLASS1}"/>
+                                                    <Text class="sapUiTinyMargin cardStyleText" id="class2" text="{CLASS2}"/>
+                                                </VBox>
+                                                <VBox fitContainer="true" alignItems="Center">
+                                                    <Label class="sapUiTinyMargin cardStyleText" text="MİKTAR"/>
+                                                    <Text class="sapUiTinyMargin cardStyleText" id="count1" text="{COUNT1}"/>
+                                                    <Text class="sapUiTinyMargin cardStyleText" id="count2" text="{COUNT2}"/>
+                                                </VBox>
+                                            </HBox>
+                                            <HBox fitContainer="true" justifyContent="SpaceBetween">
+                                                <Label class="sapUiMediumMargin cardStyleText" text="BİLGİSİ EKSİK KÜTÜK ADEDİ"/>
+                                                <Text class="sapUiMediumMargin cardStyleText" id="count3" text="{COUNT3}"/>
+                                            </HBox>
+                                        </VBox>
+                                    </f:content>
+                                </f:Card>
+                            </l:Grid>
+                        </HBox>
+                    </ScrollContainer>
+                    <HBox fitContainer="true" alignItems="Center" justifyContent="Center">
+                        <Label class="ovenSubText sapUiMediumMargin" text="FIRIN İÇİ EKRANI" width="500px" textAlign="Center"/>
+                    </HBox>
+                </VBox>
+                <VBox fitContainer="true" alignItems="Center" class="sapUiSmallMargin">
+                    <VBox fitContainer="true" alignItems="Center">
+                        <Label class="ovenText" text="FIRIN GİRİŞ" width="200px" textAlign="Center"/>
+                        <core:Icon src="sap-icon://arrow-left" class="iconSize"></core:Icon>
+                    </VBox>
+                    <HBox fitContainer="true" justifyContent="Center" class="sapUiMediumMarginTop">
+                        <f:Card>
+                            <f:header>
+                                <card:Header title="SON KÜTÜK ŞARJ BİLGİSİ"/>
+                            </f:header>
+                            <f:content>
+                                <VBox fitContainer="true" class="cardStyleContent2">
+                                    <HBox fitContainer="true" justifyContent="SpaceBetween">
+                                        <Label class="sapUiSmallMargin cardStyleText" text="DÖKÜM NO"/>
+                                        <Text class="sapUiSmallMargin cardStyleText" id="castNoLast"/>
+                                    </HBox>
+                                    <HBox fitContainer="true" justifyContent="SpaceBetween">
+                                        <Label class="sapUiSmallMargin cardStyleText" text="MİKTAR"/>
+                                        <Text class="sapUiSmallMargin cardStyleText" id="countLast"/>
+                                    </HBox>
+                                </VBox>
+                            </f:content>
+                        </f:Card>
+                    </HBox>
+                </VBox>
+            </HBox>
+        </HBox>
+    </Page>
+</mvc:View>

@@ -1,0 +1,25 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+	xmlns:tnt="sap.tnt" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" controllerName="orderCloseMessageKagitAdmin.controller.Main"
+	displayBlock="true">
+	<App>
+		<pages>
+			<Page showHeader="false">
+				<tnt:ToolHeader>
+					<ToolbarSpacer/>
+					<Title text="Admin Sipariş Kapatma İşleminden Emin Misiniz?" class="biggerTitle"/>
+					<ToolbarSpacer/>
+				</tnt:ToolHeader>
+				<VBox class="vbox">
+					<VBox fitContainer="true" alignItems="Center" justifyContent="Center">
+						<Label id="orderField" text="Sipariş Numarası: NaN" design="Bold" class="labelParameter sapUiLargeMarginTop"/>
+						<Label id="operationField" text="Operasyon Numarası: NaN" design="Bold" class="labelParameter sapUiLargeMarginTopBottom"/>
+					</VBox>
+					<HBox>
+						<Button text="ONAYLA" press="onConfirmPress" visible="{main>/complete_confirm}" type="Emphasized" class="button buttonInner buttonContent"/>
+						<Button text="İPTAL" press="onCancelPress" visible="{main>/complete_confirm}" type="Emphasized" class="button buttonInner buttonContent"/>
+					</HBox>
+				</VBox>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

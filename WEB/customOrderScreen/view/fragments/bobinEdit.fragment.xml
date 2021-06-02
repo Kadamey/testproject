@@ -1,0 +1,42 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:form="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<Dialog state="Warning" id="fragmentOnAdd" title="Bobin Düzenle" draggable="true">
+		<content>
+			<HBox>
+				<VBox class="sapUiMediumMargin" justifyContent="SpaceBetween">
+					<VBox>
+						<Label text="Bobin No : " design="Bold" class="sapUiSmallMargin"/>
+						<Text id="bobinIdField" textAlign="Center" width="300px"></Text>
+					</VBox>
+					<VBox>
+						<Label text="Mevcut Bobin Miktarı (Kg) : " design="Bold" class="sapUiSmallMargin"/>
+						<Input id="quantityFieldOld" textAlign="Center" width="300px" editable="false"></Input>
+						<Label text="Yeni Miktar (Kg) : " design="Bold" class="sapUiSmallMargin"/>
+						<Input id="quantityFieldNew" textAlign="Center" width="300px" editable="false"></Input>
+					</VBox>
+				</VBox>
+				<VBox class="sapUiMediumMargin" justifyContent="SpaceBetween">
+					<VBox>
+						<Label text="Mevcut Deşe Tipi : " design="Bold" class="sapUiSmallMargin"/>
+						<Text id="oldScraptFieldId" textAlign="Center" width="300px"></Text>
+						<Input id="oldScraptFieldIdKey" textAlign="Center" width="300px" visible="false"></Input>
+						<Label text="Mevcut Deşe Miktarı (Kg) :" design="Bold" class="sapUiSmallMargin"/>
+						<Text id="oldScraptQuantityId" textAlign="Center" width="300px"></Text>
+					</VBox>
+					<VBox>
+						<Label text="Yeni Deşe Tipi : " design="Bold" class="sapUiSmallMargin"/>
+						<ComboBox id="newScraptFieldId" textAlign="Center" width="300px" change="onMaterialChange" items="{path : '/', length: 999}" editable="true">
+							<core:Item key="{ncCode}" text="{description}"/>
+						</ComboBox>
+						<Label text="Yeni Deşe Miktarı (kg)" design="Bold" class="sapUiSmallMargin"/>
+						<Input id="newScraptQuantityId" textAlign="Center" width="300px" editable="true" liveChange="liveChangeScraptInput" type="Number"></Input>
+					</VBox>
+				</VBox>
+			</HBox>
+		</content>
+		<buttons>
+			<Button icon="sap-icon://save" text="Kaydet" press="onPresStockChangeSaveButton" width="150px" type="Accept"/>
+			<Button icon="sap-icon://decline" text="İptal" press="onFragmentCancel" width="150px" type="Reject"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

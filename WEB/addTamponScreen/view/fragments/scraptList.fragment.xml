@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog state="Warning" id="fragmentScraptList" title="Deşe Listeleme" draggable="true" contentWidth="50%">
+		<Table id="idScraptTable" fixedLayout="false" items="{path: '/Rowsets/Rowset/Row'}" mode="SingleSelectMaster">
+			<columns>
+				<Column hAlign="Center">
+					<Label text="Deşe Tipi" design="Bold"/>
+				</Column>
+				<Column hAlign="Center">
+					<Label text="Deşe Kodu" design="Bold"/>
+				</Column>
+				<Column hAlign="Center">
+					<Label text="Miktar(Kg)" design="Bold"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{DESCRIPTION}" wrapping="false"/>
+						<Text text="{NC_CODE}" wrapping="false"/>
+						<Text text="{QTY}" visible="{= !${MANUAL}}" wrapping="false"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<buttons>
+			<Button width="150px" icon="sap-icon://sys-enter" press="onDeleteScraptButton" text="Deşe Sil" type="Accept"/>
+			<Button width="150px" icon="sap-icon://sys-cancel" press="onCancelScraptButton" text="İptal" type="Reject"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

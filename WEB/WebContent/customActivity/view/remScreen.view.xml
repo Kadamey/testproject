@@ -1,0 +1,78 @@
+<mvc:View controllerName="customActivity.controller.remScreen"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:ui="sap.ui.table"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns="sap.m">
+    <Page showHeader="false">
+        <HBox justifyContent="End" alignItems="End" class="sapUiMediumMargin">
+            <Button id="idDatePickerButton" press="onPressRemDateFragment" width="150px" type="Accept" text="Toplam Üretim" />
+        </HBox>
+        <Label text="Üretim Bölümü" design="Bold" class="sapUiMediumMarginBegin sapUiSmallMarginTop"/>
+        <form:SimpleForm id="idForm" class="sapUiMediumMargin" width="97%">
+            <HBox justifyContent="Center" alignItems="Center">
+                <ComboBox id="idRemMaterialList" showSecondaryValues="true" placeholder="Malzeme Seçiniz" class="sapUiTinyMargin" items="{ path: '/Rowsets/Rowset/Row', length:999 }" width="500px" change="onMaterialSelected" enabled="false" textAlign="Center">
+                    <core:ListItem key="{MATCODE}" text="{MATDESC}" additionalText="{MATCODE}"/>
+                </ComboBox>
+                <ComboBox id="idVersionList" showSecondaryValues="true" placeholder="Versiyon Seçiniz" class="sapUiTinyMargin" items="{ path: '/Rowsets/Rowset/Row' }" width="250px" textAlign="Center">
+                    <core:ListItem key="{VERSION}" text="{VERSION}"/>
+                </ComboBox>
+                <Input id="idQuantity" type="Number" placeholder="Miktar Giriniz" textAlign="Center" width="250px" class="sapUiTinyMargin" change="onChange"></Input>
+                <Input id="idUnit" placeholder="Birim Giriniz" textAlign="Center" width="250px" value="{MSEHI}" class="sapUiTinyMargin" enabled="false"></Input>
+            </HBox>
+        </form:SimpleForm>
+        <Label text="Tüketim Bölümü" design="Bold" class="sapUiMediumMarginBegin"/>
+        <Table id="idRemComponentTable" inset="true" items="{path : '/Rowsets/Rowset/Row'}" fixedLayout="false" mode="SingleSelectMaster">
+            <columns>
+                <Column hAlign="Center">
+                    <Label text="Malzeme Numarası" design="Bold"/>
+                </Column>
+                <Column hAlign="Center">
+                    <Label text="Malzeme Tanımı" design="Bold"/>
+                </Column>
+                <Column hAlign="Center">
+                    <Label text="Malzeme Miktarı" design="Bold"/>
+                </Column>
+                <Column hAlign="Center">
+                    <Label text="Malzeme Birimi" design="Bold"/>
+                </Column>
+                <Column hAlign="Center">
+                    <Label text="Son Kayıt / Güncelleme Zamanı" design="Bold"/>
+                </Column>
+                <!--<Column hAlign="Center" width="10%">
+					<Label text="" design="Bold"/>
+				</Column>-->
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{MATCODE}"/>
+                        <Text text="{MAKTX}"/>
+                        <Text text="{QUANTITY}"/>
+                        <Text text="{UNIT}"/>
+                        <Text text="{INSDATE}"/>
+                        <!--<core:Icon size="20px" src="sap-icon://sys-cancel-2" color="red" hoverColor="orange" press="onDeleteRow" visible="{= !!${MANUAL}}"/>-->
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+        <footer>
+            <OverflowToolbar>
+                <!--<Button type="Transparent" icon="sap-icon://add" text="Tüketim Malzemesi Ekle" press="onAdd" visible="false"/>-->
+                <ToolbarSpacer/>
+                <Button id="idRefreshData" width="200px" text="Ekran Yenilemeyi Başlat" type="Accept" icon="sap-icon://synchronize" visible="false" press="idRefreshDataPress"/>
+                <Button id="idRefreshStop" width="200px" text="Ekran Yenilemeyi Durdur" type="Reject" icon="sap-icon://media-pause" visible="true" press="idRefreshStopPress"/>
+                <ToolbarSpacer/>
+                <ToolbarSpacer/>
+                <ToolbarSpacer/>
+                <Button width="200px" type="Accept" text="Tabloyu Excele Aktar" icon="sap-icon://excel-attachment" press="onExport"/>
+                <ToolbarSpacer/>
+                <Button icon="sap-icon://edit" type="Reject" width="200px" text="Malzeme Miktarını Düzenle" press="onEdit"/>
+                <ToolbarSpacer/>
+                <Button type="Accept" width="200px" icon="sap-icon://save" text="Tüketimi Sisteme Kaydet" press="onSave"/>
+                <ToolbarSpacer/>
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

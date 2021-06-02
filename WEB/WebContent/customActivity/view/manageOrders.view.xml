@@ -1,0 +1,112 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="customActivity.controller.manageOrders"
+	xmlns:layout="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" displayBlock="true" height="100%">
+	<Page>
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<SearchField width="100%" liveChange="onSearch" search="onSearch" id="orderSearch"/>
+				</contentLeft>
+			</Bar>
+		</customHeader>
+		<subHeader>
+			<Toolbar id="statusBar">
+				<!-- <CheckBox text="{i18n>OEE_LABEL_ALL}" id="idAllStatus" select="filterOrderBasedOnStatus"/> -->
+				<CheckBox text="{path : '/statusDetails/NEW', formatter : '.statusFormatter'}" id="idNewStatus" select="fetchOrdersBasedOnStatus"
+					visible="{path : '/statusDetails/NEW', formatter : '.checkIfStatusPresent'}"/>
+				<CheckBox text="{path : '/statusDetails/ACTIVE', formatter : '.statusFormatter'}" id="idActiveStatus" select="fetchOrdersBasedOnStatus"
+					visible="{path : '/statusDetails/ACTIVE', formatter : '.checkIfStatusPresent'}"/>
+				<CheckBox text="{path : '/statusDetails/HOLD', formatter : '.statusFormatter'}" id="idHoldStatus" select="fetchOrdersBasedOnStatus"
+					visible="{path : '/statusDetails/HOLD', formatter : '.checkIfStatusPresent'}"/>
+				<CheckBox text="{path : '/statusDetails/COMPLETED', formatter : '.statusFormatter'}" id="idCompletedStatus"
+					select="fetchOrdersBasedOnStatus" visible="{path : '/statusDetails/COMPLETED', formatter : '.checkIfStatusPresent'}"/>
+				<CheckBox text="{path : '/statusDetails/ABORTED', formatter : '.statusFormatter'}" id="idAbortedStatus" select="fetchOrdersBasedOnStatus"
+					visible="{path : '/statusDetails/ABORTED', formatter : '.checkIfStatusPresent'}"/>
+				<CheckBox text="{i18n>OEE_BTN_SHIFT}" id="idShiftCheckbox" select="fetchOrdersBasedOnStatus"
+					visible="{path : '/statusDetails/SHIFT', formatter : '.checkIfStatusPresent'}"/>
+				<ToolbarSpacer></ToolbarSpacer>
+				<core:Icon src="sap-icon://sort" press="sortOrderData" width="2rem"></core:Icon>
+				<core:Icon src="sap-icon://refresh" press="refreshOrderData" width="2rem"></core:Icon>
+			</Toolbar>
+		</subHeader>
+		<content>
+			<Table id="idOrdersTable" inset="false" width="100%"
+				items="{path: '/orderDetails',sorter: [{ path: 'plannedStartDate', descending: true},{ path: 'plannedStartTime', descending: true},{ path: 'orderNo', ascending: true},{ path: 'routingOperNo', ascending: true}]}"
+				growing="true" growingScrollToLoad="true" growingThreshold="100">
+				<columns>
+					<Column hAlign="Left">
+						<Label text="{i18n>OEE_LABEL_ORDER}"/>
+					</Column>
+					<Column hAlign="Left">
+						<Label text="{i18n>OEE_LABEL_OPERATION_PHASE}"/>
+					</Column>
+					<Column hAlign="Left">
+						<Label text="{i18n>OEE_LABEL_MATERIAL}"/>
+					</Column>
+					<Column hAlign="Left">
+						<Label text="{i18n>OEE_LABEL_QUANTITY}"/>
+					</Column>
+					<!-- <Column hAlign="Left"> <Label text="{i18n>OEE_LABEL_UOM}"/> </Column> -->
+					<!-- <Column hAlign="Right"> <Label text="Batch" /> </Column> -->
+					<Column hAlign="Left">
+						<Label text="{i18n>OEE_LABEL_STATUS}"/>
+					</Column>
+					<Column hAlign="Left">
+						<Label text="{i18n>OEE_LABEL_ORDER_ACTUAL_START} /{i18n>END_TIME_LABEL}"/>
+					</Column>
+					<Column hAlign="Left">
+						<Label text="{i18n>OEE_LABEL_PLANNED_START} /{i18n>END_TIME_LABEL}"/>
+					</Column>
+					<!-- <Column hAlign="Left"> <Label text="{i18n>OEE_LABEL_PLANNED_END}"/> 
+						</Column> -->
+					<Column width="9rem"></Column>
+					<Column width="9rem"></Column>
+					<Column hAlign="Left" width="9rem" visible="false" id="productionActivityColumn">
+						<Label text="{i18n>OEE_LABEL_ACTIVITY}"/>
+					</Column>
+					<Column>
+						<Label text="{i18n>OEE_LABEL_DETAILS}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{orderNo}"/>
+							<Text
+								text="{parts :[{path:'routingOperNo'},{path :'operationDesc'},{path : 'parentOperNo'},{path : 'parentOperationDesc'}],formatter : 'sap.oee.ui.Formatter.formatOperationForSelectOrderScreen'}"/>
+							<Text
+								text="{parts :[{path:'material'},{path :'materialDescription'}],formatter : 'sap.oee.ui.Formatter.formatMaterialForSelectOrderScreen'}"/>
+							<Text
+								text="{parts :[{path:'quantityReleased'},{path:'defaultUomText'},{path :'appData>/decimalPrecision'}],formatter : 'sap.oee.ui.Formatter.formatQuantityAndUOMText'}"/>
+							<!-- <Text text="{quantityReleasedUOM}"/> -->
+							<!-- <Text text="{salesOrderNumber}"/> -->
+							<Text text="{statusDesc}"/>
+							<Text
+								text="{parts :[{path:'startDate'},{path :'startTime'},{path :'endDate'},{path :'endTime'}],formatter : 'sap.oee.ui.Formatter.formatStartEndDateTimeForSelectOrderScreen'}"/>
+							<Text
+								text="{parts :[{path:'plannedStartDate'},{path :'plannedStartTime'}, {path :'plannedFinishDate'}, {path :'plannedFinishTime'}],formatter : 'sap.oee.ui.Formatter.formatStartEndDateTimeForSelectOrderScreen'}"/>
+							<!-- <Text text="{parts :[{path:'plannedFinishDate'},{path :'plannedFinishTime'}],formatter 
+								: 'sap.oee.ui.Formatter.formatDateTimeForSelectOrderScreen'}"/> -->
+							<Button visible="{action1Visible}" text="{action1Label}" enabled="{action1Enabled}" press="action1" icon="{action1Icon}" width="8rem">
+								<customData>
+									<core:CustomData key="targetAction" value="{targetAction1}"/>
+								</customData>
+							</Button>
+							<Button visible="{action2Visible}" text="{action2Label}" press="action2" enabled="{action2Enabled}" icon="{action2Icon}" width="8rem">
+								<customData>
+									<core:CustomData key="targetAction" value="{targetAction2}"/>
+								</customData>
+							</Button>
+							<Button visible="{action3Visible}" text="{action3Label}" press="action3" icon="{action3Icon}" width="8rem"
+								enabled="{parts :[ {path :'action3Enabled'},{path:'appData>/plantTimezoneOffset'},{path:'appData>/shift/startTimestamp'},{path:'appData>/shift/endTimestamp'}] ,formatter : 'sap.oee.ui.Formatter.formatProductionActivityButton' }">
+								<customData>
+									<core:CustomData key="targetAction" value="{targetAction3}"/>
+								</customData>
+							</Button>
+							<Button text="{i18n>OEE_LABEL_DETAILS}" icon="sap-icon://inspection" press="navigateToOrderDetails" width="8rem" visible="{detailsVisible}"></Button>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+</core:View>

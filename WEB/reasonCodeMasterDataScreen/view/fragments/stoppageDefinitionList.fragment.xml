@@ -1,0 +1,50 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:form="sap.ui.layout.form"
+	xmlns:ui="sap.ui.table" xmlns:l="sap.ui.layout">
+	<Dialog state="Information" id="idStoppageDefinitionFragment" draggable="true" title="Duruş Tanımları Listesi" contentWidth="70%">
+		<content>
+			<form:SimpleForm editable="true">
+				<l:VerticalLayout>
+					<l:content>
+						<Table id="idStoppageDefinitionTable" inset="false" items="{ path: '/Rowsets/Rowset/Row'}" sticky="ColumnHeaders" mode="SingleSelectMaster">
+							<headerToolbar>
+								<OverflowToolbar>
+									<Button id="addReasonCodeDef" width="200px" text="Yeni Duruş Tanımı Ekle" icon="sap-icon://sys-add" press="onPressAddReasonCodeDef"
+										type="Accept"/>
+									<ToolbarSpacer/>
+									<SearchField id="searchReasonCodeDef" width="400px" liveChange="onSearch"/>
+								</OverflowToolbar>
+							</headerToolbar>
+							<columns>
+								<Column hAlign="Center">
+									<Label text="Duruş Tipi Kodu" design="Bold" textAlign="Center" width="100%"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Duruş Tipi Tanımı" design="Bold" textAlign="Center" width="100%"/>
+								</Column>
+								<Column hAlign="Center" width="10%">
+									<Label text="" design="Bold" textAlign="Center" width="100%"/>
+								</Column>
+								<Column hAlign="Center" width="10%">
+									<Label text="" design="Bold" textAlign="Center" width="100%"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{REASON_CODE_ID}" wrapping="false"/>
+										<Text text="{TEXT}" wrapping="true"/>
+										<Button icon="sap-icon://edit" press="onPressUpdateReasonCodeDef" type="Accept"/>
+										<Button icon="sap-icon://delete" press="onPressDeleteReasonCodeDef" type="Reject"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</l:content>
+				</l:VerticalLayout>
+			</form:SimpleForm>
+		</content>
+		<buttons>
+			<Button type="Reject" width="100px" icon="sap-icon://decline" text="Kapat" press="onPressCancelReasonCodeButton"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

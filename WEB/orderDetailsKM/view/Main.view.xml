@@ -1,0 +1,509 @@
+<mvc:View xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:c="sap.ui.commons"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:ui="sap.ui.table"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
+    xmlns:tnt="sap.tnt" height="100%" controllerName="orderDetailsKM.controller.Main">
+
+    <tnt:ToolHeader>
+        <Image width="100px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAABI1BMVEXWEDH/////+//WEDP8//z8///2///+/P7QFjXGDyrMS13/7e/7/P3aDjX/9vXEXG7KAzDTETPRcn7UFC3/7+u+GzTLACrREy7cDS++ACb/9//dmKP8//rZDzHLDyjJPFP/2du3N03/5O3FjJe3JD7CBjKoACTrsLm3ACn529zCI0L/7vTmtr3/6/DjCzLt//z/5fbQMUrnkqLanq3gl6vXTGL/8P7DY3DJTl/PTGXp//bJWW7cET/ZSGXGGi+tACDxoamvOEykPkvSa4TTb32nJjvmCS24G0XIboG5dX+iGS69QVXQOFjAkJG4Q07dMEr/zNWOABj/xMyzADDnrsCtT1XCYWiuKEflpanmwMDXrrPQjJKhTV3NfoijDjH9xsn139QASUnDAAAIYUlEQVR4nO2bC1fbyBlA9RyNogea9UNC1oAxNgGMpCRNSBayoqSBsE26S8q22d2WNP//V/QbaWTcNg4HNj2Svd/l4DO2hsNcz/ulKAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCIAiCrDq64OZNk0n5fwByTKBLZKDpZH1FZmYSfTUNPc+rBTn3VtOQexVScOUMofaBm0CXBbXpZH1FyipIKZWllArYShmCIuuvz2P3V8vQ05XHT/7wdFDz9OngyWYn4k2n6+vh0f6zVDuc+hUxhJy1ftR0sr4iOrUfOESzjAo11hL/edBpOllfEa80VI2kwjBdMLRXqJAqHus/SAlkoVpiupbhr1Yp9XSoh6amWhJNU6drbKUMRSkVhjIPLc2EerhKvQUrihcOsUwJcS3iP5/QUD4uxztzUyoGv0tWSXUafNs9sjTZlhJNy/1jvWDy6cuXNGCeVw95OkUYKVFEm03z3cg4+y5NtNitqAw5k3nIswxeOI8kvOhkCrw2m+a7EenBt05OwKwE2hphOGtpwvWTknpId6JnUEqXKg+Vonfs5ySX9VDVNOKvKfWozX7x8ODhwwP4rfj5jz0ecr5UhlExeTZMR6lTkY6A46AjDYMLTT2MVVWTfUnSHTObZ0vV1Gbco1tbW6dbFaevXp2ejif10/6fNHIYE1dzLct1LZd0z1jIsyYTfGc8qntFoRSysbSLIHgZUE8+7b9O8sM4h1GdGLOqBkn3s7DDWaNJviPQbIY01IuOJAy5oitRGVS4MNSsPK/GrEZiOONwAwxlZGhcy9emJb6IcIoyzmvDWSC07VAPLizTShKXqJLuGYXo8K2UwAggDNtuGIoknp+fywUbEYyiMPTK5TcaQD00k8QypWD86I3nZVCyK8olD4jZtMQXEYYhlDzZpXdEqFMaQhsELU1sunmiyVGr6h5+8KALpTK2wsRC5Mt2V0sGfZ9d2KEsmxuFDT1FCKNVKoqhfRFr7tGNIXHOGHwFdeyy3tKi3UMcymDcFujRRkXoVavf4Grb9sb691pszeWh7/y5vxFFfRlbfCXitWmJL2Izj26+3Xy3WfHuHbzpUeU8o4/h3dZfjDjOk1pQnTqvNn/YhCiz2JubP3ba3T+GrL952e06I0nq7A3XiszrXQ8d+LCbC0OzbmlcMho6o0ejGU5373Jncvu/aZBqncaUixiqCX27vxZw1tuGWkcs+MCaPYTHpjoPgZ5Ene6Et/+bBqkMtZmh5ZpgqLPJtmoJwy8iDK3pTrvr4W82dNGwaX6zoYqGTfN7bWkUZbKtwZxXg+5hvoPQyij1jN9yNdUwl9Qw2t2GqX0cExNmTtbMckpcl8SxO1sg10juv1/K/jDc2XYIIYZmmaLPr/PQOCIWMYxcrq4mIkr3fbtH3gvysLP7+nI43Nsb+ZBfN4MaIxnCx8O9YcUeBC7/erKMeahEymR/f3x29r1vQEmcGfrp6f54f/9sPEcvbPccf4EhD8XkXZ9cJCTW8qQ2NNM3jPGsPmbEPY9R1u4J8MLeghYU5sZiJWrekEw/UJtn9d5MFFUHORo1uI3PG5arNDwSq4lH84baoze0CKN6RTiSWd2owW0sqodcVzgXhsRyE7Pu+bW0p9Ob7TWx3gHR2r0StageVhb9b6CrgNH1rMvv9hTqKe3u4v8LNPy9GFpo2GLQcFUN6z58gaHY7QjFroyMxnl1KqWV3MswyrLz8/Msq49oeG0+/n4vww6MZMRGVb07I+8wNCqykHsZhuVhaRihijhMvG2x4v1KacQmV1dXuzUFpStm2GE7T376SRy0KXn4uBCZ2NKm5n6G9vuRRky55qZOn62QodMLbUXnykcwJMSqTopNH+xS+It2Ct7RkKT70UYn8+jZo1gjebkGB3n4oMdgiNDSBam7GvbOo/Nzr3iVmm61yAgvkIcrY2g4Y+gFGS3+1oUyalV/oU43J6y9x2pvNdTm54eus0XtsCjsv3eNemnDUlNp2E7Luxmq/utdmmV0d5BWBbQyfCzOFIcrYWi6lx+ugv7V85FoRA1ZStNeAL19yJfS8Pl/Glp5PPx18PMvqSu2bQzZ0oxOYEjDltRwravG2mwxUezRQBgii0P9EHJNNY614ToVB/ob9VjMlw3Z1l4CHZ+6YKfUFNtsmv/r+vKOvNnOL4lLiPt5QRUGNW5OnOslNgx3/+Eb5Gbv6X8MY/PoaHS2xLMnpfhhD3JpoaEbW0fJw91KcClH3srGySC2LIMsMtSsxHkbMH2pDI05w84G+3A5FUfZP9/SGK4/HeyWW4nixnSjJosQd0hTMjtACnO++TzsRNHVP0fTRYYGMeKDjxOxEOW11pAy+mJkWoeW64qmXxy/iI/1op4nRJE32brsJi60N64WV2f2E4hluRDIjfTpuM2j7hIevOgeHRF5fiQ/Irl/nIW1YYdz2ju7vkz9JIE2Fbp3+IndvLyg4KcHFx+vJrSdeVfDM+Xdvz592pN8+jTcu/zu5tAvDKc5o/Z4bXAwdLo+2Ak03++OLg8Gx1e9CW37LjfjGeuNe5N9Sa83HtNsbjLLoS5mPFjfHb9de359PRgMnjy5vrhYezu+uirEF8BbWv9qmB5FShhl1aIu41HEAv3m2g+MpsWlmIgrLAhgXlgRTADo5kP5rNUwmNWxwq4zLbTFloR+s1NfhcKNDfF5fRuIe7q8NtMpL182kfA7AXmn1HdEqCKuzMwMy2IIOuLiQVkgSxR536mj8KUwFLdg5zItm08w5C33PL30gHjy7lB9cZaLAG/5fQsEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEWRH+DaLtE3CjtBhRAAAAAElFTkSuQmCC"></Image>
+        <HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+            <Label text="Kağıt Makinesi" design="Bold" width="auto" class="sapUiTinyMargin"/>
+            <Input id="KMId" textAlign="Center" value="{/0/WORKORDER}" width="150px" editable="{/editValue}"></Input>
+        </HBox>
+        <FlexBox alignItems="Start" justifyContent="Center" width="100%" displayInline="Center">
+            <items>
+                <Text text="KM Sipariş Detayı" wrapping="true" class="orderDetailsKMHeaderColor"/>
+            </items>
+        </FlexBox>
+        <ToolbarSpacer/>
+        <Image width="100px" src="/XMII/CM/ECZ_MES-4.0/orderDetailsScreen/images/ecz.png"></Image>
+    </tnt:ToolHeader>
+
+    <App>
+        <pages>
+            <Page title="KM Sipariş Detayı" showHeader="false">
+
+                <content>
+                    <HBox width="97%" justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+                        <VBox>
+                            <HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+                                <Label width="150px" text="KM SQC : " design="Bold" class="sapUiTinyMargin"/>
+                                <Input id="KMSQCId" textAlign="Center" value="{/0/WORKORDER}" width="300px" editable="{/editValue}"></Input>
+                            </HBox>
+                            <HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+                                <Label width="150px" text="DM SQC : " design="Bold" class="sapUiTinyMargin"/>
+                                <Input id="DMSQCId" textAlign="Center" value="{/0/WORKORDER}" width="300px" editable="{/editValue}"></Input>
+                            </HBox>
+                        </VBox>
+                        <VBox>
+                            <HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+                                <Label width="150px" text="Sipariş Miktarı : " design="Bold" class="sapUiTinyMargin"/>
+                                <Input id="OrderQTYId" textAlign="Center" value="{/0/WORKORDER}" width="300px" editable="{/editValue}"></Input>
+                            </HBox>
+                            <HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+                                <Label width="150px" text="Açıklama : " design="Bold" class="sapUiTinyMargin"/>
+                                <Input id="StatementId" textAlign="Center" value="{/0/WORKORDER}" width="300px" editable="{/editValue}"></Input>
+                            </HBox>
+                        </VBox>
+                        <VBox>
+                            <HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+                                <Label width="150px" text="Sipariş Tarihi : " design="Bold" class="sapUiTinyMargin"/>
+                                <DateTimePicker id="OrderDate" displayFormat="short" width="200px" placeholder="Sipariş Tarihi Seçiniz..."/>
+                            </HBox>
+
+                        </VBox>
+
+                    </HBox>
+                    <OverflowToolbar>
+                        <ToolbarSpacer/>
+
+                        <ComboBox id="idComboBoxBute" textAlign="Center" value="" width="300px" items="{path: '/dummydata'}">
+                            <core:Item key="{kolon}" text="{kolon}"/>
+                        </ComboBox>
+
+
+
+                        <Button width="150px" icon="sap-icon://add" text="Harman Ekle" press="onPress" class="sapUiSmallMarginBeginEnd"/>
+
+                    </OverflowToolbar>
+
+                    <FlexBox alignItems="Start">
+                        <FlexBox>
+                            <VBox>
+                                <ui:Table id="KMSQCParamaterTable1" rows="{/Rowsets/Rowset/Row}" rowSelectionChange="onOrdersTableSelectionChange" alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly" columnHeaderHeight="50px" rowHeight="50px" visibleRowCountMode="Auto">
+                                    <ui:extension>
+                                        <OverflowToolbar>
+                                            <Label id="title1" text="KM SQC Parametreleri" design="Bold" class="sapUiSmallMarginBegin TableText"/>
+                                        </OverflowToolbar>
+                                    </ui:extension>
+                                    <ui:columns>
+                                        <ui:Column hAlign="Center" sortProperty="AUFNR" filterProperty="AUFNR" filterType="sap.ui.model.type.String" class="orderReleaseScreenRowColor">
+                                            <Label text="Parametre" design="Bold"/>
+                                            <ui:template>
+                                                <Text text="{Parameter}" wrapping="false"/>
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column hAlign="Center" sortProperty="MATNR" filterProperty="MATNR" filterType="sap.ui.model.type.String">
+                                            <Label text="HED" design="Bold"/>
+                                            <ui:template>
+                                                <Text text="{HED}" wrapping="false"/>
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column hAlign="Center" sortProperty="MAKTX" filterProperty="MAKTX" filterType="sap.ui.model.type.String">
+                                            <Label text="AKL" design="Bold"/>
+                                            <ui:template>
+                                                <Text text="{AKL}" wrapping="true"/>
+                                            </ui:template>
+                                        </ui:Column>
+
+                                        <ui:Column hAlign="Center" sortProperty="AUFNR" filterProperty="AUFNR" filterType="sap.ui.model.type.String">
+                                            <Label text="UKL" design="Bold"/>
+                                            <ui:template>
+                                                <Text text="{UKL}" wrapping="false" class="orderReleaseScreenRowColor" />
+                                            </ui:template>
+                                        </ui:Column>
+
+                                        <ui:Column hAlign="Center" sortProperty="CREATION_TIMESTAMP" filterProperty="CREATION_TIMESTAMP" filterType="sap.ui.model.type.Date">
+                                            <Label text="ASL" design="Bold"/>
+                                            <ui:template>
+                                                <Text text="{ASL}" wrapping="false"/>
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column hAlign="Center" sortProperty="CREATION_TIMESTAMP" filterProperty="CREATION_TIMESTAMP" filterType="sap.ui.model.type.Date">
+                                            <Label text="USL" design="Bold"/>
+                                            <ui:template>
+                                                <Text text="{USL}" wrapping="false"/>
+                                            </ui:template>
+                                        </ui:Column>
+
+                                        <!--			<ui:Column hAlign="Center" sortProperty="AUFNR" filterProperty="AUFNR" filterType="sap.ui.model.type.String">
+						<Label text="Release Edilen Miktar" design="Bold"/>
+						<ui:template>
+							<Text text="{QTY_RELEASED}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column hAlign="Center" sortProperty="AUFNR" filterProperty="AUFNR" filterType="sap.ui.model.type.String">
+						<Label text="Üretilen Miktar" design="Bold"/>
+						<ui:template>
+							<Text text="{QTY_DONE}" wrapping="false"/>
+						</ui:template>
+					</ui:Column> 
+
+					<ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+						<Label text="İş Yeri" design="Bold"/>
+						<ui:template>
+							<Text text="{WORK_CENTER}" wrapping="false"/>
+						</ui:template>
+					</ui:Column> -->
+
+
+
+
+
+                                    </ui:columns>
+                                </ui:Table>
+                                <ui:Table id="DMSQCParamaterTable1" rows="{/Rowsets/Rowset/Row}" rowSelectionChange="onOrdersTableSelectionChange" alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly" columnHeaderHeight="50px" rowHeight="50px" visibleRowCountMode="Auto">
+                                    <ui:extension>
+                                        <OverflowToolbar>
+                                            <Label text="DM SQC PARAMETRELERİ" design="Bold" class="sapUiSmallMarginBegin TableText"/>
+                                        </OverflowToolbar>
+                                    </ui:extension>
+                                    <ui:columns>
+                                        <ui:Column hAlign="Center" sortProperty="AUFNR" filterProperty="AUFNR" filterType="sap.ui.model.type.String" class="orderReleaseScreenRowColor">
+                                            <Label text="Parametre" design="Bold"/>
+                                            <ui:template>
+                                                <Text text="{Parameter}" wrapping="false"/>
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column hAlign="Center" sortProperty="MATNR" filterProperty="MATNR" filterType="sap.ui.model.type.String">
+                                            <Label text="HED" design="Bold"/>
+                                            <ui:template>
+                                                <Text text="{HED}" wrapping="false"/>
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column hAlign="Center" sortProperty="MAKTX" filterProperty="MAKTX" filterType="sap.ui.model.type.String">
+                                            <Label text="AKL" design="Bold"/>
+                                            <ui:template>
+                                                <Text text="{AKL}" wrapping="true"/>
+                                            </ui:template>
+                                        </ui:Column>
+
+                                        <ui:Column hAlign="Center" sortProperty="AUFNR" filterProperty="AUFNR" filterType="sap.ui.model.type.String">
+                                            <Label text="UKL" design="Bold"/>
+                                            <ui:template>
+                                                <Text text="{UKL}" wrapping="false" class="orderReleaseScreenRowColor" />
+                                            </ui:template>
+                                        </ui:Column>
+
+                                        <ui:Column hAlign="Center" sortProperty="CREATION_TIMESTAMP" filterProperty="CREATION_TIMESTAMP" filterType="sap.ui.model.type.Date">
+                                            <Label text="ASL" design="Bold"/>
+                                            <ui:template>
+                                                <Text text="{ASL}" wrapping="false"/>
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column hAlign="Center" sortProperty="CREATION_TIMESTAMP" filterProperty="CREATION_TIMESTAMP" filterType="sap.ui.model.type.Date">
+                                            <Label text="USL" design="Bold"/>
+                                            <ui:template>
+                                                <Text text="{USL}" wrapping="false"/>
+                                            </ui:template>
+                                        </ui:Column>
+
+
+
+                                    </ui:columns>
+                                </ui:Table>
+                            </VBox>
+                        </FlexBox>
+                        <FlexBox direction="Column" alignItems="Start">
+                            <ui:Table id="orderDetailsKM2" rows="{/Rowsets/Rowset/Row}" rowSelectionChange="onOrdersTableSelectionChange" alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly" columnHeaderHeight="50px" rowHeight="50px" visibleRowCountMode="Auto">
+                                <ui:extension>
+                                    <OverflowToolbar>
+                                        <Label id="title2" text="Harman Oranları" design="Bold" class="sapUiSmallMarginBegin TableText"/>
+
+                                        <ToolbarSpacer/>
+                                        <ToggleButton icon="sap-icon://show" tooltip="Enable / Disable Visibility Menu Entries" pressed="{ui>/showVisibilityMenuEntry}"/>
+                                        <ToggleButton icon="sap-icon://resize-horizontal" tooltip="Enable / Disable Freezing Menu Entries" pressed="{ui>/showFreezeMenuEntry}"/>
+                                        <ToggleButton icon="sap-icon://filter" tooltip="Enable / Disable Cell Filter" pressed="{ui>/enableCellFilter}"/>
+                                        <ToggleButton icon="sap-icon://menu" tooltip="Enable / Disable Custom Context Menu" press="onToggleContextMenu"/>
+                                    </OverflowToolbar>
+                                </ui:extension>
+                                <ui:columns>
+                                    <ui:Column hAlign="Center" sortProperty="AUFNR" filterProperty="AUFNR" filterType="sap.ui.model.type.String">
+                                        <Label text="Harman Adı" design="Bold"/>
+                                        <ui:template>
+                                            <Text text="{SHOP_ORDER}" wrapping="false"/>
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column hAlign="Center" sortProperty="MATNR" filterProperty="MATNR" filterType="sap.ui.model.type.String">
+                                        <Label text="Harman Oranı (%)" design="Bold"/>
+                                        <ui:template>
+                                            <Text text="{ITEM}" wrapping="false"/>
+                                        </ui:template>
+                                    </ui:Column>
+
+                                </ui:columns>
+                            </ui:Table>
+                            <ui:Table id="orderDetailsKM4" rows="{/Rowsets/Rowset/Row}" rowSelectionChange="onOrdersTableSelectionChange" alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly" columnHeaderHeight="50px" rowHeight="50px" visibleRowCountMode="Auto">
+                                <ui:extension>
+                                    <OverflowToolbar>
+                                        <Label text="Kimyasallar" design="Bold" class="sapUiSmallMarginBegin TableText"/>
+                                    </OverflowToolbar>
+                                </ui:extension>
+                                <ui:columns>
+                                    <ui:Column hAlign="Center" sortProperty="AUFNR" filterProperty="AUFNR" filterType="sap.ui.model.type.String">
+                                        <Label text="Kimyasal" design="Bold"/>
+                                        <ui:template>
+                                            <Text text="{SHOP_ORDER}" wrapping="false"/>
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column hAlign="Center" sortProperty="MATNR" filterProperty="MATNR" filterType="sap.ui.model.type.String">
+                                        <Label text="Değer" design="Bold"/>
+                                        <ui:template>
+                                            <Text text="{ITEM}" wrapping="false"/>
+                                        </ui:template>
+                                    </ui:Column>
+
+
+                                </ui:columns>
+                            </ui:Table>
+
+                            <ui:Table id="orderDetailsKM77" rows="{/Rowsets/Rowset/Row}" rowSelectionChange="onOrdersTableSelectionChange" alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly" columnHeaderHeight="50px" rowHeight="50px" visibleRowCountMode="Auto">
+                                <ui:extension>
+                                    <OverflowToolbar>
+                                        <Label text="Selülozlar" design="Bold" class="sapUiSmallMarginBegin TableText"/>
+                                    </OverflowToolbar>
+                                </ui:extension>
+                                <ui:columns>
+                                    <ui:Column hAlign="Center" sortProperty="AUFNR" filterProperty="AUFNR" filterType="sap.ui.model.type.String">
+                                        <Label text="Selüloz" design="Bold"/>
+                                        <ui:template>
+                                            <Text text="{SHOP_ORDER}" wrapping="false"/>
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column hAlign="Center" sortProperty="MATNR" filterProperty="MATNR" filterType="sap.ui.model.type.String">
+                                        <Label text="Adet" design="Bold"/>
+                                        <ui:template>
+                                            <Text text="{ITEM}" wrapping="false"/>
+                                        </ui:template>
+                                    </ui:Column>
+                                    <ui:Column hAlign="Center" sortProperty="MAKTX" filterProperty="MAKTX" filterType="sap.ui.model.type.String">
+                                        <Label text="Ağırlık (kg)" design="Bold"/>
+                                        <ui:template>
+                                            <Text text="{ITEM_DESCRIPTION}" wrapping="true"/>
+                                        </ui:template>
+                                    </ui:Column>
+
+
+                                </ui:columns>
+                            </ui:Table>
+                        </FlexBox>
+                    </FlexBox>
+
+                    <FlexBox alignItems="Start">
+                        <ui:Table id="orderDetailsKM3" rows="{/Rowsets/Rowset/Row}" rowSelectionChange="onOrdersTableSelectionChange" alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly" columnHeaderHeight="50px" rowHeight="50px" visibleRowCountMode="Auto">
+                            <ui:extension>
+                                <OverflowToolbar>
+                                    <Label text="DM Üretimleri" design="Bold" class="sapUiSmallMarginBegin TableText"/>
+                                </OverflowToolbar>
+                            </ui:extension>
+                            <ui:columns>
+                                <ui:Column hAlign="Center" sortProperty="AUFNR" filterProperty="AUFNR" filterType="sap.ui.model.type.String">
+                                    <Label text="Sipariş No" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="{SHOP_ORDER}" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+
+                                <ui:Column hAlign="Center" sortProperty="MATNR" filterProperty="MATNR" filterType="sap.ui.model.type.String">
+                                    <Label text="Malzeme Adı" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="{ITEM}" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="MAKTX" filterProperty="MAKTX" filterType="sap.ui.model.type.String">
+                                    <Label text="Sipariş Miktarı" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="{Order_Qty}" wrapping="true"/>
+                                    </ui:template>
+                                </ui:Column>
+
+                                <ui:Column hAlign="Center" sortProperty="AUFNR" filterProperty="AUFNR" filterType="sap.ui.model.type.String">
+                                    <Label text="Barkod Ürün Adı" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="{Barcode_PrName}" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="CREATION_TIMESTAMP" filterProperty="CREATION_TIMESTAMP" filterType="sap.ui.model.type.Date">
+                                    <Label text="Takım Bobin Adedi" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="{Number_Set_Bobbins}" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="CREATION_TIMESTAMP" filterProperty="CREATION_TIMESTAMP" filterType="sap.ui.model.type.Date">
+                                    <Label text="Sevk Tarihi" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="{Shipment_DATE}" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="Kat Adedi" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="Floor_Number" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="Ebat" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="Ebat" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="Gramaj" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="Gramaj" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="Çap" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="Çap" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+
+
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="İhracat mı ?" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="İhracat" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+
+
+
+                                <ui:Column hAlign="Center" sortProperty="CREATION_TIMESTAMP" filterProperty="CREATION_TIMESTAMP" filterType="sap.ui.model.type.Date">
+                                    <Label text="Mihver Boru Ağırlığı Düş ?" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="Mihver" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="ETÜ Sipariş No " design="Bold"/>
+                                    <ui:template>
+                                        <Text text="ETU_ORDER_NO" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="ETÜ Sipariş KLM No" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="ETÜ_ORDER_KLM_NO" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="İş Yeri" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="Plant" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="Kombinasyon" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="Combination" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="Hacim Yumuşaklı" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="Hacim" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="Sipariş SAS No" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="ORDER_SAS_NO" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="Üretim Açıklaması" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="PRODUCT_STATEMENT" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="Ambalaj Kombinasyonu" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="Ambalaj_Combination" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="MB Çapı" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="MB_DİAMETER" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="Customer Order No" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="CUSTOMER_ORDER_NO" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="ETÜ ORDER NO" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="ETU_ORDER_NO" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="Kalender" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="KALENDER" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="MB ÇAPI" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="MB_DİAMETER2" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="RENK" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="COLOUR" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="KRAFT" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="KRAFT" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="No Hook" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="NO_HOOK" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="Palet" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="PALET" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="Strech" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="STRECH" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+                                <ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+                                    <Label text="Takoz" design="Bold"/>
+                                    <ui:template>
+                                        <Text text="TAKOZ" wrapping="false"/>
+                                    </ui:template>
+                                </ui:Column>
+
+                            </ui:columns>
+                        </ui:Table>
+
+                    </FlexBox>
+
+                </content>
+                <footer>
+                    <OverflowToolbar>
+                        <Button width="150px" text="Sipariş Detay" icon="sap-icon://add" press="onPressOrderDetailButton" class="sapUiSmallMargin"/>
+                        <ToolbarSpacer/>
+                        <Button width="150px" type="Reject" text="Sipariş Onay" icon="sap-icon://accept" press="onPressReleaseButton" class="sapUiSmallMargin"/>
+                    </OverflowToolbar>
+                </footer>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>

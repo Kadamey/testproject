@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:form="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<Dialog state="Warning" id="fragmentStoppageTransfer" draggable="true" title="Duruş Aktar">
+		<content>
+			<form:SimpleForm editable="true">
+				<l:VerticalLayout class="sapUiContentPadding">
+					<l:content>
+						<VBox>
+							<HBox id="hBox1" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Mevcut İş Yeri : " design="Bold" width="160px"/>
+								<Input id="idCurrentWorkplace" textAlign="Center" width="300px" enabled="false"/>
+							</HBox>
+							<HBox id="hBox2" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Aktarılacak İş Yeri : " design="Bold" width="160px"/>
+								<ComboBox id="idTransferWorkplace" textAlign="Center" width="300px" items="{ path: '/Rowsets/Rowset/Row'}" placeholder="İş Yeri Seçiniz...">
+									<core:Item key="{WORK_CENTER}" text="{WORK_CENTER}"/>
+								</ComboBox>
+							</HBox>
+						</VBox>
+					</l:content>
+				</l:VerticalLayout>
+			</form:SimpleForm>
+		</content>
+		<buttons>
+			<Button width="125px" type="Accept" icon="sap-icon://save" text="Kaydet" press="onPressTransferDownTimeButton"></Button>
+			<Button width="125px" type="Reject" icon="sap-icon://sys-cancel" text="İptal" press="onPressCancelDownTimeButton"></Button>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

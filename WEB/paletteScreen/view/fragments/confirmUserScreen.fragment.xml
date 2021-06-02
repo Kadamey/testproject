@@ -1,0 +1,73 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout">
+    <Dialog state="Warning" title="Kütük Bilgisini Düzenle" id="fragmentBilletAddUpdate">
+        <content>
+            <form:SimpleForm editable="true">
+                <l:VerticalLayout class="sapUiContentPadding" width="100%">
+                    <l:content>
+                        <VBox>
+                            <HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Sipariş Numarası" design="Bold" width="120px"/>
+                                <Input id="workOrderNo" textAlign="Center" value="{/0/WORKORDER}" width="300px" editable="{/editValue}" type="Number"></Input>
+                            </HBox>
+                            <HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Operasyon Numarası" design="Bold" width="120px"/>
+                                <Input id="operationNo" textAlign="Center" value="{/operationNo}" width="300px" editable="{/editValue}" enabled="false" type="Number"></Input>
+                            </HBox>
+                            <HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Kütük Numarası" design="Bold" width="120px"/>
+                                <Input id="billetId" textAlign="Center" value="{/0/BILLETID}" width="300px" editable="{/editValue}"></Input>
+                            </HBox>
+                            <HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Döküm Numarası" design="Bold" width="120px"/>
+                                <Input id="castNo" textAlign="Center" value="{/0/CASTNO}" width="300px" editable="{/editValue}" type="Number"></Input>
+                            </HBox>
+                            <HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Malzeme Numarası" design="Bold" width="120px"/>
+                                <Input id="materialNo" textAlign="Center" value="{/0/MATERIALCODE}" width="300px" editable="{/editValue}" type="Number"></Input>
+                            </HBox>
+                            <HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Kütük Adedi" design="Bold" width="120px"/>
+                                <Input id="quantityValue" textAlign="Center" value="1" width="300px" editable="{/editValue}"  enabled="false" type="Number"></Input>
+                            </HBox>
+                            <HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Kalite Sınıfı" design="Bold" width="120px"/>
+                                <Input id="idClass" textAlign="Center" value="{/0/CLASS}" width="300px" editable="{/editValue}" type="Number"></Input>
+                            </HBox>
+                            <HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Sıra Numarası" design="Bold" width="120px"/>
+                                <Input id="sequenceNumber" textAlign="Center" value="{/0/SEQNUMBER}" width="300px" editable="{/editValue}" type="Number"></Input>
+                            </HBox>
+                            <HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Sinyal Noktası" design="Bold" width="120px"/>
+                                <ComboBox id="signalPointValue" textAlign="Center" value="{/0/SIGNALPOINT}" width="300px" items="{path: '/1/0/Rowsets/Rowset/Row'}">
+                                    <core:Item key="{key}" text="{SIGNALDESC}"/>
+                                </ComboBox>
+                            </HBox>
+                            <HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Kalite Bilgisi" design="Bold" width="120px"/>
+                                <Input id="qualityValue" textAlign="Center" value="{/0/QUALITY}" width="300px" editable="{/editValue}" ></Input>
+                            </HBox>
+                            <HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Ağırlık Bilgisi" design="Bold" width="120px"/>
+                                <Input id="weightValue" textAlign="Center" value="{/0/WEIGHT}" width="300px" editable="{/editValue}" type="Number"></Input>
+                            </HBox>
+                            <HBox fitContainer="true" justifyContent="SpaceAround" alignItems="Center" class="sapUiTinyMargin">
+                                <CheckBox id="deleteCheckBox" text="Silme" selected="{= ${/0/XDELETED} === 'X' ? true : false }" enabled="{= ${/0/XSCRAP} === null ? true : false }"/>
+                                <CheckBox id="scraptCheckBox" text="Hadde Bozuğu" selected="{= ${/0/XSCRAP} === null || ${/0/XSCRAP} === 'X' ? false : true }" enabled="{= ${/0/XSCRAP} === 'Success' || ${/0/XSCRAP} === 'Fail' ? false : true }"/>
+                            </HBox>
+                        </VBox>
+                    </l:content>
+                </l:VerticalLayout>
+            </form:SimpleForm>
+        </content>
+        <buttons>
+            <Button id="giveManualConsumption" icon="sap-icon://add" text="ManuelTuketimYap" press="onPressGiveManualConsumptionButton" visible="false"></Button>
+            <Button id="updateBilletButton" icon="sap-icon://save" text="Kaydet" press="onPressManualBilletAddUpdateConfirmationButton"></Button>
+            <Button id="cancelBilletButton" icon="sap-icon://sys-cancel" text="İptal" press="onPressCancelManualBilletAddUpdateConfirmationButton"></Button>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

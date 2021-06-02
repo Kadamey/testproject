@@ -1,0 +1,138 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form">
+	<Dialog state="Error" id="fragmentOrderMigration" title="Bobin Oluşturma">
+		
+		<Table id="idBobinCreateTable" fixedLayout="false" inset="false" items="{/result1/Result/item}">
+			<!--
+            <headerToolbar>
+                <OverflowToolbar>
+                    <Title level="H2" text="Paçal Dökümler Liste "/>
+                </OverflowToolbar>
+            </headerToolbar>
+-->
+			<columns>
+
+				<Column hAlign="Center" width="auto">
+					<Label text="Bobin No"/>
+
+				</Column>
+				<Column hAlign="Center" width="auto">
+					<Label text="Ebat (cm)"/>
+					<!-- 1.kolon -->
+				</Column>
+				<Column hAlign="Center" width="auto">
+					<Label text="Çap(cm)"/>
+					<!-- 2.kolon -->
+				</Column>
+				<Column   hAlign="Center"  width="auto"> 
+					<Text text="Gramaj (gr/m2)"/>
+					<!-- 2.kolon -->
+				</Column>
+
+				<Column hAlign="Center" width="auto">
+					<Label text="Kat"/>
+					<!-- 2.kolon -->
+				</Column>
+				<Column>
+					<Text text="Miktar (kg)"/>
+					<!-- 2.kolon -->
+				</Column>
+			<Column hAlign="Center" width="auto">
+					<Label text="Siparis No"/>
+					<!-- 2.kolon -->
+				</Column>
+					<Column hAlign="Center" width="auto">
+					<Label text="Malzeme No"/>
+					<!-- 2.kolon -->
+				</Column>
+				<Column hAlign="Center" width="auto">
+					<Label text="Malzeme Adı"/>
+					<!-- 2.kolon -->
+				</Column>
+				<Column hAlign="Center" width="auto">
+					<Label text="Kalite Deşesi Tipi"/>
+					<!-- 2.kolon -->
+				</Column>
+				<Column  hAlign="Center"  width="auto">
+					<Text text="Kalite Deşesi Kg(kg)"/>
+					<!-- 2.kolon -->
+				</Column>
+				<Column  hAlign="Center"  width="auto">
+					<Text text="Açıklama"/>
+					<!-- 2.kolon -->
+				</Column>
+				<Column hAlign="Center" width="auto">
+					<Label text="Trim Deşesi Miktarı(kg)"/>
+					<!-- 2.kolon -->
+				</Column>
+				<Column>
+					<Text text="Barkod Bas"/>
+					<!-- 2.kolon -->
+				</Column>
+
+
+
+
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle">
+					<cells>
+						<Text text="{BOBINNO}" wrapping="false"/>
+						<Input id="ebatField" placeholder="Ebat" value ="{EBAT}" submit="" type="Number" width="10px"/>
+						<!-- 1.kolon -->
+						<Text text="{weight}" visible="{= !${MANUAL}}" wrapping="false"/>
+						<Text text="{material}" wrapping="false"/>
+						<Text text="{quantity}" wrapping="false"/>
+						<!-- 1.kolon -->
+						<Text text="{MIKTAR}" visible="{= !${MANUAL}}" wrapping="false"/>
+						<Text text="{CHILDSFC}" wrapping="false"/>
+						<Text text="{MATERIAL}" wrapping="false"/>
+						<Text text="{MATERIALDESC}" wrapping="false"/>
+					
+						<!-- 1.kolon -->
+						<ComboBox id="qualityScraptTypeId"   change="onChangeQualityScraptComboBox" showSecondaryValues= "true" width="auto" items="{
+				path: '/result3/Result3/Result/items/item',
+				sorter: { path: 'Name' }
+			}">
+					<core:ListItem key="{ncCode}" text="{description}" value ="{DESETIPI}" additionalText="{MIHVERAGIRLIK}"/>
+				</ComboBox>
+	<Input id="qualityScraptValueFieldId" placeholder="Ebat" value ="{DESEMIKTAR}" submit="" type="Number" width="10px"/>
+			
+						<Text text="{material}" wrapping="false"/>
+						<Text text="{TRIMMIKTAR}" wrapping="false"/>
+						<!-- 1.kolon -->
+				
+						<core:Icon press="onDeleteRow" src="sap-icon://delete" visible="true"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<FlexBox alignItems="Center" backgroundDesign="Translucent" justifyContent="Center" class="sapUiMediumMargin">
+			<items>
+			
+
+				<Label width="auto" text="Miktar (kg): " design="Bold" class="testText sapUiMediumMargin"/>
+				<Input id="quantityField" placeholder="Miktar" submit="" type="Number" width="auto"/>
+				
+				<Label width="auto" text="Mihver Boru : " design="Bold" class="testText sapUiMediumMargin"/>
+				<ComboBox id="idMihverComboboxField" showSecondaryValues= "true" width="auto" items="{
+				path: '/Result2/Rowsets/Rowset/Row',
+				sorter: { path: 'Name' }
+			}">
+					<core:ListItem key="{ITEM}" text="{DESCRIPTION}" additionalText="{MIHVERAGIRLIK} - {MIHVEREBAT}"/>
+				</ComboBox>
+			
+				<Label width="auto" text="Toplam Trim Deşesi : " design="Bold" class="testText sapUiMediumMargin"/>
+				<Input id="trimQuantityField" placeholder="Miktar" submit="" type="Number" width="auto"/>
+
+	
+				<Button press="onPressCalculationButton" text="Dağıt" type="Reject" class="sapUiMediumMargin"/>
+			</items>
+		</FlexBox>
+		<buttons>
+			<Button icon="sap-icon://sys-enter" press="onPressBobinCreateSaveButton" text="Kaydet"/>
+			<Button icon="sap-icon://sys-cancel" press="onCancelBobinCreateButton" text="Vazgeç"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

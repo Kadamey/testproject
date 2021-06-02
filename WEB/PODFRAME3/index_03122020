@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	<TITLE>ME</TITLE>
+	<META http-equiv="X-UA-Compatible" content="IE=edge">
+	<META http-equiv='cache-control' content='no-cache'>
+	<META http-equiv='expires' content='0'>
+	<META http-equiv='pragma' content='no-cache'>
+</head>
+<script>
+	var Interval;
+	var openDate = new Date();
+	var OldWORKCENTER = "";
+	var OldRESOURCE = "";
+</script>
+
+<script   type="text/javascript" src="./jquery-1.12.4.min.js">
+        </script>
+<link rel="stylesheet" href="./css/style.css">
+<script>
+$( document ).ready(function() {
+	var WORKCENTER = "";
+	var RESOURCE = "";
+	var src1 = "";
+	var workstation = "";
+	var activityId = "";
+	if ( getParameterByName('WORKCENTER') != "" && getParameterByName('WORKCENTER') != null){
+		WORKCENTER= getParameterByName('WORKCENTER');
+		if(WORKCENTER!= ""){	
+			OldWORKCENTER = WORKCENTER;
+		}
+	}
+	if (getParameterByName('RESOURCE') != "" && getParameterByName('RESOURCE') != null){
+		RESOURCE= getParameterByName('RESOURCE');   
+		if(RESOURCE!= ""){	
+			OldRESOURCE = RESOURCE;
+		}
+	}
+	if (RESOURCE != ""){
+		var input = 'RESOURCE=' + RESOURCE;
+		var result = getJSON('CHECK_ASSEMBLY',input);
+		if (result.length > 0){
+			if (result[0].ASSEMBLY == "true"){
+				workstation = "VESTEL_WORK_CENTER_SUPERVISOR";
+				activityId = "POD_SUPERVISOR"	
+			}
+			if (result[0].ASSEMBLY == "false"){
+				workstation = "WORK_CENTER_TOUCH";
+				activityId = "TOUCH_WC_POD"
+			}
+		}
+	} else {
+		workstation = "WORK_CENTER_TOUCH";
+		activityId = "TOUCH_WC_POD"	
+	}
+	if (getParameterByName('OPENED_FROM_MAIN') != "" && getParameterByName('OPENED_FROM_MAIN') != null && getParameterByName('OPENED_FROM_MAIN') == 'true'){
+      //  src1 = window.location.origin +"/manufacturing/com/sap/me/wpmf/client/template.jsf?WORKSTATION="  + workstation + "&ACTIVITY_ID=" + activityId + "&WORKCENTER=" + RESOURCE +"&RESOURCE=" + RESOURCE + "&LOGOUT=true&sap-lsf-PreferredRendering=standards#";
+        src1 = window.location.origin +"/manufacturing/com/sap/me/wpmf/client/template.jsf?WORKSTATION="  + workstation + "&ACTIVITY_ID=" + activityId + "&WORKCENTER=" + RESOURCE + "&LOGOUT=true&sap-lsf-PreferredRendering=standards#";
+	}else {
+	//	src1 = window.location.origin +"/manufacturing/com/sap/me/wpmf/client/template.jsf?WORKSTATION=" + workstation + "&ACTIVITY_ID=" + activityId + "&WORKCENTER=" + RESOURCE +"&RESOURCE=" + RESOURCE + "&LOGOUT=true&CONNECTION_ID=" + RESOURCE + "-" + RESOURCE + "&sap-lsf-PreferredRendering=standards#";	
+        src1 = window.location.origin +"/manufacturing/com/sap/me/wpmf/client/template.jsf?WORKSTATION=" + workstation + "&ACTIVITY_ID=" + activityId + "&WORKCENTER=" + RESOURCE + "&LOGOUT=true&CONNECTION_ID=" + RESOURCE + "-" + RESOURCE + "&sap-lsf-PreferredRendering=standards#";	
+    }
+
+	//	var src2 = "../EFFSTDIE11/index.html?WORKCENTER=" + WORKCENTER +"&RESOURCE=" + RESOURCE;
+	//var src2 = "../LOGS/logo7.png";
+    var src2 = "../StoppagesPOD/index.html"
+   
+	jQuery("#Frame1").attr("src",src1)
+	jQuery("#Frame2").attr("src",src2)
+	Interval = setInterval(getChangeWC, 100);
+});
+var site = ""; 
+function getSite() {
+	try {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open("GET", "/XMII/Illuminator?Service=Admin&Mode=UserAttribList&content-Type=text/xml", false);
+		xmlHttp.send();
+		var xmlDOM = xmlHttp.responseXML.documentElement;
+		site = xmlDOM.getElementsByTagName("Row")[0].getElementsByTagName("DEFAULT_SITE")[0].textContent;
+		if (usernameLbl.getText() == "") {
+			usernameLbl.setText(oBundle.getText("welcome").replace("&1", xmlDOM.getElementsByTagName("Row")[0].getElementsByTagName("FullName")[0].textContent.toUpperCase()));
+		}
+	} catch (err) {};
+	if (site == "") {
+		openMessageDialog(oBundle.getText("noSiteForUser"));
+	}
+}
+
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function getJSON(Transaction, Input) {
+	var xmlHttp = new XMLHttpRequest();
+	var xmlDOM;
+	var aData;
+	if (site == "") {
+		getSite();
+	}
+	if (site == "") {
+		return;
+	}
+	var trans;
+	if (Input && Input !=""){
+		trans = "/XMII/Runner?Transaction=3001/TRANSACTION/" + Transaction + "&" + Input + "&SITE=" + site + "&OutputParameter=JSON&Content-Type=text/xml";
+	} else {
+		trans = "/XMII/Runner?Transaction=3001/TRANSACTION/" + Transaction + "&SITE=" + site + "&OutputParameter=JSON&Content-Type=text/xml";
+	}
+
+	xmlHttp.open("GET", trans, false);
+	xmlHttp.overrideMimeType("text/xml");
+	xmlHttp.send();
+	xmlDOM = xmlHttp.responseXML.documentElement;
+	try {
+		aData = eval(xmlDOM.textContent);
+	} catch (err) {
+		alert(oBundle.getText("err_json"));
+	}
+	return aData;
+} 
+
+var NewWORKCENTER = "" 
+var NewRESOURCE = "" 
+function getChangeWC(){
+	var actualDate = new Date()
+	var diffMs = (actualDate - openDate); // milliseconds between now & Christmas
+	var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
+	if(diffMins >= 10){
+		clearInterval(Interval);
+		//window.location = "/XMII/CM/3001/EFFSTDIE11/index.html?WORKCENTER=" + OldWORKCENTER +"&RESOURCE=" + OldRESOURCE;
+	}
+
+	var auxFrame = $('#Frame1').contents()[0];
+	if(auxFrame){
+		if(typeof auxFrame.getElementById('templateForm:reservedArea:wcPodSelectionView:WorkCenter') !== "undefined" || auxFrame.getElementById('templateForm:reservedArea:wcPodSelectionView:WorkCenter') !== null){
+			try{
+				NewWORKCENTER = auxFrame.getElementById('templateForm:reservedArea:wcPodSelectionView:WorkCenter').value;	
+				if(NewWORKCENTER!=""&&NewWORKCENTER.length >= 5){
+					if(NewWORKCENTER != OldRESOURCE){
+                      //  window.location = '/XMII/CM/3001/PODFRAME/index.html?WORKCENTER='+OldWORKCENTER+'&RESOURCE='+NewWORKCENTER
+                       
+                        window.location = '/XMII/CM/3001/PODFRAME/index.html?WORKCENTER='+NewWORKCENTER
+					}
+					OldRESOURCE = NewWORKCENTER;
+				}
+			}
+			catch (err) {}
+		}
+		if(typeof auxFrame.getElementById('templateForm:reservedArea:wcPodSelectionView:Resource') !== "undefined" || auxFrame.getElementById('templateForm:reservedArea:wcPodSelectionView:Resource') !== null){
+			try{
+				NewRESOURCE = auxFrame.getElementById('templateForm:reservedArea:wcPodSelectionView:Resource').value;	
+				if(NewRESOURCE!=""&&NewRESOURCE.length >= 5 && NewRESOURCE.indexOf("71A") == -1){
+					if(NewRESOURCE != OldRESOURCE){
+                      //  var src2 = "../EFFSTDIE11/index.html?WORKCENTER=" + OldWORKCENTER +"&RESOURCE=" + NewRESOURCE;
+                        var src2 = "../EFFSTDIE11/index.html?WORKCENTER=" + OldWORKCENTER 
+						jQuery("#Frame2").attr("src",src2)
+					}
+					OldRESOURCE = NewRESOURCE;
+				}
+			}
+			catch (err) {}
+		}
+	}
+}
+function iframe1click() {
+	document.getElementById("Frame1").contentWindow.document.body.onclick = function(PointerEvent) {
+		if(parseInt(PointerEvent.clientX)>0 || parseInt(PointerEvent.clientY)>0){
+			openDate = new Date();
+		}
+	}
+
+}
+
+function iframe2click() {
+	document.getElementById("Frame2").contentWindow.document.body.onclick = function(PointerEvent) {
+		if(parseInt(PointerEvent.clientX)>0 || parseInt(PointerEvent.clientY)>0){
+			openDate = new Date();
+		}
+	}
+}
+</script>
+<body>
+<table class="mainTBL">
+
+  <tr>
+  
+    <td style="width: 80%; height: 100%">
+        <iframe id="Frame1" src="" style="width: 100%;" onload="iframe1click()"></iframe>
+    </td>
+    
+    <td style="width: 20%; height: 100%">
+        <iframe id="Frame2" src="" style="width: 100%;" onload="iframe2click()"></iframe>
+    </td>
+      
+   
+    
+  </tr>
+
+</table>
+</body>
+</html>

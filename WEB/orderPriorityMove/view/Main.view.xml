@@ -1,0 +1,25 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ui="sap.ui.table" xmlns:f="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt" height="100%" controllerName="orderPriorityMove.controller.Main">
+	<App>
+		<pages>
+			<Page title="Tedarik Zinciri Önceliği" showHeader="false">
+				<content>
+					<tnt:ToolHeader  class="sapUiLargeMarginBottom">
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ntt.png"></Image>
+						<ToolbarSpacer/>
+						<Text text="Tedarik Zinciri Önceliği" wrapping="true"/>
+						<ToolbarSpacer/>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ecz.png"></Image>
+					</tnt:ToolHeader>
+					<VBox justifyContent="Center" alignItems="Center" class="sapUiLargeMarginTop">
+						<Label text="Seçilen Sipariş için TEDARİK ZİNCİRİ ÖNCELİĞİ" class="sapUiSmallMarginTop customText" design="Bold"/>
+						<Label text="Oluşturması Amacı ile SİPARİŞ SIRA NUMARASI Giriniz" class="sapUiSmallMarginTop customText" design="Bold"/>
+						<Input width="250px" type="Number" id="idInput" liveChange="onFormatInput" class="sapUiLargeMarginTop" textAlign="Center"/>
+						<Button width="250px" text="Sisteme Kaydet" type="Accept" press="onPressSave" id="idButton" class="sapUiSmallMarginTop"/>
+					</VBox>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

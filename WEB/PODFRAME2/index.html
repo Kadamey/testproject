@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	<TITLE>ME</TITLE>
+	<META http-equiv="X-UA-Compatible" content="IE=edge">
+	<META http-equiv='cache-control' content='no-cache'>
+	<META http-equiv='expires' content='0'>
+	<META http-equiv='pragma' content='no-cache'>
+</head>
+<script>
+	var Interval;
+	var openDate = new Date();
+	var OldWORKCENTER = "";
+	var OldRESOURCE = "";
+</script>
+
+<script   type="text/javascript" src="./jquery-1.12.4.min.js">
+        </script>
+<link rel="stylesheet" href="./css/style.css">
+<script>
+$( document ).ready(function() {
+	var WORKCENTER = "M5";
+	var RESOURCE = "";
+	var src1 = "";
+    var workstation = "WORK_CENTER_TOUCH";
+    var activityId = "TOUCH_WC_POD";
+    
+    src1 = window.location.origin +"/manufacturing/com/sap/me/wpmf/client/template.jsf?WORKSTATION="  + workstation + "&ACTIVITY_ID=" + activityId + "&WORKCENTER=" + RESOURCE + "&LOGOUT=true&sap-lsf-PreferredRendering=standards#";
+
+
+	//	var src2 = "../EFFSTDIE11/index.html?WORKCENTER=" + WORKCENTER +"&RESOURCE=" + RESOURCE;
+	//var src2 = "../LOGS/logo7.png";
+    var src2 = "../ECZ_MES-4.0/WEB/orderReleaseScreen/index.html=" +WORKCENTER;
+   
+	jQuery("#Frame1").attr("src",src1)
+	jQuery("#Frame2").attr("src",src2)
+	Interval = setInterval(getChangeWC, 100);
+});
+
+function getChangeWC(){
+    var actualDate = new Date()
+	var diffMs = (actualDate - openDate); // milliseconds between now & Christmas
+	var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
+	if(diffMins >= 10){
+		clearInterval(Interval);
+		window.location = "/XMII/CM/3001/EFFSTDIE11/index.html?WORKCENTER=" + "M5"
+	}
+
+//alert("workcenter");
+}
+
+function iframe1click() {
+	document.getElementById("Frame1").contentWindow.document.body.onclick = function(PointerEvent) {
+		if(parseInt(PointerEvent.clientX)>0 || parseInt(PointerEvent.clientY)>0){
+			openDate = new Date();
+		}
+	}
+
+}
+
+function iframe2click() {
+	document.getElementById("Frame2").contentWindow.document.body.onclick = function(PointerEvent) {
+		if(parseInt(PointerEvent.clientX)>0 || parseInt(PointerEvent.clientY)>0){
+			openDate = new Date();
+		}
+	}
+}
+</script>
+<body>
+<table class="mainTBL">
+
+  <tr>
+  
+    <td style="width: 80%; height: 100%">
+        <iframe id="Frame1" src="" style="width: 100%;" onload="iframe1click()"></iframe>
+    </td>
+    
+    <td style="width: 20%; height: 100%">
+        <iframe id="Frame2" src="" style="width: 100%;" onload="iframe2click()"></iframe>
+    </td>
+      
+   
+    
+  </tr>
+
+</table>
+</body>
+</html>

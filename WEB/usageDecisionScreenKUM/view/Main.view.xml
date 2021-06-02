@@ -1,0 +1,86 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ui="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt"
+	height="100%" controllerName="usageDecisionScreenKUM.controller.Main">
+	<App>
+		<pages>
+			<Page title="Standart Dışı Bobin Yönetimi" showHeader="false">
+				<content>
+					<tnt:ToolHeader>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ntt.png"></Image>
+						<ToolbarSpacer/>
+						<Text text="Standart Dışı Bobin Yönetimi" wrapping="true"/>
+						<ToolbarSpacer/>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ecz.png"></Image>
+					</tnt:ToolHeader>
+					<Table id="idUsageDeciTable" items="{/Rowsets/Rowset/Row}" sticky="ColumnHeaders" selectionChange="onSelectFromTable"
+						mode="SingleSelectMaster">
+						<columns>
+							<Column hAlign="Center">
+								<Label text="Malzeme No" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Malzeme Tanımı" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Bobin ID" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Bobin No" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Mal Giriş Miktarı (Kg)" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Depo Yeri" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Üretim Tarihi" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Bildirim Tarihi" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Kalan Miktar (Kg)" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Açıklama" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Bildiren" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center" visible="false">
+								<Label text="Düzenle" design="Bold" wrapping="true"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{ITEM}"/>
+									<Text text="{DESCRIPTION}" wrapping="true"/>
+									<Text text="{INVENTORY_ID}"/>
+									<Text text="{BOBINNR}"/>
+									<Text text="{QTY_ORDERED}"/>
+									<Text text="{STORAGE}"/>
+									<Text text="{DATE_TIME}" wrapping="true"/>
+									<Text text="{NOTIF_DATE_TIME}" wrapping="true"/>
+									<Text text="{QTY_ON_HAND}"/>
+									<Text text="{DECIDESC}" wrapping="true"/>
+									<Text text="{USER_BO}"/>
+									<Button icon="sap-icon://edit" press="onEditDecision"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<Button width="200px" text="Karar Ekle" icon="sap-icon://add" press="onPressDecisionButton" type="Accept"/>
+						<Button width="200px" text="Sil" icon="sap-icon://delete" press="onDeleteFromTable" visible="false" type="Reject"/>
+						<ToolbarSpacer/>
+						<Button width="200px" text="Sisteme Kaydet" icon="sap-icon://save" press="onSaveDecision" visible="false" type="Accept"/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -1,0 +1,42 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:form="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<Dialog state="Warning" title="Malzeme Hareketi" id="materialMovementDialog" draggable="true">
+		<content>
+			<form:SimpleForm editable="true">
+				<l:VerticalLayout class="sapUiContentPadding" width="100%">
+					<l:content>
+						<VBox>
+							<HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Malzeme Numarası" width="150px" design="Bold" class="sapUiTinyMargin"/>
+								<Input id="materialNoFieldId" textAlign="Center" value="" width="300px" editable="false" type="Number"></Input>
+							</HBox>
+							<HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Parti Numarası" design="Bold" class="sapUiTinyMargin"/>
+								<Input id="batchFieldId" textAlign="Center" value="" width="300px" editable="false"></Input>
+							</HBox>
+							<HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Depo Yeri" width="150px" design="Bold" class="sapUiTinyMargin"/>
+								<Input id="storageLocationFieldId" textAlign="Center" value="" width="300px" editable="false" type="Number"></Input>
+							</HBox>
+							<HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Miktar (Kg)" width="150px" design="Bold" class="sapUiTinyMargin"/>
+								<Input id="quantity" textAlign="Center" value="" width="300px" editable="false" type="Number"></Input>
+							</HBox>
+							<HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Yeni Malzeme No" width="150px" design="Bold" class="sapUiTinyMargin"/>
+								<ComboBox id="newMaterialNumber" textAlign="Center" value="" width="300px" items="{path : '/Rowsets/Rowset/Row', length: 999}"
+									editable="true">
+									<core:Item key="{ITEM}" text="{ITEM}"/>
+								</ComboBox>
+							</HBox>
+						</VBox>
+					</l:content>
+				</l:VerticalLayout>
+			</form:SimpleForm>
+		</content>
+		<buttons>
+			<Button width="150px" id="materialMovementButton" icon="sap-icon://save" text="Kaydet" press="onPressSaveButton" type="Accept"></Button>
+			<Button width="150px" id="cancelButton" icon="sap-icon://sys-cancel" text="İptal" press="onPressCancel" type="Reject"></Button>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

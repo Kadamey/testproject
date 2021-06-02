@@ -1,0 +1,42 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:form="sap.ui.layout.form"
+	xmlns:ui="sap.ui.table" xmlns:l="sap.ui.layout">
+	<Dialog state="Information" title="Kalite Kontrol Kayıtları" id="idLogFragment" contentWidth="60%">
+		<content>
+			<form:SimpleForm editable="true">
+				<l:VerticalLayout>
+					<l:content>
+						<HBox fitContainer="true" justifyContent="Start" alignItems="Center">
+							<Button text="Geri Dön" icon="sap-icon://nav-back" press="onPressNavigateBack" class="sapUiSmallMarginBeginEnd"/>
+						</HBox>
+						<Table id="idLogTable" inset="false" items="{/Rowsets/Rowset/Row}" sticky="ColumnHeaders">
+							<columns>
+								<Column hAlign="Center" width="25%">
+									<Label text="Kontrol Sırası" design="Bold" textAlign="Center" width="100%"/>
+								</Column>
+								<Column hAlign="Center" width="50%">
+									<Label text="Kayıt Tarihi" design="Bold" textAlign="Center" width="100%"/>
+								</Column>
+								<Column hAlign="Center" width="25%">
+									<Label text="" design="Bold" textAlign="Center" width="100%"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{ROW_NUMBER}" textAlign="Center"/>
+										<Text text="{START_TIME}" textAlign="Center"/>
+										<Button width="100%" icon="sap-icon://edit" text="Düzenle" press="onFragmentEdit"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</l:content>
+				</l:VerticalLayout>
+			</form:SimpleForm>
+		</content>
+		<buttons>
+			<!--<Button type="Accept" icon="sap-icon://create" text="Yeni Kontrol Formu Oluştur" press="onFragmentCreate"/>-->
+			<Button width="150px" type="Reject" icon="sap-icon://decline" text="Kapat" press="onFragmentClose"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,227 @@
+<mvc:View controllerName="confirmationCancelSAP.controller.Main"
+    xmlns:l="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:tnt="sap.tnt" height="100%">
+    <tnt:ToolHeader>
+        <Image width="100px" src="data:image/png;base64,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"></Image>
+        <FlexBox alignItems="Start" justifyContent="Center" width="100%" displayInline="Center">
+            <items>
+                <Text text="Teyit İptal" wrapping="true" class="orderReleaseScreenHeaderColor"/>
+            </items>
+        </FlexBox>
+        <ToolbarSpacer/>
+        <Image width="100px" src="/XMII/CM/ECZ_MES-4.0/orderReleaseScreen/images/ecz.png"></Image>
+    </tnt:ToolHeader>
+
+
+    <App id="app">
+        <pages>
+            <Page title="Sipariş Onay Ekranı" showHeader="false">
+
+                <HBox height="7%" width="97%" justifyContent="Start" alignItems="Start" class="sapUiTinyMargin">
+                    <VBox>
+                        <HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+                            <Label width="50px" text="İş Yeri : " design="Bold" class="sapUiTinyMargin"/>
+                            <ComboBox id="workCenterComboBox" textAlign="Center" items="{path: '/Rowsets/Rowset/Row'}" width="200px" change="onWorkCenterComboBoxChange" placeholder="İş Yeri Seçiniz..." fieldGroupIds="1">
+                                <core:Item key="{WORK_CENTER}" text="{WORK_CENTER}"/>
+                            </ComboBox>
+                          <Button id="confEditButton" width="150px" text="Teyit Düzenle" icon="sap-icon://add" press="onPressConfEditButton" class="sapUiSmallMargin"/>
+                            <Button id="confEditCancelButton" width="150px" text="Düzenle İptal" icon="sap-icon://add" press="onPressConfEditCancelButton" class="sapUiSmallMargin" visible ="false"/>
+                            <Button id="confSaveButton" width="150px" text="Teyit Kaydet" icon="sap-icon://add" press="onPressConfEditSaveButton" class="sapUiSmallMargin" visible ="false"/>
+                            <ToolbarSpacer/>
+                                 <VBox>
+                            <Button width="150px" text="Teyit Sil" icon="sap-icon://add" press="onPressConfDeleteButton" class="sapUiSmallMargin"/>
+                             </VBox>
+
+                        </HBox>
+
+                    </VBox>
+                </HBox>
+                <l:ResponsiveSplitter defaultPane="default">
+                    <l:PaneContainer>
+
+                        <l:PaneContainer orientation="Vertical">
+                            <l:SplitPane requiredParentWidth="600">
+                                <Panel headerText="Sipariş Header Info">
+                                    <Table id="idOrderHeaderTable" inset="true" items="{	path: '/Rowsets/Rowset/Row'}" sticky="ColumnHeaders" mode="SingleSelectMaster" selectionChange="onPressOrderHeaderTable" delete="onDeleteFromTable">
+
+                                        <columns>
+                                            <Column hAlign="Center">
+                                                <Text text="Sipariş No" />
+                                            </Column>
+
+
+                                            <Column hAlign="Center" width="150px">
+                                                <Text text="İş Yeri" />
+                                            </Column>
+
+                                            <Column hAlign="Center">
+                                                <Text text="Teyit Tarihi" />
+                                            </Column>
+                                            <Column hAlign="Center">
+                                                <Text text="Kullanıcı" />
+                                            </Column>
+                                            <Column hAlign="Center">
+                                                <Text text="ME Teyit Sayacı" />
+                                            </Column>
+                                             <Column hAlign="Center">
+                                                <Text text="İptal Statüsü" />
+                                            </Column>
+
+
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem vAlign="Middle">
+                                                <cells>
+                                                    <Text id="orderNoFieldHeader" text="{ORDERID}" wrapping="false" />
+
+
+                                                    <Text id="workCenterFieldHeader" text="{WORK_CENTER}" wrapping="true" />
+                                                    <Text id="confTimeHEader" text="{CONF_TIME}" wrapping="false" />
+                                                    
+                                                    <Text id="confUserHeader" text="{CONF_USER}" wrapping="false" />
+                                                    <Text id="meConfCounterHeader" text="{ME_CONF_COUNT}" wrapping="false" />
+                                                     <Text id="confCancelStatus" text="{CANCEL_STATUS}" wrapping="false" />
+
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </Panel>
+                            </l:SplitPane>
+                            <l:SplitPane requiredParentWidth="800">
+                                <Page title="Teyit ve Aktivite">
+
+                                    <Table id="idOrderTimeTicketsTable" inset="true" items="{	path: '/'}" sticky="ColumnHeaders" mode="SingleSelectMaster" selectionChange="onPressParentOrder" delete="onDeleteFromTable">
+
+                                        <columns>
+                                            <Column hAlign="Center">
+                                                <Text text="Sipariş No" />
+                                            </Column>
+                                            <Column hAlign="Center">
+                                                <Text text="Teyit Miktarı" />
+                                            </Column>
+                                            <Column hAlign="Center">
+                                                <Text text="Ölçü Birimi" />
+                                            </Column>
+
+
+                                            <Column hAlign="Center" width="150px">
+                                                <Text text="ERP OPerasyon No" />
+                                            </Column>
+
+                                            <Column hAlign="Center">
+                                                <Text text="ERP Teyit Tarihi" />
+                                            </Column>
+                                            <Column hAlign="Center">
+                                                <Text text="ME Teyit Sayacı" />
+                                            </Column>
+
+
+
+
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem vAlign="Middle">
+                                                <cells>
+                                                    <Text id="orderNoFieldTimeTicket" text="{OREDERID}" wrapping="false" />
+
+
+                                                    <Text id="confQuantitiyTimeTicket" text="{YIELD}" wrapping="true" />
+                                                    <Text id="unitOfMeasureTimeTicket" text="{CONF_QUAN_UNIT}" wrapping="false" />
+
+                                                    <Text id="erpOperationNoTimeTicket" text="{OPERATION}" wrapping="false" />
+
+                                                    <Text id="erpConfDateTimeTicket" text="{POSTG_DATE}" wrapping="false" />
+                                                    <Text id="meConfCounterTimeTicket" text="{ME_CONF_COUNT}" wrapping="false" />
+
+
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                    
+                                </Page>
+                            </l:SplitPane>
+                        </l:PaneContainer>
+                        <l:SplitPane requiredParentWidth="400" id="default">
+                            <Panel headerText="Mal Hareketleri" height="100%">
+                                <Table id="idGoodsMovementTable" inset="true" items="{	path: '/GoodsMovements/Rowsets/Rowset/Row'}" sticky="ColumnHeaders" mode="SingleSelectMaster" selectionChange="onPressParentOrder" delete="onDeleteFromTable">
+
+                                    <columns>
+                                        <Column hAlign="Center">
+                                            <Text text="Sipariş No" />
+                                        </Column>
+
+
+                                        <Column hAlign="Center" width="150px">
+                                            <Text text="Malzeme" />
+                                        </Column>
+                                         <Column hAlign="Center" width="150px">
+                                            <Text text="Malzeme Tanimi" />
+                                        </Column>
+
+                                        <Column hAlign="Center" width="150px">
+                                            <Text text="Parti" />
+                                        </Column>
+
+
+                                        <Column hAlign="Center">
+                                            <Text text="Depo Yeri" />
+                                        </Column>
+                                        <Column hAlign="Center">
+                                            <Text text="Hareket Tipi" />
+                                        </Column>
+                                        <Column hAlign="Center">
+                                            <Text text="Miktar" />
+                                        </Column>
+
+                                        <Column hAlign="Center">
+                                            <Text text="Ölçü Birimi" />
+                                        </Column>
+                                        <Column hAlign="Center">
+                                            <Text text="Rezervasyon No" />
+                                        </Column>
+                                        <Column hAlign="Center">
+                                            <Text text="Rezervasyon Item" />
+                                        </Column>
+
+
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem vAlign="Middle">
+                                            <cells>
+                                                <Text id="orderNoFieldGoodsMvt" text="{ORDERID}" wrapping="false" />
+                                                 <Text id="materialFieldGoodsMvt" text="{ITEM}" wrapping="true" />
+
+                                                <Text id="materialDescFieldGoodsMvt" text="{ITEM_DESCRIPTION}" wrapping="true" />
+                                                <Text id="batchNoFieldGoodsMvt" text="{BATCH}" wrapping="false" />
+
+                                                <Text id="storageLocationFieldGoodsMvt" text="{STGE_LOC}" wrapping="false" />
+                                                <Text id="moveTypeFieldGoodsMvt" text="{MOVE_TYPE}" wrapping="false" />
+                                                <Input id="quantityFieldGoodsMvt" value="{ENTRY_QNT}" wrapping="false" editable="{EDITABLE}"/>
+
+                                                 <Text id="unitOfMeasureFieldGoodsMvt" text="{ENTRY_UOM}" wrapping="true" />
+                                                <Text id="reservationNoFieldGoodsMvt" text="{RESERV_NO}" wrapping="false" />
+
+                                                <Text id="reservationItemFieldGoodsMvt" text="{RESERV_ITEM}" wrapping="false" />
+                                             
+
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </Panel>
+                        </l:SplitPane>
+
+                    </l:PaneContainer>
+                </l:ResponsiveSplitter>
+            
+            </Page>
+        </pages>
+
+    </App>
+
+</mvc:View>

@@ -1,0 +1,17 @@
+/* Enter your custom styles here */
+.testText {
+	color: red !important;
+}
+.orderReleaseScreenRowColor{
+background: ec1c24 !important;
+font-weight: bold;
+}
+.bobbinGroupingHeaderColor{
+background: 4b4949 !important;
+font-weight: bold;
+}
+
+.bobbinGroupingButtonColor{
+background: 4b4949 !important;
+font-weight: bold;
+}

@@ -1,0 +1,44 @@
+<core:View
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:fc="sap.f"
+    xmlns:card="sap.f.cards"
+      controllerName="customActivity.controller.Z_TEST"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+    <Page title="Main" class="sapUiContentPadding">
+        <content>
+            <!-- Cards data binding -->
+            <l:Grid containerQuery="true" id="cardsGrid" defaultSpan="XL2 L4" class="gridProgressIndicator" hSpacing=""   justifyContent="SpaceBetween" content="{/cards}">
+	   <fc:Card class="sapUiLargeMargin" width="200px">
+                    <fc:header>
+                        <card:Header
+                        title="{title}"
+                        subtitle="{subTitle}"
+                        iconSrc="{icon}"/>
+                    </fc:header>
+                    <fc:content>
+                        <VBox
+                        height="115px"
+		width = "110px"
+                        class="sapUiSmallMargin"
+                        justifyContent="SpaceBetween">
+                            <HBox justifyContent="SpaceBetween">
+                             <Label  text="Döküm No"/>
+                              <Text id="castNo" text="{CASTNO}"/>
+                            </HBox>
+
+		  <HBox justifyContent="SpaceBetween">
+                             <Label  text="Miktar"/>
+                              <Text id="count" text="{COUNT}"/>
+                            </HBox>
+                           
+                        </VBox>
+                    </fc:content>
+                </fc:Card>
+             
+            </l:Grid>
+        </content>
+    </Page>
+</core:View>

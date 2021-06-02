@@ -1,0 +1,2090 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xfa generator="AdobeLiveCycleDesigner_V11.0.9.20201112.2.940716_SAP" APIVersion="3.6.20316.0"?>
+<xdp:xdp xmlns:xdp="http://ns.adobe.com/xdp/" timeStamp="2021-05-24T13:23:09Z" uuid="7bb36f5b-230b-4077-916c-2ad2620319b6">
+<template xmlns:xliff="urn:oasis:names:tc:xliff:document:1.1" xmlns="http://www.xfa.org/schema/xfa-template/3.3/">
+   <?formServer defaultPDFRenderFormat acrobat10.0dynamic?>
+   <subform name="form1" layout="tb" locale="tr_TR" restoreState="auto">
+      <pageSet>
+         <pageArea name="Page1" id="Page1">
+            <contentArea x="0.25in" y="0.25in" w="546.1mm" h="368.3mm"/>
+            <medium stock="custom" short="558.8mm" long="381mm"/>
+            <?templateDesigner expand 1?></pageArea>
+         <?templateDesigner expand 1?></pageSet>
+      <subform w="546.1mm" h="368.3mm">
+         <field name="TextField1" y="12.7mm" x="15.875mm" w="69.85mm" h="22.225mm">
+            <ui>
+               <textEdit multiLine="1"/>
+            </ui>
+            <font typeface="Calibri" size="18pt"/>
+            <margin bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm"/>
+            <para hAlign="center"/>
+            <border>
+               <corner thickness="0.175mm"/>
+               <corner thickness="0.175mm"/>
+               <corner presence="hidden" thickness="0.175mm"/>
+               <corner thickness="0.175mm"/>
+               <edge/>
+               <edge/>
+               <edge presence="hidden"/>
+               <edge/>
+            </border>
+            <caption reserve="68.85mm">
+               <value>
+                  <exData contentType="text/html" xliff:rid="5BB931FE-9EE2-4FEB-8E8C-35BD4DC3F7F4">
+                     <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="letter-spacing:0in"><span style="xfa-spacerun:yes"> </span></p><p style="font-size:22pt;font-weight:bold;letter-spacing:0in">BOBİN NO:</p></body>
+                  </exData>
+               </value>
+            </caption>
+         </field>
+         <field name="TextField2" y="34.925mm" x="15.875mm" w="69.85mm" h="22.225mm">
+            <ui>
+               <textEdit multiLine="1"/>
+            </ui>
+            <font typeface="Calibri" size="18pt"/>
+            <margin bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm"/>
+            <para hAlign="center"/>
+            <border>
+               <corner presence="hidden" thickness="0.175mm"/>
+               <corner thickness="0.175mm"/>
+               <corner thickness="0.175mm"/>
+               <corner thickness="0.175mm"/>
+               <edge presence="hidden"/>
+               <edge/>
+               <edge/>
+               <edge/>
+            </border>
+            <caption reserve="68.85mm">
+               <value>
+                  <exData contentType="text/html" xliff:rid="3904798D-E15A-4E6F-95AE-E5CD47ABE8F4">
+                     <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-decoration:none;letter-spacing:0in"><span style="xfa-spacerun:yes"> </span></p><p style="font-size:22pt;font-weight:bold;text-decoration:none;letter-spacing:0in">ROLL NO:</p></body>
+                  </exData>
+               </value>
+            </caption>
+         </field>
+         <field name="TextField3" y="57.15mm" x="85.725mm" w="82.55mm" h="44.45mm" anchorType="bottomLeft" hAlign="center">
+            <ui>
+               <textEdit/>
+            </ui>
+            <font typeface="Calibri" baselineShift="0pt" size="72pt" weight="bold"/>
+            <margin bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm"/>
+            <para hAlign="center" marginLeft="0pt" marginRight="0pt" spaceAbove="0pt" spaceBelow="0pt" textIndent="0pt" vAlign="middle"/>
+            <border>
+               <corner thickness="0.175mm"/>
+               <edge/>
+            </border>
+            <caption reserve="0.01in">
+               <value>
+                  <text xliff:rid="3410A3B5-11BE-481F-9214-930645248BCE"/>
+               </value>
+            </caption>
+         </field>
+         <field name="TextField4" y="12.7mm" x="174.625mm" w="69.85mm" h="22.225mm">
+            <ui>
+               <textEdit multiLine="1"/>
+            </ui>
+            <font typeface="Calibri" size="18pt"/>
+            <margin bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm"/>
+            <para hAlign="center"/>
+            <border>
+               <corner thickness="0.175mm"/>
+               <corner thickness="0.175mm"/>
+               <corner presence="hidden" thickness="0.175mm"/>
+               <corner thickness="0.175mm"/>
+               <edge/>
+               <edge/>
+               <edge presence="hidden"/>
+               <edge/>
+            </border>
+            <caption reserve="68.5769mm">
+               <value>
+                  <exData contentType="text/html" xliff:rid="B7BCB503-B103-4750-95CC-BE1AB89E6EC0">
+                     <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="font-weight:bold;text-decoration:none;letter-spacing:0in"><span style="xfa-spacerun:yes"> </span></p><p style="font-size:22pt;font-weight:bold;text-decoration:none;letter-spacing:0in">TARİH:</p></body>
+                  </exData>
+               </value>
+            </caption>
+         </field>
+         <field name="TextField5" y="34.925mm" x="174.625mm" w="69.85mm" h="22.225mm">
+            <ui>
+               <textEdit multiLine="1"/>
+            </ui>
+            <font typeface="Calibri" size="18pt"/>
+            <margin bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm"/>
+            <para hAlign="center"/>
+            <border>
+               <corner presence="hidden" thickness="0.175mm"/>
+               <corner thickness="0.175mm"/>
+               <corner thickness="0.175mm"/>
+               <corner thickness="0.175mm"/>
+               <edge presence="hidden"/>
+               <edge/>
+               <edge/>
+               <edge/>
+            </border>
+            <caption reserve="68.5769mm">
+               <value>
+                  <exData contentType="text/html" xliff:rid="66B3E3F0-1827-4A81-A458-C26D9C2AE93F">
+                     <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-decoration:none;letter-spacing:0in"><span style="xfa-spacerun:yes"> </span></p><p style="font-size:22pt;font-weight:bold;text-decoration:none;letter-spacing:0in">DATE:</p></body>
+                  </exData>
+               </value>
+            </caption>
+         </field>
+         <field name="TextField6" y="57.15mm" x="244.475mm" w="206.375mm" h="44.45mm" anchorType="bottomLeft" hAlign="center">
+            <ui>
+               <textEdit/>
+            </ui>
+            <font typeface="Calibri" baselineShift="0pt" size="72pt" weight="bold"/>
+            <margin bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm"/>
+            <para hAlign="center" marginLeft="0pt" marginRight="0pt" spaceAbove="0pt" spaceBelow="0pt" textIndent="0pt" vAlign="middle"/>
+            <border>
+               <corner thickness="0.175mm"/>
+               <edge/>
+            </border>
+         </field>
+         <field name="QRCodeBarcode1" x="457.2mm" w="79.375mm" h="53.975mm" access="readOnly" y="3.175mm">
+            <ui>
+               <barcode type="QRCode" dataLength="10" moduleWidth="0.0447in" moduleHeight="0.0555in" errorCorrectionLevel="1"/>
+            </ui>
+            <value>
+               <text xliff:rid="32B68B79-CC79-49DE-A91B-18964EA12C64">1234567890</text>
+            </value>
+         </field>
+         <field name="TextField7" y="60.325mm" x="15.875mm" w="504.825mm" h="38.1mm">
+            <ui>
+               <textEdit multiLine="1"/>
+            </ui>
+            <font typeface="Calibri" baselineShift="0pt" size="72pt" weight="bold"/>
+            <margin bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm"/>
+            <para hAlign="center" marginLeft="0pt" marginRight="0pt" spaceAbove="0pt" spaceBelow="0pt" textIndent="0pt" vAlign="middle"/>
+            <border>
+               <corner thickness="0.175mm"/>
+               <edge/>
+            </border>
+            <caption reserve="503.825mm">
+               <value>
+                  <text xliff:rid="EE9B07C9-1F3A-4354-B429-7FA97367B83A">        FSC-INTERTRADE PECETE 19 GR 1 KAT</text>
+               </value>
+            </caption>
+         </field>
+         <field name="TextField9" y="101.6mm" x="168.275mm" w="107.95mm" h="19.05mm">
+            <ui>
+               <textEdit/>
+            </ui>
+            <font typeface="Calibri" size="24pt" weight="bold"/>
+            <margin bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm"/>
+            <para hAlign="center" vAlign="middle"/>
+            <border>
+               <corner thickness="0.175mm"/>
+               <corner thickness="0.175mm"/>
+               <corner thickness="0.175mm"/>
+               <corner presence="hidden" thickness="0.175mm"/>
+               <edge/>
+               <edge/>
+               <edge/>
+               <edge presence="hidden"/>
+            </border>
+            <caption reserve="0.01in">
+               <value>
+                  <text xliff:rid="DB381DFC-F275-44AA-825E-DBC2B1ABF757"/>
+               </value>
+            </caption>
+         </field>
+         <draw name="Text14" y="247.65mm" x="15.875mm" usehref=".#som($template.#subform.designer__stylesheet.TextStyle24)" h="69.85mm">
+            <ui>
+               <textEdit multiLine="1"/>
+            </ui>
+            <value>
+               <text/>
+            </value>
+         </draw>
+         <field name="CodabarBarCode1" y="254mm" x="92.075mm" w="349.25mm" h="51.694mm">
+            <ui>
+               <barcode type="codabar" dataLength="10" startChar="a" endChar="b" wideNarrowRatio="3.0"/>
+            </ui>
+            <font typeface="Courier New"/>
+            <value>
+               <text xliff:rid="EFF78A33-4A35-4E2D-9F0D-02B2B87ABF4F">1234567890</text>
+            </value>
+         </field>
+         <draw x="88.9mm" y="15.875mm" w="82.55mm" h="41.275mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="8A82EC17-C853-4BC0-81A3-BCF1610313A5">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="font-family:Calibri;font-size:72pt;font-weight:bold;text-decoration:none;letter-spacing:0in"><span style="xfa-spacerun:yes">     </span>20</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <draw x="209.55mm" y="104.775mm" w="31.038mm" h="9.466mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="0736829C-8140-4885-95E0-323663C6A11C">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:24pt;font-weight:bold;letter-spacing:0in">4001125</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField10" y="101.6mm" x="15.875mm" w="152.4mm" h="19.05mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="148.9889mm">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="31.75mm" y="104.775mm" w="114.3mm" h="10.713mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="B186D5ED-93E2-4722-97ED-E761CA0C3272">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:26pt;font-weight:bold;letter-spacing:0in">YARI ÜRÜN KODU/SFG CODE:</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <draw x="292.1mm" y="104.775mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="44B5DACC-3B46-4A60-B98B-F9E5ED7E248F">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:26pt;font-weight:bold;letter-spacing:0in">SALES ORDER:</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField11" y="101.6mm" x="285.75mm" w="73.025mm" h="19.05mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="69.6139mm">
+               <para vAlign="middle"/>
+               <value>
+                  <text> </text>
+               </value>
+            </caption>
+         </field>
+         <field name="TextField12" y="101.6mm" x="358.775mm" w="161.925mm" h="19.05mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="0.01in">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="422.275mm" y="107.95mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="ECF1219A-2DF9-445C-BBC4-AF3D3DBD67AD">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:24pt;font-weight:bold;letter-spacing:0in">400754132</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField13" y="123.825mm" x="15.875mm" w="82.55mm" h="12.175mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="0.01in">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="38.1mm" y="127mm" w="27.522mm" h="8.613mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="7C93E28E-B7CE-460F-91C3-FC85FEE65DC4">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:20pt;font-weight:bold;letter-spacing:0in">AĞIRLIK</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField14" y="136.525mm" x="15.875mm" w="82.55mm" h="12.7mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="79.1389mm">
+               <font size="20pt" typeface="Calibri" weight="bold" baselineShift="0pt"/>
+               <para vAlign="middle" hAlign="center" spaceAbove="0pt" spaceBelow="0pt" textIndent="0pt" marginLeft="0pt" marginRight="0pt"/>
+               <value>
+                  <text xliff:rid="84329366-6010-4E01-90C8-0E96ADE6922E">WEIGHT</text>
+               </value>
+            </caption>
+         </field>
+         <field name="TextField15" y="149.225mm" x="15.875mm" w="82.55mm" h="12.7mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="79.1389mm">
+               <font typeface="Calibri" weight="bold" baselineShift="0pt"/>
+               <para vAlign="middle" hAlign="center" spaceAbove="0pt" spaceBelow="0pt" textIndent="0pt" marginLeft="0pt" marginRight="0pt"/>
+               <value>
+                  <exData contentType="text/html" xliff:rid="55B8B263-9DF1-467F-86CC-DBBCA4917F13">
+                     <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="font-size:18pt">(<span style="font-size:20pt">kg</span>)</p></body>
+                  </exData>
+               </value>
+            </caption>
+         </field>
+         <field name="TextField16" y="161.925mm" x="15.875mm" w="82.55mm" h="50.8mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="0.01in">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="38.1mm" y="174.625mm" w="31.75mm" h="22.225mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="90B10976-8340-4BCF-9AFA-0A0D7234E869">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:48pt;font-weight:bold;letter-spacing:0in">276</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField17" y="123.825mm" x="107.95mm" w="79.375mm" h="12.7mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="75.9639mm">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="130.175mm" y="123.825mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="BD60DEC7-4D72-4358-8CD7-29E95AFC5388">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:20pt;font-weight:bold;letter-spacing:0in">GENİŞLİK</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField18" y="136.525mm" x="107.95mm" w="79.375mm" h="12.7mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="75.9639mm">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="133.35mm" y="139.7mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="5B6CFABC-5A61-4A10-A3F8-06DF491FD612">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:20pt;font-weight:bold;letter-spacing:0in">WIDTH</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField19" y="149.225mm" x="107.95mm" w="79.375mm" h="12.7mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="75.9639mm">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="136.525mm" y="152.4mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="07C4EE31-84D1-4E94-B586-0243BB83E617">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:20pt;font-weight:bold;letter-spacing:0in">(cm)</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField20" y="161.925mm" x="107.95mm" w="79.375mm" h="50.8mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="0.01in">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="136.525mm" y="174.625mm" w="25.4mm" h="17.933mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="DBDAFA0F-5A7B-4ED2-8B0A-5640A2C85CFA">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:48pt;font-weight:bold;letter-spacing:0in">66</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField21" y="123.825mm" x="196.85mm" w="79.375mm" h="12.7mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="75.9639mm">
+               <font size="20pt" typeface="Calibri" weight="bold" baselineShift="0pt"/>
+               <para vAlign="middle" hAlign="center" spaceAbove="0pt" spaceBelow="0pt" textIndent="0pt" marginLeft="0pt" marginRight="0pt"/>
+               <value>
+                  <text xliff:rid="0A730511-3512-4679-B7FB-DA617AE04847">BOBİN ÇAPI</text>
+               </value>
+            </caption>
+         </field>
+         <field name="TextField22" y="136.525mm" x="196.85mm" w="79.375mm" h="12.7mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="75.9639mm">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="215.9mm" y="139.7mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="90B73E28-0C15-4C6F-A505-B3BEF95E0C05">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:20pt;font-weight:bold;letter-spacing:0in">ROLL DIAMETER<span style="xfa-spacerun:yes"> </span></p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField23" y="149.225mm" x="196.85mm" w="79.375mm" h="12.7mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="75.9639mm">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="222.25mm" y="152.4mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="86E2A0A1-4B94-4D42-8480-13475D0E7D7A">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:20pt;font-weight:bold;letter-spacing:0in">(cm)</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField24" y="161.925mm" x="196.85mm" w="79.375mm" h="50.8mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="0.01in">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="219.075mm" y="174.625mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="76690B9A-4601-4CF0-8A1C-FFAF04093CF9">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:48pt;font-weight:bold;letter-spacing:0in">130</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField25" y="123.825mm" x="285.75mm" w="69.85mm" h="12.175mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="66.4389mm">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="307.975mm" y="127mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="4FB2B94A-A84B-4D6A-BD1A-42801EB8FD12">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:20pt;font-weight:bold;letter-spacing:0in">GRAMAJ</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField26" y="136.525mm" x="285.75mm" w="69.85mm" h="12.7mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="66.4389mm">
+               <font size="20pt" typeface="Calibri" weight="bold" baselineShift="0pt"/>
+               <para vAlign="middle" hAlign="center" spaceAbove="0pt" spaceBelow="0pt" textIndent="0pt" marginLeft="0pt" marginRight="0pt"/>
+               <value>
+                  <text xliff:rid="D5228F04-219C-46DC-BB1D-F1807A18FFAC">BASIS WEIGHT </text>
+               </value>
+            </caption>
+         </field>
+         <field name="TextField27" y="149.225mm" x="285.75mm" w="69.85mm" h="12.7mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="66.4389mm">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="307.975mm" y="146.05mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="4B71816F-3909-4F51-A73B-2568E0E9A4FD">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;font-family:Calibri;letter-spacing:0in"><span style="xfa-spacerun:yes"> </span></p><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:20pt;font-weight:bold;letter-spacing:0in">(gr/m2)</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField28" y="161.925mm" x="285.75mm" w="69.85mm" h="50.8mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="0.01in">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="307.975mm" y="174.625mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="0978B8E5-C63A-47AE-916A-803AD43ED3C1">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:48pt;font-weight:bold;letter-spacing:0in">19</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField29" y="123.825mm" x="365.125mm" w="69.85mm" h="12.175mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="66.4389mm">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="377.825mm" y="127mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="1F60B5D8-CB3F-41BF-A984-87953D552773">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:20pt;font-weight:bold;letter-spacing:0in">KAT ADEDİ</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField30" y="136.525mm" x="365.125mm" w="69.85mm" h="12.7mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="66.4389mm">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="390.525mm" y="139.7mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="C032E96A-45EC-46ED-9C49-11E81383251C">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:20pt;font-weight:bold;letter-spacing:0in">PLIES</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField31" y="149.225mm" x="365.125mm" w="69.85mm" h="12.7mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="66.4389mm">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <field name="TextField32" y="161.925mm" x="365.125mm" w="69.85mm" h="50.8mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="0.01in">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="396.875mm" y="177.8mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="F44418D2-8E7B-4E8F-B518-08321E44C699">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:48pt;font-weight:bold;letter-spacing:0in">1</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField33" y="123.825mm" x="444.5mm" w="76.2mm" h="12.175mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="72.7889mm">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="466.725mm" y="127mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="EF5D70E1-758E-455B-850F-E8F384138BCC">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:20pt;font-weight:bold;letter-spacing:0in">MAKİNE</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField34" y="136.525mm" x="444.5mm" w="76.2mm" h="12.7mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="72.7889mm">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="460.375mm" y="139.7mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="256893BA-F578-4B24-8C02-50DC97654459">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:20pt;font-weight:bold;letter-spacing:0in">PAPER MACHINE</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField35" y="149.225mm" x="444.5mm" w="76.2mm" h="19.05mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="72.7889mm">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="469.9mm" y="152.4mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="DF8AB01F-C2E3-4E64-860B-518F10390EE1">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:36pt;font-weight:bold;letter-spacing:0in">KM1</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField36" y="168.275mm" x="444.5mm" w="76.2mm" h="12.7mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="72.7889mm">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="466.725mm" y="171.45mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="46DC8640-E94A-4A11-ABF8-FC137C942981">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:20pt;font-weight:bold;letter-spacing:0in">MB ÇAPI</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField37" y="180.975mm" x="444.5mm" w="76.2mm" h="12.7mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="72.7889mm">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="450.85mm" y="184.15mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="59342892-2A51-46CC-8C31-9D5AC081445C">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:20pt;font-weight:bold;letter-spacing:0in">CORE DIAMETER (mm)</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField38" y="193.675mm" x="444.5mm" w="76.2mm" h="19.05mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="0.01in">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="479.425mm" y="196.85mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="C2194E37-E696-4B5C-995A-8593676725CB">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:36pt;font-weight:bold;letter-spacing:0in">152</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <?templateDesigner expand 1?>
+         <field name="TextField39" y="219.075mm" x="15.875mm" w="504.825mm" h="28.05mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="0.01in">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="82.55mm" y="222.25mm" w="349.25mm" h="21.567mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="FA3FA79E-65DE-44FB-9940-B32DB2A954BB">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:55pt;font-weight:bold;letter-spacing:0in">1851331 (BOBİN ID)</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+         <field name="TextField40" y="317.5mm" x="15.875mm" w="504.825mm" h="34.925mm">
+            <ui>
+               <textEdit>
+                  <border>
+                     <edge stroke="lowered"/>
+                  </border>
+                  <margin/>
+               </textEdit>
+            </ui>
+            <font typeface="Arial"/>
+            <margin topInset="1mm" bottomInset="1mm" leftInset="1mm" rightInset="1mm"/>
+            <para vAlign="middle"/>
+            <caption reserve="501.4139mm">
+               <para vAlign="middle"/>
+            </caption>
+         </field>
+         <draw x="22.225mm" y="323.85mm" w="488.95mm" h="20.134mm">
+            <font typeface="Arial"/>
+            <value>
+               <exData contentType="text/html" xliff:rid="235C5C31-AE3D-4971-9F3E-1D20A6064497">
+                  <body xmlns="http://www.w3.org/1999/xhtml" xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/"><p style="text-valign:middle;text-align:center;font-family:Calibri;font-size:24pt;font-weight:bold;letter-spacing:0in">ECZACIBAŞI TÜKETİM ÜRÜNLERİ TARAFINDAN ÜRETİLMİŞTİR. / MANUFACTURED BY ECZACIBASI CONSUMER PRODUCTS CO. IN TURKEY.</p></body>
+               </exData>
+            </value>
+            <ui>
+               <textEdit/>
+            </ui>
+            <margin leftInset="0.5mm" rightInset="0.5mm" topInset="0.5mm" bottomInset="0.5mm"/>
+         </draw>
+      </subform>
+      <proto/>
+      <desc>
+         <text name="version">11.0.9.20201112.2.940716.934558</text>
+      </desc>
+      <proto>
+         <subform name="designer__stylesheet">
+            <draw name="TextStyle1" w="69.85mm" h="19.05mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="18pt" typeface="Calibri"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle2" w="69.85mm" h="44.45mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="48pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle3" w="523.875mm" h="38.1mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font typeface="Arial"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle4" w="203.2mm" h="19.05mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="18pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle5" w="57.15mm" h="19.05mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="16pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle6" w="88.9mm" h="19.05mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="18pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle7" w="85.725mm" h="19.05mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="18pt" typeface="Calibri"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle8" w="79.375mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font typeface="Arial"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle9" w="79.375mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font typeface="Arial"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle10" w="79.375mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font typeface="Arial"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle11" w="69.85mm" h="22.225mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="18pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle12" w="69.85mm" h="22.225mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="18pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle13" w="69.85mm" h="22.225mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font typeface="Calibri"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para vAlign="middle"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle14" w="69.85mm" h="22.225mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="18pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle15" w="69.85mm" h="22.225mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="18pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle16" w="69.85mm" h="22.225mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font typeface="Arial"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle17" w="69.85mm" h="22.225mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="18pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle18" w="69.85mm" h="22.225mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="18pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle19" w="69.85mm" h="22.225mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="18pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle20" w="66.675mm" h="9.525mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="18pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle21" w="69.85mm" h="41.275mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font typeface="Arial"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle22" w="66.675mm" h="19.05mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="36pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle23" w="504.825mm" h="22.225mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font typeface="Arial"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle24" w="504.825mm" h="41.275mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font typeface="Arial"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle25" w="504.825mm" h="28.575mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="24pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle26" w="69.85mm" h="22.225mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="18pt" typeface="Calibri"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center"/>
+               <border>
+                  <corner thickness="0.175mm"/>
+                  <edge/>
+                  <edge/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle27" w="69.85mm" h="22.225mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="18pt" typeface="Calibri"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center"/>
+               <border>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <edge/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle28" w="69.85mm" h="22.225mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="18pt" typeface="Calibri"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center"/>
+               <border>
+                  <corner thickness="0.175mm"/>
+                  <edge/>
+                  <edge/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle29" w="69.85mm" h="22.225mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="18pt" typeface="Calibri"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center"/>
+               <border>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <edge/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle30" w="82.55mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="20pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm"/>
+                  <edge/>
+                  <edge/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle31" w="82.55mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="20pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle32" w="82.55mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="18pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <edge/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle33" w="79.375mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="20pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm"/>
+                  <edge/>
+                  <edge/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle34" w="79.375mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="20pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle35" w="79.375mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="20pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <edge/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle36" w="152.4mm" h="19.05mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="26pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm"/>
+                  <edge/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <edge/>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle37" w="107.95mm" h="19.05mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="24pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm"/>
+                  <edge/>
+                  <edge/>
+                  <edge/>
+                  <edge presence="hidden"/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm" presence="hidden"/>
+               </border>
+            </draw>
+            <draw name="TextStyle38" w="73.025mm" h="19.05mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="26pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm"/>
+                  <edge/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <edge/>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle39" w="161.925mm" h="19.05mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="24pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm"/>
+                  <edge/>
+                  <edge/>
+                  <edge/>
+                  <edge presence="hidden"/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm" presence="hidden"/>
+               </border>
+            </draw>
+            <draw name="TextStyle40" w="152.4mm" h="19.05mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="26pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.074mm"/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+                  <edge/>
+                  <edge thickness="0.0737mm"/>
+                  <edge/>
+                  <edge/>
+               </border>
+            </draw>
+            <draw name="TextStyle41" w="73.025mm" h="19.05mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="26pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.074mm"/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+                  <edge/>
+                  <edge thickness="0.0737mm"/>
+                  <edge/>
+                  <edge/>
+               </border>
+            </draw>
+            <draw name="TextStyle42" w="79.375mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="20pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm"/>
+                  <edge/>
+                  <edge/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle43" w="79.375mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="20pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle44" w="79.375mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="20pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <edge/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle45" w="69.85mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="20pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm"/>
+                  <edge/>
+                  <edge/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle46" w="69.85mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="20pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle47" w="69.85mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font typeface="Calibri"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <edge/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle48" w="69.85mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="20pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm"/>
+                  <edge/>
+                  <edge/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle49" w="69.85mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="20pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle50" w="69.85mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font typeface="Arial"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <border>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <edge/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle51" w="76.2mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="20pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm"/>
+                  <edge/>
+                  <edge/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle52" w="76.2mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="20pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <edge/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle53" w="76.2mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="20pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm"/>
+                  <edge/>
+                  <edge/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle54" w="76.2mm" h="12.7mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="20pt" typeface="Calibri" weight="bold"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center" vAlign="middle"/>
+               <border>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <edge/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle55" w="69.85mm" h="22.225mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="18pt" typeface="Calibri"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center"/>
+               <border>
+                  <corner thickness="0.175mm"/>
+                  <edge/>
+                  <edge/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+            <draw name="TextStyle56" w="69.85mm" h="22.225mm">
+               <ui>
+                  <textEdit/>
+               </ui>
+               <font size="18pt" typeface="Calibri"/>
+               <margin topInset="0.5mm" bottomInset="0.5mm" leftInset="0.5mm" rightInset="0.5mm"/>
+               <para hAlign="center"/>
+               <border>
+                  <corner thickness="0.175mm" presence="hidden"/>
+                  <edge presence="hidden"/>
+                  <edge/>
+                  <edge/>
+                  <edge/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+                  <corner thickness="0.175mm"/>
+               </border>
+            </draw>
+         </subform>
+      </proto>
+      <?templateDesigner expand 1?></subform>
+   <?templateDesigner DefaultPreviewDynamic 1?>
+   <?templateDesigner DefaultRunAt client?>
+   <?templateDesigner Grid show:1, snap:1, units:0, color:ff8080, origin:(0,0), interval:(125000,125000)?>
+   <?templateDesigner DefaultCaptionFontSettings face:Arial;size:10;weight:normal;style:normal?>
+   <?templateDesigner DefaultValueFontSettings face:Arial;size:10;weight:normal;style:normal?>
+   <?templateDesigner DefaultLanguage JavaScript?>
+   <?acrobat JavaScript strictScoping?>
+   <?templateDesigner WidowOrphanControl 0?>
+   <?templateDesigner SavePDFWithLog 0?>
+   <?templateDesigner FormTargetVersion 33?>
+   <?templateDesigner Zoom 49?>
+   <?templateDesigner SaveTaggedPDF 1?>
+   <?templateDesigner SavePDFWithEmbeddedFonts 1?>
+   <?templateDesigner Rulers horizontal:1, vertical:1, guidelines:1, crosshairs:0?></template>
+<config xmlns="http://www.xfa.org/schema/xci/3.0/">
+   <agent name="designer">
+      <!--  [0..n]  -->
+      <destination>pdf</destination>
+      <pdf>
+         <!--  [0..n]  -->
+         <fontInfo/>
+      </pdf>
+   </agent>
+   <present>
+      <!--  [0..n]  -->
+      <pdf>
+         <!--  [0..n]  -->
+         <version>1.7</version>
+         <adobeExtensionLevel>8</adobeExtensionLevel>
+      </pdf>
+      <common/>
+      <script>
+         <runScripts>server</runScripts>
+      </script>
+      <xdp>
+         <packets>*</packets>
+      </xdp>
+   </present>
+   <psMap>
+      <font typeface="Calibri" psName="Calibri" weight="normal" posture="normal"/>
+      <font typeface="Calibri" psName="Calibri-Bold" weight="bold" posture="normal"/>
+   </psMap>
+</config>
+<localeSet xmlns="http://www.xfa.org/schema/xfa-locale-set/2.7/">
+   <locale name="tr_TR" desc="Turkish (Turkey)">
+      <calendarSymbols name="gregorian">
+         <monthNames>
+            <month>Ocak</month>
+            <month>Şubat</month>
+            <month>Mart</month>
+            <month>Nisan</month>
+            <month>Mayıs</month>
+            <month>Haziran</month>
+            <month>Temmuz</month>
+            <month>Ağustos</month>
+            <month>Eylül</month>
+            <month>Ekim</month>
+            <month>Kasım</month>
+            <month>Aralık</month>
+         </monthNames>
+         <monthNames abbr="1">
+            <month>Oca</month>
+            <month>Şub</month>
+            <month>Mar</month>
+            <month>Nis</month>
+            <month>May</month>
+            <month>Haz</month>
+            <month>Tem</month>
+            <month>Ağu</month>
+            <month>Eyl</month>
+            <month>Eki</month>
+            <month>Kas</month>
+            <month>Ara</month>
+         </monthNames>
+         <dayNames>
+            <day>Pazar</day>
+            <day>Pazartesi</day>
+            <day>Salı</day>
+            <day>Çarşamba</day>
+            <day>Perşembe</day>
+            <day>Cuma</day>
+            <day>Cumartesi</day>
+         </dayNames>
+         <dayNames abbr="1">
+            <day>Paz</day>
+            <day>Pzt</day>
+            <day>Sal</day>
+            <day>Çar</day>
+            <day>Per</day>
+            <day>Cum</day>
+            <day>Cmt</day>
+         </dayNames>
+         <meridiemNames>
+            <meridiem>AM</meridiem>
+            <meridiem>PM</meridiem>
+         </meridiemNames>
+         <eraNames>
+            <era>BC</era>
+            <era>AD</era>
+         </eraNames>
+      </calendarSymbols>
+      <datePatterns>
+         <datePattern name="full">DD MMMM YYYY EEEE</datePattern>
+         <datePattern name="long">DD MMMM YYYY EEEE</datePattern>
+         <datePattern name="med">DD.MMM.YYYY</datePattern>
+         <datePattern name="short">DD.MM.YYYY</datePattern>
+      </datePatterns>
+      <timePatterns>
+         <timePattern name="full">HH:MM:SS Z</timePattern>
+         <timePattern name="long">HH:MM:SS Z</timePattern>
+         <timePattern name="med">HH:MM:SS</timePattern>
+         <timePattern name="short">HH:MM</timePattern>
+      </timePatterns>
+      <dateTimeSymbols>GanjkHmsSEDFwWxhKzZ</dateTimeSymbols>
+      <numberPatterns>
+         <numberPattern name="numeric">z,zz9.zzz</numberPattern>
+         <numberPattern name="currency">z,zz9 $</numberPattern>
+         <numberPattern name="percent">z,zz9%</numberPattern>
+      </numberPatterns>
+      <numberSymbols>
+         <numberSymbol name="decimal">,</numberSymbol>
+         <numberSymbol name="grouping">.</numberSymbol>
+         <numberSymbol name="percent">%</numberSymbol>
+         <numberSymbol name="minus">-</numberSymbol>
+         <numberSymbol name="zero">0</numberSymbol>
+      </numberSymbols>
+      <currencySymbols>
+         <currencySymbol name="symbol">TL</currencySymbol>
+         <currencySymbol name="isoname">TRL</currencySymbol>
+         <currencySymbol name="decimal">,</currencySymbol>
+      </currencySymbols>
+      <typefaces>
+         <typeface name="Myriad Pro"/>
+         <typeface name="Minion Pro"/>
+         <typeface name="Courier Std"/>
+         <typeface name="Adobe Pi Std"/>
+         <typeface name="Adobe Hebrew"/>
+         <typeface name="Adobe Arabic"/>
+         <typeface name="Adobe Thai"/>
+         <typeface name="Kozuka Gothic Pro-VI M"/>
+         <typeface name="Kozuka Mincho Pro-VI R"/>
+         <typeface name="Adobe Ming Std L"/>
+         <typeface name="Adobe Song Std L"/>
+         <typeface name="Adobe Myungjo Std M"/>
+         <typeface name="Adobe Devanagari"/>
+      </typefaces>
+   </locale>
+</localeSet>
+<xfa:datasets xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/">
+   <xfa:data xfa:dataNode="dataGroup"/>
+</xfa:datasets>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c015 81.161580, 2017/12/01-01:38:21        ">
+   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+      <rdf:Description xmlns:xmp="http://ns.adobe.com/xap/1.0/" xmlns:pdf="http://ns.adobe.com/pdf/1.3/" xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:desc="http://ns.adobe.com/xfa/promoted-desc/" rdf:about="">
+         <xmp:MetadataDate>2021-05-24T13:23:09Z</xmp:MetadataDate>
+         <xmp:CreatorTool>Adobe LiveCycle Designer 11.0</xmp:CreatorTool>
+         <pdf:Producer>Adobe LiveCycle Designer 11.0</pdf:Producer>
+         <xmpMM:DocumentID>uuid:7bb36f5b-230b-4077-916c-2ad2620319b6</xmpMM:DocumentID>
+         <xmpMM:InstanceID>uuid:d4916152-fbeb-4233-93ef-886ecd3500d7</xmpMM:InstanceID>
+         <dc:format>application/pdf</dc:format>
+         <desc:version rdf:parseType="Resource">
+            <rdf:value>11.0.9.20201112.2.940716.934558</rdf:value>
+            <desc:ref>/template/subform[1]</desc:ref>
+         </desc:version>
+      </rdf:Description>
+   </rdf:RDF>
+</x:xmpmeta>
+<xfdf xmlns="http://ns.adobe.com/xfdf/" xml:space="preserve">
+   <annots/>
+</xfdf></xdp:xdp>

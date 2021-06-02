@@ -1,0 +1,85 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ui="sap.ui.table" xmlns:f="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt" height="100%" controllerName="tamponListScreen.controller.Main2">
+	<App>
+		<pages>
+			<Page title="Kalite Kontrol Formu" showHeader="false">
+				<content>
+					<tnt:ToolHeader>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ntt.png"></Image><ToolbarSpacer/>
+						<Text text="Kalite Kontrol Formu" wrapping="true" class="bobbinGroupingHeaderColor"/>
+						<ToolbarSpacer/>
+						<Image width="100px" tooltip="Eczacıbaşı" src="/XMII/CM/ECZ_MES-4.0/bobbinGrouping/images/ecz.png"></Image>
+					</tnt:ToolHeader>
+					<VBox>
+						<HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center">
+							<Button text="Geri Dön" icon="sap-icon://nav-back" press="onPressNavigateBack" class="sapUiSmallMarginBeginEnd"/>
+							<Label id="batchValue" design="Bold" text="" textAlign="Center" class="sapUiSmallMarginBeginEnd"/>
+						</HBox>
+						<Table id="idQualityResultTable" inset="false" items="{/Rowsets/Rowset/Row}" sticky="ColumnHeaders">
+							<columns>
+								<Column hAlign="Center">
+									<Label text="No" design="Bold"/>
+								</Column>
+								<Column hAlign="Center" width="20%">
+									<Label text="Parametre Tanımı" design="Bold"/>
+								</Column>
+								<Column hAlign="Center" width="15%">
+									<Label text="Sonuç Girişi" design="Bold"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Hedef Değer" design="Bold" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Alt Kontrol" design="Bold" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Üst Kontrol" design="Bold" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Alt Standart" design="Bold" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Üst Standart" design="Bold" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center" width="15%">
+									<Label text="Açıklama" design="Bold"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Label text="{SEQUENCE}" design="Bold" class="sapUiSmallMargin"/>
+										<Label text="{DESCRIPTION}" design="Bold" class="sapUiSmallMargin" wrapping="true"/>
+										<HBox fitContainer="true" alignItems="Center" justifyContent="Center">
+											<ComboBox width="150px" visible="{= ${DATA_TYPE} === 'L' ? true : false}" textAlign="Center" placeholder="Seçim yapınız..."
+												change="valueChange" value="{VALUE}" items="{path: 'COMBO_DATA/'}" class="sapUiTinyMarginTopBottom">
+												<core:ListItem key="{DATA_VALUE}" text="{DATA_TAG}"/>
+											</ComboBox>
+											<Input width="150px" visible="{= ${DATA_TYPE} === 'L' ? false : true}" textAlign="Center" placeholder="Değer Giriniz..."
+												change="valueChange" value="{VALUE}" type="Number" class="sapUiTinyMarginTopBottom"/>
+										</HBox>
+										<Label text="{TARGET_VALUE}" design="Bold" class="sapUiSmallMargin"/>
+										<Label text="{MIN_VALUE2}" design="Bold" class="sapUiSmallMargin"/>
+										<Label text="{MAX_VALUE}" design="Bold" class="sapUiSmallMargin"/>
+										<Label text="{MIN_VALUE}" design="Bold" class="sapUiSmallMargin"/>
+										<Label text="{MAX_VALUE2}" design="Bold" class="sapUiSmallMargin"/>
+										<Input id="idSaveButton" value="{DESC}" textAlign="Center" placeholder="Açıklama Giriniz..." class="sapUiTinyMarginTopBottom"
+											change="textChange"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</VBox>
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<Button text="Geçmiş Kayıtlar" icon="sap-icon://history" press="openLogFragment" type="Reject"/>
+						<ToolbarSpacer/>
+						<Button text="Sisteme Kaydet" icon="sap-icon://save" press="onPressSaveButton" type="Accept"/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

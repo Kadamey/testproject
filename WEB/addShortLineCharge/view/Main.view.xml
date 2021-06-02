@@ -1,0 +1,91 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ui="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt"
+	height="100%" controllerName="addShortLineCharge.controller.Main">
+	<App>
+		<pages>
+			<Page title="Kısa Hat Şarj Ekleme Ekranı" showHeader="false">
+				<content>
+					<tnt:ToolHeader>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ntt.png"></Image>
+						<ToolbarSpacer/>
+						<Text text="Kısa Hat Şarj Ekleme Ekranı" wrapping="true" class="bobbinGroupingHeaderColor"/>
+						<ToolbarSpacer/>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ecz.png"></Image>
+					</tnt:ToolHeader>
+					<VBox class="sapUiSmallMargin" alignItems="Center" width="96%">
+						<Table id="idShortTable" items="{/Rowsets/Rowset/Row}" mode="MultiSelect" sticky="ColumnHeaders">
+							<headerToolbar>
+								<OverflowToolbar id="otbSubheader">
+									<Title text="Kısa Hat" level="H2"/>
+									<ToolbarSpacer/>
+									<Text text="Balya Adet Toplamı : " wrapping="true" class=".sapMTB-Transparent-CTX .sapMText "/>
+									<Text id="sumValue" text="" wrapping="true" class=".sapMTB-Transparent-CTX .sapMText"/>
+									<ToolbarSpacer/>
+									<Button id="editButton" width="150px" text="Düzenle" press="onEdit" icon="sap-icon://edit" type="Accept"/>
+									<Button id="saveButton" width="150px" text="Kaydet" press="onSave" visible="false" icon="sap-icon://save" type="Accept"/>
+									<Button id="cancelButton" width="150px" text="İptal" press="onCancel" visible="false" icon="sap-icon://decline" type="Reject"/>
+									<Button id="deleteButton" width="150px" icon="sap-icon://sys-minus" text="Sil" type="Reject" press="onDelete" visible="false"/>
+								</OverflowToolbar>
+							</headerToolbar>
+							<columns>
+								<Column id="visibleKolon1" hAlign="Center">
+									<Label text="Marka" design="Bold"/>
+								</Column>
+								<Column id="visibleKolon2" hAlign="Center">
+									<Label text="Balya Adet" design="Bold"/>
+								</Column>
+								<Column id="visibleKolon3" hAlign="Center">
+									<Label text="Ağırlık" design="Bold"/>
+								</Column>
+								<Column id="visibleKolon4" hAlign="Center">
+									<Label text="Birim Ağırlık" design="Bold"/>
+								</Column>
+								<Column id="visibleKolon5" hAlign="Center">
+									<Label text="Birim" design="Bold"/>
+								</Column>
+								<Column id="editKolon1" hAlign="Center" visible="false">
+									<Label text="Marka" design="Bold"/>
+								</Column>
+								<Column id="editKolon2" hAlign="Center" visible="false">
+									<Label text="Balya Adet" design="Bold"/>
+								</Column>
+								<Column id="editKolon3" hAlign="Center" visible="false">
+									<Label text="Ağırlık" design="Bold"/>
+								</Column>
+								<Column id="editKolon4" hAlign="Center" visible="false">
+									<Label text="Birim Ağırlık" design="Bold"/>
+								</Column>
+								<Column id="editKolon5" hAlign="Center" visible="false">
+									<Label text="Birim" design="Bold"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem vAlign="Middle">
+									<cells>
+										<Text id="text1" text="{MARKA}" wrapping="false"/>
+										<Text id="text2" text="{ADET}" wrapping="false"/>
+										<Text id="text3" text="{=${ADET}*${WEIGHT1}}" wrapping="false"/>
+										<Text id="text4" text="{WEIGHT1}" wrapping="false"/>
+										<Text id="text5" text="KG" wrapping="false"/>
+										<Input value="{MARKA}"/>
+										<Input value="{ADET}" type="Number"/>
+										<Input value="{WEIGHT}" editable="false"/>
+										<Input value="{WEIGHT1}"/>
+										<Input value="{UNIT}" editable="false"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</VBox>
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<Button text="Kaydet" icon="sap-icon://save" width="150px" press="onPressSaveButton"/>
+						<Button text="Selüloz Ekle" icon="sap-icon://add" width="150px" press="onPressSelulozAddButton"/>
+						<ToolbarSpacer/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

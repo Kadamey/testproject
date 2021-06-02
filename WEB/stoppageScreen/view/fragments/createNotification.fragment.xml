@@ -1,0 +1,72 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:form="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<Dialog state="Warning" id="fragmentCreateNotif" draggable="true" title="Yeni Bildirim Yarat">
+		<content>
+			<form:SimpleForm editable="true">
+				<l:VerticalLayout class="sapUiContentPadding">
+					<l:content>
+						<VBox>
+							<HBox id="hBox1" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Lokasyon : " design="Bold" width="160px"/>
+								<ComboBox id="FUNC_LOC" textAlign="Center" width="500px" items="{path : '/Rowsets/Rowset/Row', length: 999}" change="onChangeComboBox"
+									placeholder="Lokasyon seçiniz...">
+									<core:ListItem key="{TOOL_NUMBER}" text="{DESCRIPTION}"/>
+								</ComboBox>
+							</HBox>
+							<HBox id="hBox2" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Ekipman : " design="Bold" width="160px"/>
+								<ComboBox id="TOOL" textAlign="Center" width="500px" items="{path : '/Rowsets/Rowset/Row', length: 999}" placeholder="Ekipman seçiniz...">
+									<core:ListItem key="{TOOL_NUMBER}" text="{DESCRIPTION}"/>
+								</ComboBox>
+							</HBox>
+							<HBox id="hBox3" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Duruş Türü : " design="Bold" width="160px"/>
+								<ComboBox id="idPMNotificationType" textAlign="Center" width="500px" placeholder="Duruş Türü seçiniz...">
+									<core:ListItem key="Z1" text="Z1 - Arıza Duruşu"/>
+								</ComboBox>
+							</HBox>
+							<HBox id="hBox4" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Katalog Kodu : " design="Bold" width="160px"/>
+								<ComboBox id="idCatalogCode" textAlign="Center" width="500px" items="{path : '/Rowsets/Rowset/Row', length: 999}"
+									placeholder="Katalog Kodu seçiniz...">
+									<core:ListItem key="{CATALOG_CODE}" text="{CODE_DEF}"/>
+								</ComboBox>
+							</HBox>
+							<HBox id="hBox5" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Kod Grubu : " design="Bold" width="160px"/>
+								<ComboBox id="idCodeGroup" textAlign="Center" width="500px" items="{path : '/Rowsets/Rowset/Row', length: 999}"
+									placeholder="Kod Grubu seçiniz...">
+									<core:ListItem key="{CODE_GROUP}" text="{CODE_GROUP}"/>
+								</ComboBox>
+							</HBox>
+							<HBox id="hBox6" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Sorumlu İş Yeri : " design="Bold" width="160px"/>
+								<ComboBox id="idPMWorkplace" textAlign="Center" width="500px" items="{path : '/Rowsets/Rowset/Row', length: 999}"
+									placeholder="Sorumlu iş yeri seçiniz...">
+									<core:ListItem key="{WORKPLACE_ID}" text="{DESCRIPTION}"/>
+								</ComboBox>
+							</HBox>
+							<HBox id="hBox7" fitContainer="true" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="PM Bildirimi Olustur : " design="Bold" width="160px"/>
+								<CheckBox id="idNotification" selected="true" enabled="false"/>
+							</HBox>
+							<HBox id="hBox8" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+								<Label text="Açıklama : " design="Bold" width="160px"/>
+								<TextArea id="idExplanations" width="500px" growing="true" growingMaxLines="2" liveChange="explanationsChange2"
+									placeholder="Bildirim açıklaması giriniz..."/>
+							</HBox>
+							<HBox id="hBox9" fitContainer="true" justifyContent="End" alignItems="Center" class="sapUiTinyMargin">
+								<Label id="idCharacterCounter" text="Kalan karakter sayısı : 40" design="Bold" class="characterRemaining"/>
+							</HBox>
+						</VBox>
+					</l:content>
+				</l:VerticalLayout>
+			</form:SimpleForm>
+		</content>
+		<buttons>
+			<Button id="idCreateDownTimeButton" width="125px" type="Accept" icon="sap-icon://save" text="Kaydet" press="onPressCreateDownTimeButton"></Button>
+			<Button id="idCancelDownTimeButton" width="125px" type="Reject" icon="sap-icon://sys-cancel" text="İptal"
+				press="onPressCancelDownTimeButton"></Button>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

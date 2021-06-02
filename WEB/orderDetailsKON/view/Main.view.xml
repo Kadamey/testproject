@@ -1,0 +1,62 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ui="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt"
+	height="100%" controllerName="orderDetailsKON.controller.Main">
+	<App>
+		<pages>
+			<Page title="Sipariş Reçete Ekranı" showHeader="false">
+				<content>
+					<tnt:ToolHeader>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ntt.png"></Image>
+						<ToolbarSpacer/>
+						<Text text="Sipariş Reçete Ekranı" wrapping="true"/>
+						<ToolbarSpacer/>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ecz.png"></Image>
+					</tnt:ToolHeader>
+					<Table id="idOrderDetailTable" mode="SingleSelectMaster" items="{/Rowsets/Rowset/Row}" sticky="ColumnHeaders" delete="onDeleteFromTable"
+						alternateRowColors="true">
+						<columns>
+							<Column hAlign="Center">
+								<Label text="Malzeme No" design="Bold"/>
+							</Column>
+							<Column hAlign="Center" width="25%">
+								<Label text="Malzeme Tanımı" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Stok" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Birim" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Depo Yeri" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Parti No" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Taşınma Zamanı" design="Bold"/>
+							</Column>
+							<Column hAlign="Center" width="120px">
+								<Label text="Barkod" design="Bold"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{ITEM_BO}" wrapping="false"/>
+									<Text text="{DESCRIPTION}" wrapping="true"/>
+									<Text text="{QTY_ON_HAND}" wrapping="false"/>
+									<Text text="{UOM_ID}" wrapping="false"/>
+									<Text text="{= ${STORAGE_LOCATION_BO}.split(',')[1] }" wrapping="false"/>
+									<Text text="{INVENTORY_ID}" wrapping="false"/>
+									<Text text="{RECEIVE_DATE_TIME}" wrapping="true"/>
+									<Button width="100px" icon="sap-icon://bar-code" press="getBarcodePDFView"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

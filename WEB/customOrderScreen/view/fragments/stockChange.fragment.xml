@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog state="Error" id="fragmentOrderMigration" title="Stok Düzenle" escapeHandler="onCancelBobinCreateButton">
+
+				<Label width="auto" text="Tampon No: " design="Bold" class="testText sapUiMediumMargin"/>
+				<Text id="tamponIdField" placeholder="Miktar" submit="" type="Number" width="auto"   class="sapUiTinyMarginBeginEnd"/>
+
+			<Label width="auto" text="Mevcut Miktar(kg): " design="Bold" class="testText sapUiMediumMargin"/>
+				<Input id="quantityFieldOld" placeholder="Miktar" submit="" type="Number" width="auto" change="" editable ="false"   class="sapUiTinyMarginBeginEnd"/>
+	<Label width="auto" text="Yeni Miktar (kg): " design="Bold" class="testText sapUiTinyMarginBeginEnd"/>
+				<Input id="quantityFieldNew" placeholder="Miktar" submit="" type="Number" width="auto"  class="sapUiTinyMarginBeginEnd" change="" editable = "true"/>
+
+
+	
+		<buttons>
+			<Button icon="sap-icon://sys-enter" press="onPresStockChangeSaveButton" text="Kaydet"/>
+			<Button icon="sap-icon://sys-cancel" press="onPresStockChangeCancelButton" text="Vazgeç"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

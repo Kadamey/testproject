@@ -1,0 +1,142 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml"
+   xmlns:l="sap.ui.layout"
+   xmlns:mvc="sap.ui.core.mvc"
+   xmlns="sap.m"
+   xmlns:tnt="sap.tnt"
+height="100%">
+   <tnt:ToolHeader>
+      <VBox alignItems="Center">
+         <Text text="PALET ETİKET BASMA EKRANI" textAlign="Center"/>
+      </VBox>
+   </tnt:ToolHeader>
+   <l:Splitter height="100%">
+      <l:layoutData>
+         <l:SplitterLayoutData size="75%" resizable="false"/>
+      </l:layoutData>
+      <Table id="idPaletteTable" inset="true" fixedLayout="false"  items="{	path: '', sorter: {path: 'Name'}}">
+         <columns>
+            <Column hAlign="Center">
+               <Text text="Palet No" />
+            </Column>
+            <Column hAlign="Center">
+               <Text text="Koli Adet" />
+            </Column>
+            <Column hAlign="Center">
+               <Text text="Düzenle" />
+            </Column>
+            <Column hAlign="Center">
+               <Text text="Silme" />
+            </Column>
+            <Column hAlign="Center">
+               <Text text="Yazdır" />
+            </Column>
+            <Column hAlign="Center">
+               <Text text="Palet Tarih" />
+            </Column>
+         </columns>
+         <items>
+            <ColumnListItem vAlign="Middle" type="Navigation">
+               <cells>
+                  <Text text="{Palet No}" wrapping="false" />
+                  <Text text="{Koli Adet}" wrapping="false"/>
+                  <Text text="{Düzenle}" wrapping="false" />
+                  <Text text="{Silme}" wrapping="false"/>
+                  <Text text="{Yazdır}" wrapping="false" />
+                  <Text text="{Palet Tarih}" wrapping="false"/>
+               </cells>
+            </ColumnListItem>
+         </items>
+      </Table>
+      <FlexBox direction="Column" alignItems="Start"  height="100%">
+         <layoutData>
+            <l:SplitterLayoutData size="25%" resizable="false" />
+         </layoutData>
+         <FlexBox direction="Row" alignItems="Start"  width="100%">
+ 
+            <Input id="productInput" placeholder="Koli Adet"  width="100%" textAlign="Center">
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+</Input>
+            <Button icon="sap-icon://database"  width="100%"  press="onPress" >
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+</Button>
+         </FlexBox>
+         <FlexBox alignItems="Start" width="100%" >
+            <Button text="1" type="Emphasized" width="100%" >
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+</Button>
+            <Button text="2" type="Emphasized" width="100%" >
+
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+</Button>
+            <Button text="3" type="Emphasized" width="100%" >
+
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+</Button>
+         </FlexBox>
+         <FlexBox direction="Row" alignItems="Start" width="100%">
+            <Button text="4" type="Emphasized" width="100%" >
+
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+</Button>
+            <Button text="5" type="Emphasized" width="100%" >
+
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+</Button>
+            <Button text="6" type="Emphasized" width="100%" >
+
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+</Button>
+         </FlexBox>
+         <FlexBox direction="Row" alignItems="End" width="100%" >
+            <Button text="7" type="Emphasized" width="100%" >
+
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+</Button>
+            <Button text="8" type="Emphasized" width="100%" >
+
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+</Button>
+            <Button text="9" type="Emphasized" width="100%" >
+
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+</Button>
+         </FlexBox>
+         <FlexBox direction="Row" alignItems="End" width="100%">
+            <Button text="0" type="Emphasized" width="100%" >
+
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+</Button>
+            <Button text="Sil" type="Emphasized" width="100%" >
+
+					<layoutData>
+						<FlexItemData growFactor="2" />
+					</layoutData>
+</Button>
+         </FlexBox>
+      </FlexBox>
+   </l:Splitter>
+</mvc:View>

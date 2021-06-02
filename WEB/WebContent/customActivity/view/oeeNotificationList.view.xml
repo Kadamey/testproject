@@ -1,0 +1,109 @@
+<core:View controllerName="customActivity.controller.oeeNotificationList"
+	xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout">
+	<SplitContainer>
+		<masterPages showHeader="false">
+		<core:Fragment fragmentName='sap.oee.ui.fragments.machineList' type='XML' id= "machineListFragment"/>
+		</masterPages>
+		<detailPages>
+			<Page>
+				<customHeader>
+					<Bar>
+						<contentMiddle>
+							<Label text="{i18n>OEE_LABEL_NOTIFICATIONDETAILS}" />
+						</contentMiddle>
+					</Bar>
+				</customHeader>
+				<subHeader>
+					<Toolbar>
+						<content>
+							<layout:VerticalLayout width="60%" />
+							<SearchField id="searchNotification" liveChange="handleNotificationSearch"
+								width="40%" />
+							<Button id="filter" icon="sap-icon://add-filter" tooltip="{i18n>OEE_LABEL_ADD_FILTER}" press="onOpenfilter"/>
+							<Button icon="sap-icon://refresh" press="onRefresh" />
+						</content>
+
+					</Toolbar>
+				</subHeader>
+				<content>
+					<Table id="notifTable" editable="false" selectionChange="onSelectNotification"
+						items="{/notificationDetails}" mode="SingleSelectLeft"
+						fixedLayout="false">
+						<columns>
+							<Column width="300px">
+								<header>
+									<Label text="{i18n>OEE_LABEL_TECHNICAL_OBJECT}" />
+								</header>
+							</Column>
+							<Column>
+								<header>
+									<Label text="{i18n>OEE_LABEL_STATUSH}" />
+								</header>
+							</Column>
+							<Column>
+								<header>
+									<Label text="{i18n>OEE_LABEL_STARTTIME}" />
+								</header>
+							</Column>
+							<Column>
+								<header>
+									<Label text="{i18n>OEE_LABEL_ENDTIME}" />
+								</header>
+							</Column>
+							<Column>
+								<header>
+									<Label text="{i18n>OEE_LABEL_NOTIFICATION}" />
+								</header>
+							</Column>
+							<Column>
+								<header>
+									<Label text="{i18n>REPORTED_LAST_CHANGED_BY_LABEL}" /> 
+								</header> 
+							</Column> 
+						</columns> 
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text class="notificationTextPadding"    
+										text="{parts : [{path : 'flocID'},{path:'equipmentID'}], formatter : '.formatTechnicalObject'}" />
+									<Text text="{statusDesc}" />
+									
+									<Text
+										text="{parts : [{path : 'startTimestamp'},{path:'appData>/plantTimezoneOffset'}, {path: 'appData>/plantTimezoneKey'}], formatter : 'sap.oee.ui.Formatter.formatTimeStampWithoutLabel'}" />
+									<Text
+										text="{parts : [{path : 'endTimestamp'},{path:'appData>/plantTimezoneOffset'}, {path: 'appData>/plantTimezoneKey'}], formatter : 'sap.oee.ui.Formatter.formatTimeStampWithoutLabel'}" />
+									<Text
+										text="{path :'notificationNo', formatter:'sap.oee.ui.Formatter.formatRemoveLeadingZero'}" />
+									<Text text="{parts : [{path : 'createdBy'},{path:'changedBy'}], formatter : 'sap.oee.ui.Formatter.formatReportedAndModifiedNames'}" />
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+				<footer>
+					<Bar>
+						<contentRight>
+							<Button type="Accept" id="approveButtonNotification" text="{i18n>OEE_BTN_NOTIF_APPROVE}"
+								icon="sap-icon://approvals" press="onApproveNotification"
+								enabled="false" />
+							<Button type="Reject" id="rejectButtonNotification" icon="sap-icon://sys-cancel"
+								text="{i18n>OEE_BUTTON_REJECT}" press="onRejectNotification"
+								enabled="false" />
+							<Button id="deleteButtonNotification" text="{i18n>OEE_BUTTON_DELETE}"
+								icon="sap-icon://delete" press="onDeleteNotification" enabled="false" />
+							<Button  id="syncButtonNotification" text="{i18n>OEE_BTN_NOTIF_SYNC}" 
+								icon="sap-icon://synchronize" press="onSyncNotification"
+								enabled="false" />
+							<Button  id="updateButtonNotification" text="{i18n>OEE_BTN_NOTIF_UPDATE}"
+								icon="sap-icon://edit" press="onUpdateNotification"
+								enabled="false" />
+							<Button id="reportButtonForNotification" text="{i18n>OEE_BTN_REPORT_NOTIFICATION}"
+								icon="sap-icon://add" press="onPressReportNotification" />
+						</contentRight>
+					</Bar>
+				</footer>
+			</Page>
+		</detailPages>
+
+	</SplitContainer>
+</core:View>	

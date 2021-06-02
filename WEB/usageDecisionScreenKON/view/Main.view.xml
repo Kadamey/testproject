@@ -1,0 +1,75 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable" xmlns:c="sap.ui.commons" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ui="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt"
+	height="100%" controllerName="usageDecisionScreenKON.controller.Main">
+	<App>
+		<pages>
+			<Page title="Standart Dışı Palet Yönetimi" showHeader="false">
+				<content>
+					<tnt:ToolHeader>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ntt.png"></Image>
+						<ToolbarSpacer/>
+						<Text text="Standart Dışı Palet Yönetimi" wrapping="true" class="bobbinGroupingHeaderColor"/>
+						<ToolbarSpacer/>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ecz.png"></Image>
+					</tnt:ToolHeader>
+					<Table id="idUsageDeciTable" items="{/Rowsets/Rowset/Row}" sticky="ColumnHeaders" delete="onDeleteFromTable" mode="Delete">
+						<headerToolbar>
+							<OverflowToolbar>
+								<Text text="SFC Numarası : " class="customText"/>
+								<Text id="idText1" text="{SFC}" class="customText"/>
+								<ToolbarSpacer/>
+								<Text text="Ürün Kodu : " class="customText"/>
+								<Text text="{ITEM}" class="customText"/>
+								<ToolbarSpacer/>
+								<Text text="Ürün Tanımı : " class="customText"/>
+								<Text text="{DESCRIPTION}" class="customText"/>
+								<ToolbarSpacer/>
+								<Text text="Kontrol Partisi : " class="customText"/>
+								<Text text="{INSPECTION_LOT}" class="customText"/>
+								<ToolbarSpacer/>
+								<Text text="Kontrol Partisi Miktarı :" class="customText"/>
+								<Text text="{QTY_ORDERED}" class="customText"/>
+								<ToolbarSpacer/>
+								<Text text=" Palet No :" class="customText"/>
+								<Text text="{INVENTORY_ID}" class="customText"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<columns>
+							<Column hAlign="Center">
+								<Label text="Kullanım Kararı" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Depo Yeri" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Miktar" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Düzenle" design="Bold"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{kolon1}"/>
+									<Text text="{kolon2}"/>
+									<Text text="{kolon3}"/>
+									<Button icon="sap-icon://edit"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<Button width="200px" icon="sap-icon://add" text="Karar Ekle" press="onPressAddDecision" type="Accept"/>
+						<Button width="200px" icon="sap-icon://delete" text="Sil" press="onDeleteDecision" type="Reject"/>
+						<ToolbarSpacer/>
+						<Button width="200px" icon="sap-icon://save" text="Sisteme Kaydet" press="onSaveDecision" type="Accept"/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

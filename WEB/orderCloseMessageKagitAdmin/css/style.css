@@ -1,0 +1,70 @@
+/* Enter your custom styles here */
+.testText {
+	color: red !important;
+}
+.orderReleaseScreenRowColor{
+background: ec1c24 !important;
+font-weight: bold;
+}
+.orderReleaseScreenHeaderColor{
+background: 4b4949 !important;
+font-weight: bold;
+}
+
+.redBackground {
+    background-color: #b0b1b5  !important;
+}
+.greenBackground {
+    background-color:#b3e8a9 !important;
+}
+.yellowBackground {
+    background-color: #ffffb3 !important;
+}
+.blueBackground {
+    background-color: #66c2ff !important;
+}
+.biggerTitle {
+  font-size: 2rem;
+}
+
+.vbox {
+  align-items: center;
+}
+
+.labelParameter {
+  font-size: 20px;
+  padding: 5px;
+}
+
+.labelMessage {
+  font-size: 50px;
+  padding: 20px;
+}
+
+.button {
+  font-weight: 900;
+  width: 250px;
+  height: 150px;
+  padding: 20px;
+}
+
+.buttonInner > .sapMBtnInner {
+  height: 100px;
+  padding: 0px;
+  font-size: 30px;
+}
+
+.buttonContent > .sapMBtnInner > .sapMBtnContent {
+  line-height: 6rem;
+}
+
+.logsColor > textarea{
+  color: green;
+  font-size: 30px;
+}
+
+
+.errorsColor > textarea{
+  color: red;
+  font-size: 30px;
+}

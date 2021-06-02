@@ -1,0 +1,49 @@
+<mvc:View controllerName="customActivity.controller.Z_CON_BACK" 
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true" 
+    xmlns:ui="sap.ui.table" 
+    xmlns="sap.m">
+
+    <Page id="page" showHeader="false" enableScrolling=" false">
+        <FlexBox  class="sapUiMediumMargin" alignItems="Center" justifyContent="Center" backgroundDesign="Transparent">
+            <items>
+                <Input width="auto" id="inputNumber" type="Number" submit="addPersonalNumber" placeholder="{i18n>KardemirAddPersonalNumber}"/>
+                <Button text="{i18n>KardemirAdd}" type="Emphasized" press="addPersonalNumber"/>
+            </items>
+        </FlexBox>
+
+        <Table id="idProductsTable" inset="true" items="{path : '/Rowsets/Rowset/Row'}" fixedLayout = "false" mode = "MultiSelect">
+            <columns>
+                <Column hAlign="Center">
+                    <Text text="{i18n>KardemirPersonalNumber}"/>
+                </Column>
+                <Column hAlign="Center">
+                    <Text text="{i18n>KardemirPersonalName}"/>
+                </Column>
+                <Column hAlign="Center">
+                    <Text text="{i18n>KardemirBeginningTime}"/>
+                </Column>
+                <Column hAlign="Center">
+                    <Text text="{i18n>KardemirEndTime}"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{PERSCODE}" wrapping="false"/>
+                        <Text text="{PERSNAME}" wrapping="false"/>
+                        <Text text="{STARTTIME}" wrapping="false"/>
+                        <Text text="{ENDTIME}" wrapping="false"/>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer/>
+                <Button type="Transparent" icon="sap-icon://sys-minus" text="{i18n>KardemirDeletePersonel}" press="DeletePerson"/>
+            </OverflowToolbar>
+        </footer>
+    </Page>
+
+</mvc:View>

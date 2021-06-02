@@ -1,0 +1,75 @@
+<mvc:View xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.f"
+    xmlns="sap.m" controllerName="customActivity.controller.manualOrderCreation">
+    <Page showHeader="false">
+
+        <FlexBox alignItems="Center" justifyContent="Center" class="sapUiMediumMargin">
+            <items>
+                <f:Card width="auto">
+
+                    <f:content>
+                        <FlexBox alignItems="Center" justifyContent="Center" direction="Column" class="sapUiSmallMargin">
+                            <items>
+                                <Label text="Döküm Numarası" design="Bold" class="sapUiSmallMargin"/>
+                                <Input id="idDokumNo" textAlign="Center" type="Tel" maxLength="7" width="250px"/>
+                                <Label text="Çelik Kalitesi" design="Bold" class="sapUiSmallMargin"/>
+                                <ComboBox id="steelQuality" textAlign="Center" items="{path: '/Rowsets/Rowset/Row'}" width="250px" change="onComboChange" fieldGroupIds="1">
+                                    <core:Item key="{CHARVALUE}" text="{CHARVALUE}" />
+                                </ComboBox>
+
+                                <Label text="Kesit" design="Bold" class="sapUiSmallMargin"/>
+                                <ComboBox id="section" textAlign="Center" items="{path: '/Rowsets/Rowset/Row'}" width="250px" change="onComboChange" fieldGroupIds="2">
+                                    <core:Item key="{CHARVALUE}" text="{CHARVALUE}" />
+                                </ComboBox>
+
+                                <Label text="Boy" design="Bold" class="sapUiSmallMargin"/>
+                                <ComboBox id="size" placeholder="mm" textAlign="Center" items="{path: '/Rowsets/Rowset/Row'}" width="250px" change="onComboChange" fieldGroupIds="3">
+                                    <core:Item key="{CHARVALUE}" text="{CHARVALUE}" />
+                                </ComboBox>
+
+                                <Label text="Malzeme Kodu" design="Bold" class="sapUiSmallMargin" />
+                                <ComboBox id="idMaterialCode" textAlign="Center" items="{path: '/Rowsets/Rowset/Row'}" width="250px" fieldGroupIds="6">
+                                    <core:Item key="{MATCODE}" text="{MATCODE}" />
+                                </ComboBox>
+                                <FlexBox alignItems="Center" direction="Column" class="sapUiSmallMargin" visible="false">
+                                    <Label text="Döküm Adeti" design="Bold" class="sapUiSmallMargin"/>
+                                    <Input id="totalCast" textAlign="Center" placeholder="" valueState="Information" valueStateText="" value="" type="Number" width="250px" liveChange="onCastChange" fieldGroupIds="4"/>
+                                </FlexBox>
+                                <Label text="Döküm Tonajı" design="Bold" class="sapUiSmallMargin"/>
+                                <Input id="castTonnageId" textAlign="Center" placeholder="Ton" value="" type="Number" width="250px" liveChange="onCastChange" fieldGroupIds="5"/>
+
+                                <Label text="Sipariş Yeri" design="Bold" class="sapUiSmallMargin"/>
+                                <ComboBox id="idOrderPlace" textAlign="Center" items="{path: '/Rowsets/Rowset/Row'}" width="250px" change="onOrderLocChange" fieldGroupIds="7">
+                                    <core:Item key="{ARBPL}" text="{ARBPL}" />
+                                </ComboBox>
+                                <Label text="Sipariş Depo Yeri" design="Bold" class="sapUiSmallMargin"/>
+                                <ComboBox id="idOrderStorageLocation" textAlign="Center" items="{path: '/'}" width="250px">
+                                    <core:Item key="{CLFN_VALUE}" text="{CLFN_VALUE}" />
+                                </ComboBox>
+                                <l:HorizontalLayout class="sapUiContentPadding" visible="false">
+                                    <Label text="Sıvı Çelik Siparişi Aç" design="Bold" class="sapUiSmallMargin" />
+                                    <Switch type="AcceptReject" state="false" id="idSiviCelik">
+                                        <layoutData>
+                                            <FlexItemData growFactor="1" />
+                                        </layoutData>
+                                    </Switch>
+                                </l:HorizontalLayout>
+
+                            </items>
+                        </FlexBox>
+
+
+                    </f:content>
+                </f:Card>
+
+            </items>
+        </FlexBox>
+        <footer>
+            <Toolbar>
+                <Button icon="sap-icon://add-product" text="Sipariş Ekle" press="addNewOrder"/>
+            </Toolbar>
+        </footer>
+    </Page>
+</mvc:View>

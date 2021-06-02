@@ -1,0 +1,23 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" controllerName="selulozOperationStartConfirmMessage.controller.Main" displayBlock="true">
+	<App>
+		<pages>
+			<Page>
+				<headerContent>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Title text="Selüloz Operasyon Baslat/Durdur" class="sapUiLargeMarginBegin biggerTitle"/>
+						<ToolbarSpacer/>
+					</Toolbar>
+				</headerContent>
+				<VBox class="vbox">
+					<Label text="Site: 5100" design="Bold" class="labelParameter"/>
+				
+					<HBox>
+						<Button text="ONAYLA" press="onConfirmPress" visible="{main>/complete_confirm}" type="Emphasized" class="button buttonInner buttonContent"/>
+						<Button text="İPTAL" press="onCancelPress" visible="{main>/complete_confirm}" type="Emphasized" class="button buttonInner buttonContent"/>
+					</HBox>
+				</VBox>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

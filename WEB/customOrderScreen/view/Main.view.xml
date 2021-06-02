@@ -1,0 +1,187 @@
+<mvc:View controllerName="customOrderScreen.controller.Main" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	xmlns="sap.m" xmlns:tnt="sap.tnt" height="100%">
+	<App id="app">
+		<pages>
+			<Page title="Sipariş Onay Ekranı" showHeader="false">
+				<content>
+					<tnt:ToolHeader>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ntt.png"></Image>
+						<ToolbarSpacer/>
+						<Text text="DM Sipariş Ekranı" wrapping="true"/>
+						<ToolbarSpacer/>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ecz.png"></Image>
+					</tnt:ToolHeader>
+					<VBox width="100%" justifyContent="Center" alignItems="Center" class="sapUiSmallMargin">
+						<HBox width="100%" justifyContent="Center" alignItems="Center">
+							<ComboBox id="workCenterComboBox" textAlign="Center" items="{path: '/Rowsets/Rowset/Row'}" width="250px" change="onWorkCenterComboBoxChange"
+								showSecondaryValues="true" placeholder="İş Yeri Seçiniz..." fieldGroupIds="1" class="sapUiSmallMarginBeginEnd" valueState="Information"
+								showValueStateMessage="false">
+								<core:ListItem key="{WORK_CENTER}" text="{WORK_CENTER}" additionalText="{SITE}"/>
+							</ComboBox>
+							<Button width="250px" text="Bobin Oluştur" icon="sap-icon://create" press="onPressCreateBobinButton" class="sapUiSmallMarginBeginEnd"
+								type="Accept"/>
+							<Button width="250px" text="Bobin Listeleme" icon="sap-icon://menu" press="onPressBobinListButton" class="sapUiSmallMarginBeginEnd"/>
+							<Button width="250px" text="Tampon Yükleme" icon="sap-icon://add" press="onPressTamonLoadButton" class="sapUiSmallMarginBeginEnd"
+								type="Accept"/>
+							<Button width="250px" text="Sipariş Bilgi Formu" icon="sap-icon://detail-view" press="onPressInfoOrderButton"
+								class="sapUiSmallMarginBeginEnd"/>
+						</HBox>
+						<HBox width="100%" justifyContent="Center" alignItems="Center">
+							<Button width="250px" text="Sipariş Başlat" icon="sap-icon://media-play" press="onPressOrderStartButton" class="sapUiSmallMarginBeginEnd"
+								type="Accept"/>
+							<Button width="250px" text="Sipariş Durdur" icon="sap-icon://media-pause" press="onPressOrderFreezeButton" class="sapUiSmallMarginBeginEnd"
+								type="Reject"/>
+							<Button width="250px" text="Operatör Tamamla" icon="sap-icon://complete" press="onPressCompleteOperator" class="sapUiSmallMarginBeginEnd"
+								type="Accept"/>
+							<Button width="250px" text="Sipariş Canlandır" icon="sap-icon://repost" press="onPressOrderRevive" class="sapUiSmallMarginBeginEnd"
+								type="Reject"/>
+							<Button width="250px" text="Yönetici Tamamla" icon="sap-icon://complete" press="onPressCompleteManager" class="sapUiSmallMarginBeginEnd"
+								type="Accept"/>
+						</HBox>
+					</VBox>
+					<ScrollContainer height="25rem" vertical="true">
+						<Table id="idParentOrderTable" items="{ path: '/Rowsets/Rowset/Row'}" sticky="ColumnHeaders" mode="SingleSelectMaster"
+							selectionChange="onPressParentOrder" alternateRowColors="true">
+							<columns>
+								<Column hAlign="Center">
+									<Label text="Tedarik Zinciri Önceliği" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Kombine Sipariş No" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center" width="200px">
+									<Label text="Malzeme Tanımı" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="DM Durumu" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="DM Durumu" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Toplam Tonaj" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Üretilen Tonaj" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Başlangıç Zamanı" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Bitiş Zamanı" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Top. Kalite Deşe (Kg)" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Top. Diğer Deşe (Kg)" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Top. Trim Deşe (Kg)" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Top. Üret. Tonaj (Kg)" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Mil Siparişi" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center" width="200px">
+									<Label text="Açıklama" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem vAlign="Middle">
+									<cells>
+										<Text text="{PRIORITY}"/>
+										<Text id="orderNoField" text="{PARENTSO}"/>
+										<Text id="materialDescField" text="{ITEM_DESCRIPTION}" wrapping="true"/>
+										<Text id="orderStatusField" text="{STATUS}"/>
+										<core:Icon size="25px"
+											src="{= ${STATUS} === 'NEW' ? 'sap-icon://status-inactive' : ${STATUS} === 'ACTIVE' ? 'sap-icon://status-positive' : ${STATUS} === 'FREEZE' ? 'sap-icon://status-in-process' : ${STATUS} === 'DONE' ? 'sap-icon://status-completed': ''}"
+											color="{= ${STATUS} === 'NEW' ? '#C6C0C0' : ${STATUS} === 'ACTIVE' ? '#0ED145' : ${STATUS} === 'FREEZE' ? '#1075CF' : ${STATUS} === 'DONE' ? '#CA3523' : ''}"/>
+										<Text id="originalQuantityFieldId" text="{QTY}"/>
+										<Text id="producedQuantityField"/>
+										<Text id="startTimeField" wrapping="true"/>
+										<Text id="endTiemField" wrapping="true"/>
+										<Text id="chieldTotalQScraptField" text="{NC_GROUP001}"/>
+										<Text id="chieldTotalOtheScraptField" text="{NC_GROUP002}"/>
+										<Text id="chieldTotalTrimScraptField1" text="{NC_GROUP003}"/>
+										<Text id="chieldtotalProductField" text="{NC_GROUP002}"/>
+										<Text id="milIndicatorId" text="{MILINDICATOR}"/>
+										<Text id="commentField" wrapping="true"/>
+										<Button icon="sap-icon://edit" press="onEditDecision"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</ScrollContainer>
+					<ScrollContainer height="20rem" vertical="true" class="sapUiSmallMarginTop">
+						<Table id="idChildOrderTable" items="{ path: '/Rowsets/Rowset/Row'}" sticky="ColumnHeaders" mode="SingleSelectMaster"
+							alternateRowColors="true">
+							<columns>
+								<Column hAlign="Center">
+									<Label text="Sipariş No" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Malzeme No" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center" width="200px">
+									<Label text="Malzeme Tanımı" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Adet" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Ebat" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Kat Adedi" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Toplam Tonaj" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Siparişe Üretilen Tonaj" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Siparişin Top. Bobin Adedi" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Vardalık Top. Tonaj (Kg)" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Vardalık Top. Bobin Adedi" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Top. Kalite Deşesi (Kg)" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+								<Column hAlign="Center">
+									<Label text="Top. Trim Deşesi (Kg)" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem vAlign="Middle">
+									<cells>
+										<Text id="childOrderNoField" text="{CHILDSO}"/>
+										<Text id="childMaterialNrField" text="{CHILDITEMNR}"/>
+										<Text id="childMaterialDescField" text="{CHILDITEMDESC}" wrapping="true"/>
+										<Text id="childQuantityField" text="{CHILDTAKIMBOBINADET}"/>
+										<Text id="childEbatField" text="{CHILDEBAT}"/>
+										<Text id="childKatAdetField" text="{CHILDKATADET}"/>
+										<Text id="childTargetQuantityField" text="{CHILDQTY}"/>
+										<Text id="childQuantityProdField" text="{PRODUCEDQTY}"/>
+										<Text id="childProducedQuantityField" text="{PRODUCEDCOUNT}"/>
+										<Text id="childProducedWeightField" text="{SHIFTPRODUCEDQTY}"/>
+										<Text id="childShiftProducedField" text="{SHIFTPRODUCEDCOUNT}"/>
+										<Text id="chieldTotalQualityScraptField" text="{NC_GROUP001}"/>
+										<Text id="chieldTotalTrimScraptField" text="{NC_GROUP003}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</ScrollContainer>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

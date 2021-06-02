@@ -1,0 +1,1001 @@
+sap.ui.define(
+	[
+		"jquery.sap.global",
+		"sap/ui/core/mvc/Controller",
+		"sap/ui/model/json/JSONModel",
+		"sap/m/MessageToast",
+		"sap/m/MessageBox",
+		"sap/ui/core/Fragment",
+		"sap/ui/model/Filter",
+		"sap/ui/model/FilterOperator",
+		"sap/ui/export/library",
+		"sap/ui/export/Spreadsheet",
+		"customOrderScreen/scripts/transactionCaller",
+	],
+	function (
+		jQuery,
+		Controller,
+		JSONModel,
+		MessageToast,
+		MessageBox,
+		Fragment,
+		Filter,
+		FilterOperator,
+		exportLibrary,
+		Spreadsheet,
+		TransactionCaller
+	) {
+		"use strict";
+		var that, sPath, myModel, tableModel, SFC, selectedModel, AUTH_CHECK;
+		var oRouter;
+		var selectedWorkCenter;
+		var selectedRowOrderStatu;
+		var checkChangeExist;
+		var SITE;
+		return Controller.extend("customOrderScreen.controller.Main", {
+			onInit: function () {
+				oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				//this.getInitialDatas();
+				checkChangeExist = 0;
+				//  this.SITE = jQuery.sap.getUriParameters().get("SITE");
+				this.getDMWCs();
+				this.getAllWCS();
+				this._urlParams = [
+					"ACTIVITY_ID",
+					"FORM_ID",
+					"LOGON",
+					"OPERATION",
+					"POD_REQUEST",
+					"RESOURCE",
+					"SFC",
+					"SITE",
+					"WORKSTATION",
+					"WPMF_LEGACY_PLUGIN",
+				];
+			},
+
+			onWorkCenterComboBoxChange: function () {
+				selectedWorkCenter = this.getView()
+					.byId("workCenterComboBox")
+					.getValue();
+
+				this.SITE = this.getView()
+					.byId("workCenterComboBox")
+					.getSelectedItem()
+					.getAdditionalText();
+
+				this.getInitialDatas(selectedWorkCenter);
+			},
+			getInitialDatas: function (selectedWorkCenter) {
+				TransactionCaller.async(
+					"ECZ_MES-4.0/KAGIT/DM_MANAGEMENT/COMBINE_ORDER/ORDER_LIST/T_ParentOrderList", {
+						I_WORK_CENTER: selectedWorkCenter,
+						I_SITE: this.SITE,
+					},
+					"O_JSON",
+					this.getInitialDatasCB,
+					this,
+					"GET"
+				);
+			},
+
+			getInitialDatasCB: function (iv_data, iv_scope) {
+				var myModel = new sap.ui.model.json.JSONModel();
+				if (Array.isArray(iv_data[0].Rowsets.Rowset.Row)) {
+					myModel.setData(iv_data[0]);
+				} else {
+					var obj_iv_data = iv_data[0];
+					var dummyData = [];
+					dummyData.push(iv_data[0].Rowsets.Rowset.Row);
+					obj_iv_data.Rowsets.Rowset.Row = dummyData;
+					myModel.setData(obj_iv_data);
+				}
+				iv_scope.getView().byId("idParentOrderTable").setModel(myModel);
+
+				if (iv_data[0].Rowsets.Rowset.Row[0]) {
+					//	iv_scope.SITE = iv_data[0].Rowsets.Rowset.Row[0].SITE;
+				}
+			},
+
+			onPressParentOrder: function (oEvent) {
+				selectedModel = oEvent
+					.getSource()
+					.getModel()
+					.getProperty(oEvent.getSource().getSelectedContextPaths()[0]);
+
+				TransactionCaller.async(
+					"ECZ_MES-4.0/KAGIT/DM_MANAGEMENT/COMBINE_ORDER/ORDER_LIST/T_FindParentChildOrderList", {
+						I_SFC: selectedModel.PARENTSFC,
+						I_SITE: this.SITE,
+						I_PARENT_SO: selectedModel.PARENTSO,
+					},
+					"O_JSON",
+					this.onPressParentOrderCB,
+					this,
+					"GET"
+				);
+			},
+
+			onPressParentOrderCB: function (iv_data, iv_scope) {
+				var myModel = new sap.ui.model.json.JSONModel();
+				if (iv_data[1] !== "E") {
+					if (Array.isArray(iv_data[0].Rowsets.Rowset.Row)) {
+						myModel.setData(iv_data[0]);
+					} else {
+						var obj_iv_data = iv_data[0];
+						var dummyData = [];
+						dummyData.push(iv_data[0].Rowsets.Rowset.Row);
+						obj_iv_data.Rowsets.Rowset.Row = dummyData;
+						myModel.setData(obj_iv_data);
+					}
+					iv_scope.getView().byId("idChildOrderTable").setModel(myModel);
+				} else {
+					iv_scope
+						.getView()
+						.byId("idChildOrderTable")
+						.setNoDataText(iv_data[0]);
+
+					myModel.setData([]);
+					iv_scope.getView().byId("idChildOrderTable").setModel(myModel);
+				}
+			},
+
+			onPressCreateBobinButton: function () {
+				if (!this._oDialogBobinCreate) {
+					this._oDialogBobinCreate = sap.ui.xmlfragment(
+						"Z_BobinCreate",
+						"customOrderScreen.view.fragments.bobinCreate",
+
+						this
+					);
+
+					this.getView().addDependent(this._oDialogBobinCreate);
+				}
+				sap.ui.core.Fragment.byId("Z_BobinCreate", "quantityField").setValue(
+					""
+				);
+				sap.ui.core.Fragment.byId(
+					"Z_BobinCreate",
+					"trimQuantityField"
+				).setValue("");
+
+				this._oDialogBobinCreate.open();
+				this.getBobinDetailList();
+			},
+			getBobinDetailList: function () {
+				var selectedSfc = this.getView()
+					.byId("idParentOrderTable")
+					.getSelectedItem()
+					.getBindingContext()
+					.getProperty("PARENTSFC");
+
+				TransactionCaller.async(
+					"ECZ_MES-4.0/KAGIT/DM_MANAGEMENT/COMBINE_ORDER/BOBIN_CREATE/findOrderDetails/T_GetOrderDetailsFromSfcForBobinCreate", {
+						I_SFC: selectedSfc,
+						I_SITE: this.SITE,
+					},
+					"O_JSON",
+					this.getBobinDetailListCB,
+					this,
+					"GET"
+				);
+			},
+
+			getBobinDetailListCB: function (iv_data, iv_scope) {
+				if (iv_data[1] == "E") {
+					MessageBox.show(iv_data[0]);
+					iv_scope._oDialogBobinCreate.close();
+					return;
+				}
+				if (Array.isArray(iv_data[0].Result.result1.Result?.item) == false) {
+					iv_data[0].Result.result1.Result.item = Array(
+						iv_data[0].Result.result1.Result?.item
+					);
+				}
+
+				var myModel = new sap.ui.model.json.JSONModel();
+				myModel.setData(iv_data[0].Result);
+				sap.ui.core.Fragment.byId(
+					"Z_BobinCreate",
+					"idBobinCreateTable"
+				).setModel(myModel);
+
+				var myModel2 = new sap.ui.model.json.JSONModel();
+				myModel2.setData(iv_data[0].Result.result2);
+				sap.ui.core.Fragment.byId(
+					"Z_BobinCreate",
+					"idMihverComboboxField"
+				).setModel(myModel2);
+
+				var myModel3 = new sap.ui.model.json.JSONModel();
+				myModel3.setData(iv_data[0].Result.result3.Result3);
+
+				// sap.ui.core.Fragment.byId("Z_BobinCreate", "qualityScraptTypeId").setModel(myModel2);
+				// myModel3.refresh();
+
+				////// "Bobin Oluştur" butonuyla açılan Fragmenttaki Doldurulabilir Tablo Değerlerini SIFIRLAMAK için.
+				////// YENİ KOLON EKLENİRSE hata alabilir, kolon indisine göre hareket ediyor
+				for (
+					var i = 0; i <
+					sap.ui.core.Fragment.byId("Z_BobinCreate", "idBobinCreateTable")
+					.getModel()
+					.getData().result1.Result.item.length; i++
+				) {
+					sap.ui.core.Fragment.byId("Z_BobinCreate", "idBobinCreateTable")
+						.getItems()[i].getAggregation("cells")[9]
+						.setSelectedKey("");
+					sap.ui.core.Fragment.byId("Z_BobinCreate", "idBobinCreateTable")
+						.getItems()[i].getAggregation("cells")[10]
+						.setValue(0);
+					sap.ui.core.Fragment.byId("Z_BobinCreate", "idBobinCreateTable")
+						.getItems()[i].getAggregation("cells")[10]
+						.setValueState("None");
+					sap.ui.core.Fragment.byId("Z_BobinCreate", "idBobinCreateTable")
+						.getItems()[i].getAggregation("cells")[10]
+						.setPlaceholder("");
+					sap.ui.core.Fragment.byId("Z_BobinCreate", "idBobinCreateTable")
+						.getItems()[i].getAggregation("cells")[10]
+						.setValueStateText("");
+					sap.ui.core.Fragment.byId("Z_BobinCreate", "idBobinCreateTable")
+						.getItems()[i].getAggregation("cells")[11]
+						.setValue("");
+					sap.ui.core.Fragment.byId("Z_BobinCreate", "idBobinCreateTable")
+						.getItems()[i].getAggregation("cells")[11]
+						.setValueState("None");
+					sap.ui.core.Fragment.byId("Z_BobinCreate", "idBobinCreateTable")
+						.getItems()[i].getAggregation("cells")[11]
+						.setPlaceholder("");
+					sap.ui.core.Fragment.byId("Z_BobinCreate", "idBobinCreateTable")
+						.getItems()[i].getAggregation("cells")[11]
+						.setValueStateText("");
+				}
+			},
+
+			onPressCalculationButton: function () {
+				var kantarWeight = sap.ui.core.Fragment.byId("Z_BobinCreate", "quantityField").getValue();
+				if(kantarWeight == "" || kantarWeight == null || kantarWeight == undefined){
+					MessageBox.error("Miktar alanı için geçerli bir giriş yapınız!");
+					return;
+				}
+				
+				if (Number(kantarWeight) <= 0) {
+					MessageBox.error("Miktar alanı 0 veya 0'dan küçük olamaz!");
+					return;
+				}
+				
+				this.getCalculationResult();
+				checkChangeExist = 0;
+			},
+
+			getCalculationResult: function () {
+				// model içindeki sadece result aray'ini json olarak transaction'a göndermek için eklendi. bütün modeli transaction yollayınca
+				// hata aldığı için bince 21032021
+				///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				var dummyData = sap.ui.core.Fragment.byId(
+						"Z_BobinCreate",
+						"idBobinCreateTable"
+					)
+					.getModel()
+					.getData().result1;
+				var dummyModel = new sap.ui.model.json.JSONModel();
+				dummyModel.setData(dummyData);
+				var jsonData = dummyModel.getJSON();
+				//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+				var kantarWeight = sap.ui.core.Fragment.byId(
+					"Z_BobinCreate",
+					"quantityField"
+				).getValue();
+
+				var selectedMihverMaterial = sap.ui.core.Fragment.byId(
+					"Z_BobinCreate",
+					"idMihverComboboxField"
+				).getSelectedKey();
+				var selectedMihverItem = sap.ui.core.Fragment.byId(
+						"Z_BobinCreate",
+						"idMihverComboboxField"
+					)
+					.getModel()
+					.getData()
+					.Result2.Rowsets.Rowset.Row.find(
+						(o) => o.ITEM == selectedMihverMaterial
+					);
+
+				//kontroller
+				///////////
+				if (kantarWeight == "") {
+					MessageBox.show("Kantar ağırlık değer girişi yapınız");
+					return;
+				}
+
+				if (selectedMihverItem == undefined) {
+					MessageBox.show("Mihver boru seçimi yapınız.");
+					return;
+				}
+				////////////////
+
+				var selectedMihverMaterialAgirlık = selectedMihverItem.MIHVERAGIRLIK;
+				var selectedMihverEbat = selectedMihverItem.MIHVEREBAT;
+
+				if (kantarWeight == "") {
+					MessageBox.show("Miktar alanını doldurunuz.");
+					return;
+				}
+				if (
+					selectedMihverEbat == null ||
+					selectedMihverMaterialAgirlık == null
+				) {
+					MessageBox.show(
+						selectedMihverMaterial +
+						" mihver boru malzeme anaverisinde eksiklik oldugu icin bobin yaratamazsınız"
+					);
+					return;
+				}
+
+				TransactionCaller.async(
+					"ECZ_MES-4.0/KAGIT/DM_MANAGEMENT/COMBINE_ORDER/BOBIN_CREATE/calculationForBobinCreate/T_calculateBobinValuesForUserApproval", {
+						I_WORK_CENTER: selectedWorkCenter,
+						I_KANTAR_WEIGHT: kantarWeight,
+						I_MIHVER_AGIRLIK: selectedMihverMaterialAgirlık,
+						I_MIHVER_EBAT: selectedMihverEbat,
+						I_DATA: jsonData,
+						I_SITE: this.SITE,
+					},
+					"O_JSON",
+					this.getCalculationResultCB,
+					this,
+					"GET"
+				);
+			},
+
+			getCalculationResultCB: function (iv_data, iv_scope) {
+				if (iv_data[1] == "E") {
+					MessageBox.show(iv_data[0]);
+					return;
+				}
+
+				var resultArr = sap.ui.core.Fragment.byId(
+						"Z_BobinCreate",
+						"idBobinCreateTable"
+					)
+					.getModel()
+					.getData();
+				resultArr.result1 = iv_data[0];
+
+				var myModel = new sap.ui.model.json.JSONModel();
+				myModel.setData(resultArr);
+
+				// calculation sum of trim dese
+				var sumTrimDese = 0;
+				resultArr.result1.Result.item.forEach((input, index) => {
+					sumTrimDese = sumTrimDese + input.TRIMMIKTAR;
+				});
+				sap.ui.core.Fragment.byId(
+					"Z_BobinCreate",
+					"trimQuantityField"
+				).setValue(sumTrimDese.toFixed(3));
+
+				sap.ui.core.Fragment.byId(
+					"Z_BobinCreate",
+					"idBobinCreateTable"
+				).setModel(myModel);
+				sap.ui.core.Fragment.byId("Z_BobinCreate", "idBobinCreateTable")
+					.getModel()
+					.refresh();
+			},
+			// ECZ_MES-4.0/KAGIT/DM_MANAGEMENT/COMBINE_ORDER/BOBIN_CREATE/bobinSave/T_MainTransactionBobinSave ile bağlanacak bince 14032021
+
+			onPressBobinCreateSaveButton: function () {
+				if (checkChangeExist == 1) {
+					MessageBox.show(
+						"Değişiklik yaptığınız için kaydetmeden önce dağıt butonuna basınız."
+					);
+					return;
+				}
+
+				var dummyData = sap.ui.core.Fragment.byId(
+						"Z_BobinCreate",
+						"idBobinCreateTable"
+					)
+					.getModel()
+					.getData().result1;
+				var dummyModel = new sap.ui.model.json.JSONModel();
+				dummyModel.setData(dummyData);
+				var jsonData = dummyModel.getJSON();
+
+				var response = TransactionCaller.sync(
+					"ECZ_MES-4.0/KAGIT/DM_MANAGEMENT/COMBINE_ORDER/BOBIN_CREATE/bobinSave/T_MainTransactionBobinSave", {
+						I_DATA: jsonData,
+						I_SITE: this.SITE,
+					},
+					"O_JSON"
+				);
+				if (response[1] == "E") {
+					MessageBox.show(response[0]);
+				} else {
+					MessageBox.show(response[0]);
+					this._oDialogBobinCreate.close();
+				}
+			},
+
+			onPressTamonLoadButton2: function () {
+				if (!this._oDialogTamponLoad) {
+					this._oDialogTamponLoad = sap.ui.xmlfragment(
+						"Z_TamponLoad",
+						"customOrderScreen.view.fragments.tamponLoad",
+						this
+					);
+
+					this.getView().addDependent(this._oDialogTamponLoad);
+				}
+
+				this._oDialogTamponLoad.open();
+			},
+
+			onPressTamonLoadButton: function () {
+				if (
+					this.getView().byId("idParentOrderTable").getSelectedItem() == null
+				) {
+					MessageBox.show("Üst sipariş tablosundan sipariş seçimi yapınız.");
+					return;
+				} else if (
+					this.getView()
+					.byId("idParentOrderTable")
+					.getSelectedItem()?.getBindingContext()
+					.getProperty().STATUS != "ACTIVE"
+				) {
+					MessageBox.show(
+						"Aktif olmayan siapriş için tampon yükleme işlemi yapamazsınız"
+					);
+					return;
+				} else if (
+					this.getView().byId("idChildOrderTable").getModel() == undefined ||
+					this.getView().byId("idChildOrderTable").getModel().getData()
+					.length === 0
+				) {
+					MessageBox.show(
+						"Aktif sipariş kat adet anaveri bilgisi eksik olduğu icin tampon yukleme islemi yapamazsınız"
+					);
+					return;
+				}
+				// if(selectedChildOrderKatAdet == "" || selectedChildOrderKatAdet == undefined){
+
+				var selectedChildOrderKatAdet = this.getView()
+					.byId("idChildOrderTable")
+					.getModel()
+					.getData()
+					.Rowsets.Rowset.Row[0].CHILDKATADET.split(" ")[0];
+
+				oRouter.navTo("RouteMain2", {
+					WorkCenter: selectedWorkCenter,
+					CHILDKATADET: selectedChildOrderKatAdet,
+					SITE: this.SITE,
+
+					//	"WorkCenter": WorkCenter,
+				});
+			},
+			onPressBobinListButton: function (oEvent) {
+				var selectedParentSfc = this.getView()
+					.byId("idParentOrderTable")
+					.getSelectedItem()?.getBindingContext()
+					.getProperty("PARENTSFC");
+
+				var selectedRowOrderStatu = this.getView()
+					.byId("idParentOrderTable")
+					.getSelectedItem()?.getBindingContext().getProperty("MILINDICATOR");
+
+				if (selectedRowOrderStatu == undefined) {
+					selectedRowOrderStatu = "notMilOrder";
+				}
+
+				var selectedWorkCenter = this.getView()
+					.byId("workCenterComboBox").getSelectedKey();
+
+				var selectedPlant = this.getView()
+					.byId("workCenterComboBox").getSelectedItem().mProperties.additionalText;
+
+				if (selectedParentSfc == undefined) {
+					MessageBox.show("Bobin listelemek için üst sipariş seçimi yapınız.");
+					return;
+				}
+
+				oRouter.navTo("RouteMain3", {
+					PARENTSFC: selectedParentSfc,
+					WorkCenter: selectedWorkCenter,
+					MILINDICATOR: selectedRowOrderStatu,
+					PLANT: selectedPlant
+				});
+			},
+			onChangeQualityScraptComboBox: function (oEvent) {
+				var sIndex = oEvent
+					.getSource()
+					.getParent()
+					.getId()
+					.split("--")[1]
+					.split("-")[1];
+
+				oEvent.getSource().getParent().getModel().getData().result1.Result.item[
+					sIndex
+				].DESETIPI = oEvent.getSource().getSelectedKey();
+				checkChangeExist = 1;
+
+				///// Seçim yapıldıysa input alanlarını aç
+				///// Kalite Nedeni "Diğer" Seçildiyse Açıklama Input Alanına uyarı ver
+				///// YENİ KOLON EKLENİRSE hata alabilir, kolon indisine göre hareket ediyor
+				oEvent
+					.getSource()
+					.getParent()
+					.getAggregation("cells")[10]
+					.setEditable(true);
+				oEvent
+					.getSource()
+					.getParent()
+					.getAggregation("cells")[11]
+					.setEditable(true);
+				if (oEvent.getSource().getSelectedKey() === "NC00031") {
+					oEvent
+						.getSource()
+						.getParent()
+						.getAggregation("cells")[11]
+						.setValueState("Warning");
+					oEvent
+						.getSource()
+						.getParent()
+						.getAggregation("cells")[11]
+						.setPlaceholder("Kalite Açıklaması Girilmesi Zorunludur.");
+					oEvent
+						.getSource()
+						.getParent()
+						.getAggregation("cells")[11]
+						.setValueStateText("Zorunlu Alan");
+				} else {
+					oEvent
+						.getSource()
+						.getParent()
+						.getAggregation("cells")[11]
+						.setValueState("None");
+					oEvent
+						.getSource()
+						.getParent()
+						.getAggregation("cells")[11]
+						.setPlaceholder("Kalite Açıklaması");
+					oEvent
+						.getSource()
+						.getParent()
+						.getAggregation("cells")[11]
+						.setValueStateText("Açıklama Giriniz.");
+				}
+
+				oEvent
+					.getSource()
+					.getParent()
+					.getAggregation("cells")[10]
+					.setValueState("Warning");
+				oEvent.getSource().getParent().getAggregation("cells")[10].setValue("");
+				oEvent
+					.getSource()
+					.getParent()
+					.getAggregation("cells")[10]
+					.setPlaceholder("Kg Değeri Girilmesi Zorunludur.");
+				oEvent
+					.getSource()
+					.getParent()
+					.getAggregation("cells")[10]
+					.setValueStateText("Zorunlu Alan");
+			},
+
+			onPressOrderStartButton: function (oEvent) {
+				var selectedSfc = this.getView()
+					.byId("idParentOrderTable")
+					.getSelectedItem()?.getBindingContext()
+					.getProperty("PARENTSFC");
+
+				if (selectedSfc == undefined) {
+					MessageBox.show(
+						"Lütfen üst sipariş tablosundan sipariş seçimi yapınız"
+					);
+					return;
+				}
+
+				var response = TransactionCaller.sync(
+					"ECZ_MES-4.0/KAGIT/DM_MANAGEMENT/COMBINE_ORDER/ORDER_OPERATION/T_combineOrderStart", {
+						I_SFC: selectedSfc,
+						I_SITE: this.SITE,
+					},
+					"O_JSON"
+				);
+				MessageToast.show(response[0]);
+				this.getInitialDatas(selectedWorkCenter);
+			},
+
+			onPressOrderFreezeButton: function (oEvent) {
+				var selectedSfc = this.getView()
+					.byId("idParentOrderTable")
+					.getSelectedItem()?.getBindingContext()
+					.getProperty("PARENTSFC");
+
+				if (selectedSfc == undefined) {
+					MessageBox.show(
+						"Lütfen üst sipariş tablosundan sipariş seçimi yapınız"
+					);
+					return;
+				}
+
+				var response = TransactionCaller.sync(
+					"ECZ_MES-4.0/KAGIT/DM_MANAGEMENT/COMBINE_ORDER/ORDER_OPERATION/T_combineOrderFreeze", {
+						I_SFC: selectedSfc,
+						I_WC: selectedWorkCenter,
+						I_PLANT: this.SITE,
+					},
+					"O_JSON"
+				);
+				MessageToast.show(response[0]);
+				this.getInitialDatas(selectedWorkCenter);
+			},
+			onPressCompleteBobinButton: function (oEvent) {
+				if (
+					this.getView()
+					.byId("idParentOrderTable")
+					.getSelectedItem()?.getBindingContext()
+					.getProperty().STATUS != "ACTIVE"
+				) {
+					MessageBox.show(
+						"Aktif olmayan siapriş için sipariş tamamlama işlemi yapamazsınız"
+					);
+					return;
+				}
+				var selectedSfc = this.getView()
+					.byId("idParentOrderTable")
+					.getSelectedItem()?.getBindingContext()
+					.getProperty("PARENTSFC");
+				var selectedSo = this.getView()
+					.byId("idParentOrderTable")
+					.getSelectedItem()?.getBindingContext()
+					.getProperty("PARENTSO");
+				var selectedWC = this.getView()
+					.byId("workCenterComboBox")
+					.getSelectedKey();
+
+				if (selectedSfc == undefined) {
+					MessageBox.show(
+						"Lütfen üst sipariş tablosundan sipariş seçimi yapınız"
+					);
+					return;
+				}
+
+				var response = TransactionCaller.sync(
+					"ECZ_MES-4.0/KAGIT/DM_MANAGEMENT/COMBINE_ORDER/ORDER_OPERATION/T_combineCompleteBobin", {
+						I_SFC: selectedSfc,
+						I_AUFNR: selectedSo,
+						I_WC: selectedWC,
+						I_SITE: this.SITE,
+					},
+					"O_JSON"
+				);
+				MessageToast.show(response[0]);
+				this.getInitialDatas(selectedWorkCenter);
+			},
+
+			onPressInfoOrderButton: function (oEvent) {
+				var selectedRowLength = this.oView.byId("idParentOrderTable").getSelectedContextPaths().length;
+				if (selectedRowLength > 0) {
+					TransactionCaller.async(
+						"ECZ_MES-4.0/KAGIT/DM_MANAGEMENT/COMBINE_ORDER/ORDER_LIST/orderDetails/T_KMOrderDetails", {
+							I_SITE: this.SITE,
+							I_SFC: selectedModel.PARENTSFC
+						},
+						"O_JSON",
+						this.getKMOrderDetails,
+						this,
+						"GET"
+					);
+
+					//	this.getUserAuthorizationCheckFromUsername();
+
+					/*	oRouter.navTo("RouteMain2", {
+							"WorkCenter": WorkCenter,
+							"OrderValue": OrderValue,
+							"KMSQC": KMSQC,
+							"DMSQC": KMSQC,
+							"DESCRIPTION": MatDescription,
+							"SFC_STATUS": SFC_STATUS,
+							"AUTH_CHECK": AUTH_CHECK
+						});*/
+
+				} else {
+
+					var msg = "Bir sipariş seçiniz.."
+					MessageToast.show(msg, {
+						duration: 10000
+					});
+
+				}
+			},
+			getKMOrderDetails: function (iv_data, iv_scope) {
+				var myModel = new sap.ui.model.json.JSONModel();
+				if (Array.isArray(iv_data[0].Rowsets.Rowset.Row)) {
+					myModel.setData(iv_data[0]);
+				} else if (!iv_data[0].Rowsets.Rowset.Row) {
+					myModel.setData(null);
+				} else {
+					var obj_iv_data = iv_data[0];
+					var dummyData = [];
+					dummyData.push(iv_data[0].Rowsets.Rowset.Row);
+					obj_iv_data.Rowsets.Rowset.Row = dummyData;
+					myModel.setData(obj_iv_data);
+				}
+
+				iv_scope.getUserAuthorizationCheckFromUsername();
+
+				oRouter.navTo("RouteMain6", {
+					"WorkCenter": myModel.getData().Rowsets.Rowset.Row[0].WORK_CENTER,
+					"OrderValue": myModel.getData().Rowsets.Rowset.Row[0].QTY_ORDERED,
+					"KMSQC": myModel.getData().Rowsets.Rowset.Row[0].SHOP_ORDER,
+					"DMSQC": myModel.getData().Rowsets.Rowset.Row[0].SHOP_ORDER,
+					"DESCRIPTION": myModel.getData().Rowsets.Rowset.Row[0].DESCRIPTION,
+					"SFC_STATUS": myModel.getData().Rowsets.Rowset.Row[0].SFC_STATUS,
+					"AUTH_CHECK": AUTH_CHECK
+				});
+
+			},
+
+			getUserAuthorizationCheckFromUsername: function () {
+
+				var response = TransactionCaller.sync(
+					"Default/T_GetUserCheckValueFromUsername", {
+
+					},
+					"O_JSON"
+				);
+
+				if (response[0] === "" || response[0] === null || response[0] === undefined) {
+					AUTH_CHECK = "NOT_AUTHORIZED"
+				} else {
+
+					AUTH_CHECK = response[0];
+				}
+			},
+
+			getAllWCS: function getAllWCS() {
+				TransactionCaller.async(
+					"ECZ_MES-4.0/KAGIT/SHOP_ORDER_RELEASE/GET_ALL_WC/T_SlcAllWCList", {},
+					"O_JSON",
+					this.getAllWCSCB,
+					this,
+					"GET"
+				);
+			},
+
+			getAllWCSCB: function (iv_data, iv_scope) {
+				var myModel = new sap.ui.model.json.JSONModel();
+				if (Array.isArray(iv_data[0].Rowsets.Rowset.Row)) {
+					myModel.setData(iv_data[0]);
+				} else if (!iv_data[0].Rowsets.Rowset.Row) {
+					myModel.setData(null);
+				} else {
+					var obj_iv_data = iv_data[0];
+					var dummyData = [];
+					dummyData.push(iv_data[0].Rowsets.Rowset.Row);
+					obj_iv_data.Rowsets.Rowset.Row = dummyData;
+					myModel.setData(obj_iv_data);
+				}
+
+				//iv_scope.getView().byId("workCenterComboBox").setModel(myModel);
+			},
+
+			getDMWCs: function () {
+				TransactionCaller.async(
+					"ECZ_MES-4.0/KAGIT/SHOP_ORDER_RELEASE/GET_ALL_WC/T_SlcDMWCList", {},
+					"O_JSON",
+					this.getDMWCsCB,
+					this,
+					"GET"
+				);
+
+			},
+
+			getDMWCsCB: function (iv_data, iv_scope) {
+				var myModel = new sap.ui.model.json.JSONModel();
+				if (Array.isArray(iv_data[0].Rowsets.Rowset.Row)) {
+					myModel.setData(iv_data[0]);
+				} else if (!iv_data[0].Rowsets.Rowset.Row) {
+					myModel.setData(null);
+				} else {
+					var obj_iv_data = iv_data[0];
+					var dummyData = [];
+					dummyData.push(iv_data[0].Rowsets.Rowset.Row);
+					obj_iv_data.Rowsets.Rowset.Row = dummyData;
+					myModel.setData(obj_iv_data);
+				}
+
+				iv_scope.getView().byId("workCenterComboBox").setModel(myModel);
+			},
+
+			onCancelBobinCreateButton: function (oEvent) {
+				var dummyArr = [];
+
+				var myModel = new sap.ui.model.json.JSONModel();
+				myModel.setData(dummyArr);
+				sap.ui.core.Fragment.byId(
+					"Z_BobinCreate",
+					"idBobinCreateTable"
+				).setModel(myModel);
+
+				this._oDialogBobinCreate.close();
+			},
+
+			onChangeQuantityInput: function (oEvent) {
+				checkChangeExist = 1;
+			},
+			onChangeMihverComboBox: function (oEvent) {
+				checkChangeExist = 1;
+			},
+
+			onChangeQualityScraptValueField: function (oEvent) {
+				checkChangeExist = 1;
+			},
+
+			onPressCompleteOperator: function () {
+				var selectedSFC = this.getView()
+					.byId("idParentOrderTable")
+					.getSelectedItem()?.getBindingContext()
+					.getProperty("PARENTSO");
+
+				if (selectedSFC == undefined) {
+					MessageBox.show(
+						"Lütfen üst sipariş tablosundan sipariş seçimi yapınız"
+					);
+					return;
+				}
+
+				//kalite sonuç formlarının kontrolü
+				var response = TransactionCaller.sync("ECZ_MES-4.0/KAGIT/podButtons/orderClose/checkQualityForms/T_CHECK_QUALITY_FORMS", {
+						I_SFC: selectedSFC
+					},
+					"O_JSON"
+				);
+
+				if (response[1] == "E") {
+					MessageToast.show(response[0]);
+					//return;
+				}
+
+				sap.m.MessageBox.show(
+					selectedSFC +
+					" No'lu kombine siparişe operatör tamamla işlemi yapılacaktır.Onaylıyor musunuz?", {
+						icon: sap.m.MessageBox.Icon.WARNING,
+						title: "UYARI",
+						actions: [
+							sap.m.MessageBox.Action.OK,
+							sap.m.MessageBox.Action.CANCEL,
+						],
+						onClose: function (oAction) {
+							if (oAction == "OK") {
+								this.onPressOrderCompleteOperatorOK(selectedSFC);
+							}
+						}.bind(this),
+					}
+				);
+			},
+
+			onPressOrderCompleteOperatorOK: function (selectedSFC) {
+				var response = TransactionCaller.sync(
+					"ECZ_MES-4.0/KAGIT/DM_MANAGEMENT/COMBINE_ORDER/ORDER_OPERATION/orderAdminClose/T_orderOparatorClose", {
+						I_SFC: selectedSFC,
+						I_SITE: this.SITE,
+					},
+					"O_JSON"
+				);
+				MessageToast.show(response[0]);
+
+				if (response[1] != "E") {
+					this.getInitialDatas(selectedWorkCenter);
+				}
+			},
+
+			onPressOrderRevive: function (oEvent) {
+				var selectedSFC = this.getView()
+					.byId("idParentOrderTable")
+					.getSelectedItem()?.getBindingContext()
+					.getProperty("PARENTSO");
+
+				if (selectedSFC == undefined) {
+					MessageBox.show(
+						"Lütfen üst sipariş tablosundan sipariş seçimi yapınız"
+					);
+					return;
+				}
+
+				sap.m.MessageBox.show(
+					selectedSFC +
+					" No'lu kombine siparişe sipariş canlandırma işlemi yapılacaktır. Onaylıyor musunuz?", {
+						icon: sap.m.MessageBox.Icon.WARNING,
+						title: "UYARI",
+						actions: [
+							sap.m.MessageBox.Action.OK,
+							sap.m.MessageBox.Action.CANCEL,
+						],
+						onClose: function (oAction) {
+							if (oAction == "OK") {
+								this.onPressOrderReviveOK(selectedSFC);
+							}
+						}.bind(this),
+					}
+				);
+			},
+
+			onPressOrderReviveOK: function (selectedSFC) {
+				var response = TransactionCaller.sync(
+					"ECZ_MES-4.0/KAGIT/DM_MANAGEMENT/COMBINE_ORDER/ORDER_OPERATION/orderAdminClose/T_orderAdminStart", {
+						I_SFC: selectedSFC,
+						I_SITE: this.SITE,
+					},
+					"O_JSON"
+				);
+				MessageToast.show(response[0]);
+
+				if (response[1] != "E") {
+					this.getInitialDatas(selectedWorkCenter);
+				}
+			},
+
+			onPressCompleteManager: function (oEvent) {
+				var selectedSFC = this.getView()
+					.byId("idParentOrderTable")
+					.getSelectedItem()?.getBindingContext()
+					.getProperty("PARENTSO");
+
+				if (selectedSFC == undefined) {
+					MessageBox.show(
+						"Lütfen üst sipariş tablosundan sipariş seçimi yapınız"
+					);
+					return;
+				}
+
+				//kalite sonuç formlarının kontrolü
+				var response = TransactionCaller.sync("ECZ_MES-4.0/KAGIT/podButtons/orderClose/checkQualityForms/T_CHECK_QUALITY_FORMS", {
+						I_SFC: selectedSFC
+					},
+					"O_JSON"
+				);
+
+				if (response[1] == "E") {
+					MessageToast.show(response[0]);
+					//return;
+				}
+
+				sap.m.MessageBox.show(
+					selectedSFC +
+					" No'lu kombine siparişe yönetici tamamla işlemi yapılacaktır. Onaylıyor musunuz?", {
+						icon: sap.m.MessageBox.Icon.WARNING,
+						title: "UYARI",
+						actions: [
+							sap.m.MessageBox.Action.OK,
+							sap.m.MessageBox.Action.CANCEL,
+						],
+						onClose: function (oAction) {
+							if (oAction == "OK") {
+								this.onPressCompleteManagerOK(selectedSFC);
+							}
+						}.bind(this),
+					}
+				);
+			},
+
+			onPressCompleteManagerOK: function (selectedSFC) {
+				var response = TransactionCaller.sync(
+					"ECZ_MES-4.0/KAGIT/DM_MANAGEMENT/COMBINE_ORDER/ORDER_OPERATION/orderAdminClose/T_orderAdminClose", {
+						I_SFC: selectedSFC,
+						I_SITE: this.SITE,
+					},
+					"O_JSON"
+				);
+				MessageToast.show(response[0]);
+
+				if (response[1] != "E") {
+					this.getInitialDatas(selectedWorkCenter);
+				}
+			},
+		});
+	}
+);

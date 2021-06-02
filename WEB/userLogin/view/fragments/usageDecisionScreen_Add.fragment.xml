@@ -1,0 +1,121 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout">
+    <Dialog state="Warning" id="fragmentOnAdd" title="Kullanım Kararı Ekle">
+        <content>
+ <HBox alignItems="Center" justifyContent="Center" height="7%">
+ <VBox>
+				<List width="120%">
+                
+		<InputListItem label="Malzeme değişimi">
+			<CheckBox id="idCombobox1" selected="false" select="onChangeMat"/>
+		</InputListItem>
+        		<InputListItem label="Deşe girişi">
+			<CheckBox id="idCombobox2" selected="false" select="onChangeDese"/>
+		</InputListItem>
+	</List>
+
+    </VBox>
+                    </HBox>
+            <HBox>
+                <form:SimpleForm editable="true" class="sapUiSmallMargin">
+                    <l:VerticalLayout class="sapUiContentPadding" width="100%">
+                        <l:content>
+                            <VBox>
+                                <Label text="Malzeme Kodu" design="Bold" width="auto" class="sapUiTinyMargin"/>
+                                <Input id="idMaterial" textAlign="Center" value="" width="300px" editable="false"></Input>
+
+
+                                <Label text="Malzeme Adı" design="Bold" width="auto" class="sapUiTinyMargin"/>
+                                <Input id="idMaterialDesc" textAlign="Center" value="" width="300px" editable="false"></Input>
+
+
+                                <Label text="Bobin ID" design="Bold" width="auto" class="sapUiTinyMargin"/>
+                                <Input id="idBobin" textAlign="Center" value="" width="300px" editable="false"></Input>
+
+
+                                <Label text="Bobin No" design="Bold" width="auto" class="sapUiTinyMargin"/>
+                                <Input id="idBobinNr" textAlign="Center" value="" width="300px" editable="false"></Input>
+
+                                <Label text="Mal Giriş Miktarı (Kg)" design="Bold" width="auto" class="sapUiTinyMargin"/>
+                                <Input id="idGdsMvmt" textAlign="Center" value="{selectedModel>/QTY_ORDERED}" width="300px" editable="false" type="number" ></Input>
+
+                                <Label text="Depo Yeri" design="Bold" width="auto" class="sapUiTinyMargin"/>
+                                <Input id="idStorage" textAlign="Center" value="" width="300px" editable="false" type="number" ></Input>
+
+                                <Label text="Bildirim Miktarı (Kg)" design="Bold" width="auto" class="sapUiTinyMargin"/>
+                                <Input id="idNotQty" textAlign="Center" value="" width="300px" editable="false"></Input>
+
+                            <!--    <Label text="Kullanım Kararı" design="Bold" width="auto" class="sapUiTinyMargin" /> -->
+                              <!--  <ComboBox id="idUsage" placeholder="Kullanım Kararı Giriniz." items="{path : '/Rowsets/Rowset/Row', length: 999}" width="300px" class="sapUiSmallMarginBottom">
+                                    <core:Item key="{DATA_VALUE}" text="{DATA_TAG}"/>
+                                </ComboBox>  -->
+                            </VBox>
+                        </l:content>
+                    </l:VerticalLayout>
+                </form:SimpleForm>
+                <form:SimpleForm minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" width="auto">
+                    <l:VerticalLayout class="sapUiContentPadding" width="100%">
+                        <l:content>
+                            <VBox>
+
+                                <Label text="Yeni Malzeme Kodu" design="Bold" width="auto" class="sapUiTinyMargin"/>
+                                <!-- <Input id="idNewMaterial" textAlign="Center" value="" width="300px" editable="false"></Input> -->
+                                <ComboBox id="idNewMaterial" textAlign="Center" value="" width="300px" change="onMaterialChange" items="{path : '/Rowsets/Rowset/Row', length: 999}" editable="false">
+                                    <core:Item key="{ITEM}" text="{ITEM}"/>
+                                </ComboBox>
+
+
+                                <Label text="Yeni Malzeme Adı" design="Bold" width="auto" class="sapUiTinyMargin"/>
+                                <Input id="idNewMaterialDesc" textAlign="Center" value="" width="300px" editable="false"></Input>
+                                <!-- <ComboBox id="idNewMaterialDesc" textAlign="Center" value="" width="300px" change="onMaterialDescChange" items="{path : '/Rowsets/Rowset/Row', length: 999}">
+                                    <core:Item key="{DESCRIPTION}" text="{DESCRIPTION}"/>
+                                </ComboBox> -->
+
+                                <Label text="Kalite Deşesi Tipi" design="Bold" width="auto" class="sapUiTinyMargin"/>
+                                <!-- <Input id="idNcCode" textAlign="Center" value="" width="300px" editable="false"></Input> -->
+                                <ComboBox id="idNcCode" textAlign="Center" value="" width="300px" change="onWasteChange" items="{path : '/Rowsets/Rowset/Row', length: 999}" editable="false">
+                                    <core:Item key="{DEPARTMENT}" text="{DEPARTMENTDESC}"/>
+                                </ComboBox>
+
+
+                                <Label text="Deşe Miktarı (Kg)" design="Bold" width="auto" class="sapUiTinyMargin"/>
+                                <Input id="idNcQty" textAlign="Center" value="{ncQtyModel>/input2}" width="300px" editable="false"  liveChange="onNcQtyEnter" type="number" ></Input>
+ 
+                                <Label text="Kalan Miktar (Kg)" design="Bold" width="auto" class="sapUiTinyMargin"/>
+                                <Input id="idQtyRcpt" textAlign="Center" value="{= ${selectedModel>/selectedLine/QTY_ON_HAND} - ${ncQtyModel>/input2}}" width="300px" type="number" editable="false"></Input>
+
+                                <Label text="Deşe Masraf Yeri" design="Bold" width="auto" class="sapUiTinyMargin"/>
+                                <!-- <Input id="idNcCost" textAlign="Center" value="" width="300px" editable="true"></Input> -->
+                                <ComboBox id="idNcCost" textAlign="Center" value="" width="300px" items="{path : '/Rowsets/Rowset/Row', length: 999}" editable="false">
+                                    <core:Item key="{DEPARTMENT}" text="{DEPARTMENTDESC}"/>
+                                </ComboBox>
+
+                                <Label text="Karar Açıklaması" design="Bold" width="auto" class="sapUiTinyMargin"/>
+                                <Input id="idDecDesc" textAlign="Center" value="" width="300px" editable="false"></Input>
+
+                                <Label text="Depo Yeri" tooltip="" visible="false" />
+                                <ComboBox id="idLager" placeholder="Depo Yeri Giriniz." items="{	path: '/dummydata'}" width="500px" class="sapUiSmallMarginBottom" visible="false">
+                                    <core:Item key="{kolon2}" text="{kolon2}"/>
+                                </ComboBox>
+
+                                <!-- <Label text="Makine" design="Bold" width="auto" class="sapUiTinyMargin"/>
+                                <Input id="MachineFieldId" textAlign="Center" value="" width="300px" editable="false"></Input> -->
+
+                                <Label text="Miktar" tooltip="" visible="false"/>
+                                <Input id="idQuantity" placeholder="Miktar giriniz." width="500px" fieldWidth="80px" class="sapUiSmallMarginBottom" type="Number" visible="false" />
+
+                            </VBox>
+                        </l:content>
+                    </l:VerticalLayout>
+                </form:SimpleForm>
+            </HBox>
+        </content>
+        <buttons>
+            <Button icon="sap-icon://save" text="Kaydet" press="onFragmentSave"/>
+            <Button icon="sap-icon://sys-cancel" text="İptal" press="onFragmentCancel"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

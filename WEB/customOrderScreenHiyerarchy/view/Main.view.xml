@@ -1,0 +1,74 @@
+<mvc:View xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:c="sap.ui.commons"
+    xmlns:m="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns="sap.ui.table"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
+    xmlns:tnt="sap.tnt" height="100%" controllerName="customOrderScreen.controller.Main">
+
+    <m:App>
+        <m:pages>
+           <m:Page
+            showHeader="false"
+            enableScrolling="false">
+        <m:content>
+            <TreeTable
+                    id="idOrderTable"
+                    rows="{path:'/root', parameters: {arrayNames:['element']}}"
+                    selectionMode="MultiToggle"
+                    enableSelectAll="false"
+                    ariaLabelledBy="title">
+                <extension>
+                    <m:OverflowToolbar>
+                        <m:Title id="title" text="Clothing"/>
+                        <m:ToolbarSpacer/>
+                        <m:Button text="Collapse all" press="onCollapseAll"/>
+                        <m:Button text="Collapse selection" press="onCollapseSelection"/>
+                        <m:Button text="Expand first level" press="onExpandFirstLevel"/>
+                        <m:Button text="Expand selection" press="onExpandSelection"/>
+                    </m:OverflowToolbar>
+                </extension>
+                <columns>
+                    <Column width="13rem">
+                        <m:Label text="Siparis No"/>
+                        <template>
+                            <m:Text text="{name}" wrapping="false" />
+                        </template>
+                    </Column>
+                     
+                    <Column width="9rem">
+                        <m:Label text="Malzeme"/>
+                        <template>
+                          <m:Text text="{material}" wrapping="false" />
+                        </template>
+                    </Column>
+ 	                <Column width="13rem">
+                        <m:Label text="Bobin Sayısı"/>
+                        <template>
+     <m:Text text="" wrapping="false" />
+                     <!--    <m:Text id="bobinWidthId" textAlign="Center" value=""   wrapping="true" width="300px"  change="onChangeBobinWidthInput" editable="true" type="Number"></m:Input>-->
+                           
+                        </template>
+                    </Column>
+
+                 
+                </columns>
+            </TreeTable>
+        </m:content>
+        <m:footer>
+			<m:OverflowToolbar>
+            	
+				<m:Button width="150px" type="Reject" text="Bobin Oluştur" icon="sap-icon://accept"   press="onPressCreateBobinButton" class="sapUiSmallMargin"/>
+			</m:OverflowToolbar>
+		</m:footer>
+       
+    </m:Page>
+        </m:pages>
+    </m:App>
+</mvc:View>
+
+
+

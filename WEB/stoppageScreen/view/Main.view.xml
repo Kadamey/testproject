@@ -1,0 +1,220 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ui="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt"
+	height="100%" controllerName="stoppageScreen.controller.Main">
+	<App>
+		<pages>
+			<Page title="Duruş Ekranı" showHeader="false">
+				<content>
+					<tnt:ToolHeader>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ntt.png"></Image>
+						<Label text="İş Yeri : " design="Bold" class="sapUiSmallMargin"></Label>
+						<ComboBox id="idWsComboBox" textAlign="Center" items="{ path: '/Rowsets/Rowset/Row'}" width="250px" change="onSelectLine"
+							placeholder="İş Yeri Seçiniz...">
+							<core:Item key="{WORK_CENTER}" text="{WORK_CENTER}"/>
+						</ComboBox>
+						<ToolbarSpacer/>
+						<Text text="Duruş Ekranı" wrapping="true" class="stoppageScreenHeaderColor"/>
+						<ToolbarSpacer/>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ecz.png"></Image>
+					</tnt:ToolHeader>
+					<Panel id="expandablePanel" expandable="true" expand="onExpand" width="auto" class="sapUiResponsiveMargin">
+						<headerToolbar>
+							<OverflowToolbar active="true" press="onOverflowToolbarPress">
+								<Title text="Filtreleme Seçenekleri"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<content>
+							<HBox justifyContent="SpaceAround" alignItems="Center" width="auto">
+								<VBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="100px" text="Bildirim No : " design="Bold"/>
+										<Input width="200px" id="INP1" textAlign="Center" type="Number" placeholder="Bildirim No Giriniz..."/>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="100px" text="Başl. Zamanı : " design="Bold"/>
+										<DateTimePicker width="200px" id="INP2" displayFormat="dd/MM/yy HH:mm:ss"/>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="100px" text="Bitiş Zamanı : " design="Bold"/>
+										<DateTimePicker width="200px" id="INP3" displayFormat="dd/MM/yy HH:mm:ss"/>
+									</HBox>
+								</VBox>
+								<VBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="100px" text="Duruş Türü : " design="Bold"/>
+										<ComboBox width="200px" id="INP4" textAlign="Center" placeholder="Duruş Türü Giriniz...">
+											<items>
+												<core:Item xmlns:core="sap.ui.core" key="A" text="Otomatik Duruş"/>
+												<core:Item xmlns:core="sap.ui.core" key="M" text="Manuel Duruş"/>
+												<core:Item xmlns:core="sap.ui.core" key="H" text="Hız Kaybı"/>
+											</items>
+										</ComboBox>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="100px" text="Lokasyon : " design="Bold"/>
+										<ComboBox id="INP5" textAlign="Center" width="200px" items="{path : '/Rowsets/Rowset/Row', length: 999}" placeholder="Lokasyon Seçiniz..."
+											change="onChangeComboBox">
+											<core:ListItem key="{TOOL_NUMBER}" text="{DESCRIPTION}"/>
+										</ComboBox>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="100px" text="Ekipman : " design="Bold"/>
+										<ComboBox id="INP6" textAlign="Center" width="200px" items="{path : '/Rowsets/Rowset/Row', length: 999}" placeholder="Ekipman Seçiniz...">
+											<core:ListItem key="{TOOL_NUMBER}" text="{DESCRIPTION}"/>
+										</ComboBox>
+									</HBox>
+								</VBox>
+								<VBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="100px" text="Duruş Tipi 1 : " design="Bold"/>
+										<ComboBox id="INP7" textAlign="Center" width="200px" items="{path : '/Rowsets/Rowset/Row', length: 3000}"
+											placeholder="Duruş Tipi Giriniz...">
+											<core:ListItem key="{REASON_CODE_ID}" text="{TEXT}"/>
+										</ComboBox>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="100px" text="Duruş Tipi 2 : " design="Bold"/>
+										<ComboBox id="INP8" textAlign="Center" width="200px" items="{path : '/Rowsets/Rowset/Row', length: 3000}"
+											placeholder="Duruş Tipi Giriniz...">
+											<core:ListItem key="{REASON_CODE_ID}" text="{TEXT}"/>
+										</ComboBox>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="100px" text="Duruş Tipi 3 : " design="Bold"/>
+										<ComboBox id="INP9" textAlign="Center" width="200px" items="{path : '/Rowsets/Rowset/Row', length: 3000}"
+											placeholder="Duruş Tipi Giriniz...">
+											<core:ListItem key="{REASON_CODE_ID}" text="{TEXT}"/>
+										</ComboBox>
+									</HBox>
+								</VBox>
+								<VBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="100px" text="Duruş Tipi 4 : " design="Bold"/>
+										<ComboBox id="INP10" textAlign="Center" width="200px" items="{path : '/Rowsets/Rowset/Row', length: 3000}"
+											placeholder="Duruş Tipi Giriniz...">
+											<core:ListItem key="{REASON_CODE_ID}" text="{TEXT}"/>
+										</ComboBox>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="100px" text="Duruş Tipi 5 : " design="Bold"/>
+										<ComboBox id="INP11" textAlign="Center" width="200px" items="{path : '/Rowsets/Rowset/Row', length: 3000}"
+											placeholder="Duruş Tipi Giriniz...">
+											<core:ListItem key="{REASON_CODE_ID}" text="{TEXT}"/>
+										</ComboBox>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="100px" text="Açıklama : " design="Bold"/>
+										<Input width="200px" id="INP12" textAlign="Center" placeholder="Açıklama Giriniz..."/>
+									</HBox>
+								</VBox>
+								<VBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="100px" text="Tarih : " design="Bold"/>
+										<DatePicker width="200px" id="INP13" displayFormat="dd/MM/yy"/>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="100px" text="Vardiya : " design="Bold"/>
+										<ComboBox width="200px" id="INP14" textAlign="Center" placeholder="Vardiya Giriniz...">
+											<items>
+												<core:Item xmlns:core="sap.ui.core" key="1" text="1.Vardiya (00:00-08:00)"/>
+												<core:Item xmlns:core="sap.ui.core" key="2" text="2.Vardiya (08:00-16:00)"/>
+												<core:Item xmlns:core="sap.ui.core" key="3" text="3.Vardiya (16:00-00:00)"/>
+											</items>
+										</ComboBox>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Button type="Reject" width="140px" text="Temizle" icon="sap-icon://delete" class="sapUiTinyMargin" press="onClearSearchFilter"></Button>
+										<Button type="Accept" width="140px" text="Filtrele" icon="sap-icon://search" class="sapUiTinyMargin" press="onPressSearchFilter"></Button>
+									</HBox>
+								</VBox>
+							</HBox>
+						</content>
+					</Panel>
+					<Table id="idDurusTable" inset="false" items="{ path: '/Rowsets/Rowset/Row'}" sticky="ColumnHeaders" mode="SingleSelectMaster">
+						<headerToolbar>
+							<OverflowToolbar>
+								<Button id="createStoppage" icon="sap-icon://sys-add" width="200px" text="Yeni Duruş Yarat" press="onPressCreateStoppage" type="Reject"/>
+								<Button id="createNotification" icon="sap-icon://sys-add" width="200px" text="Yeni Bildirim Yarat" press="onPressCreateNotification"
+									type="Reject"/>
+								<ToolbarSpacer/>
+								<Button icon="sap-icon://sys-monitor" width="200px" text="Bildirim Listesi" press="onPressNotificationList" type="Accept"/>
+								<Button icon="sap-icon://synchronize" width="200px" text="Tabloyu Yenile" press="onPressRefreshTable" type="Accept"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<columns>
+							<Column hAlign="Center">
+								<Label text="Bildirim No" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Başlangıç Zamanı" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Bitiş Zamanı" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Süre" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Lokasyon" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Ekipman" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Duruş Tipi 1" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Duruş Tipi 2" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Duruş Tipi 3" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Duruş Tipi 4" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Duruş Tipi 5" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Açıklama" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="" design="Bold"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{NOTIF_ID}" wrapping="false" class="sapUiSmallMargin"/>
+									<Text text="{START_TIME2}" wrapping="true" class="sapUiSmallMargin"/>
+									<Text text="{END_TIME2}" wrapping="true" class="sapUiSmallMargin"/>
+									<Text text="{path: 'DURATION' , formatter: '.statusText'}" wrapping="false" class="sapUiSmallMargin"/>
+									<Text text="{FUNC_LOC_DESC}" wrapping="true" class="sapUiSmallMargin"/>
+									<Text text="{TOOL_DESC}" wrapping="true" class="sapUiSmallMargin"/>
+									<Text text="{REASON_CODE1_TEXT}" wrapping="true" class="sapUiSmallMargin"/>
+									<Text text="{REASON_CODE2_TEXT}" wrapping="true" class="sapUiSmallMargin"/>
+									<Text text="{REASON_CODE3_TEXT}" wrapping="true" class="sapUiSmallMargin"/>
+									<Text text="{REASON_CODE4_TEXT}" wrapping="true" class="sapUiSmallMargin"/>
+									<Text text="{REASON_CODE5_TEXT}" wrapping="true" class="sapUiSmallMargin"/>
+									<Text text="{COMMENT}" wrapping="true" class="sapUiSmallMargin"/>
+									<MenuButton text="İşlemler">
+										<Menu>
+											<MenuItem text="Bobin Değiştir" icon="sap-icon://synchronize" press="onPressBobinChange"/>
+											<MenuItem text="Duruş Aktar" icon="sap-icon://paper-plane" press="onPressStoppageTransfer"/>
+											<MenuItem text="Duruş Böl" icon="sap-icon://split" press="onPressStoppageSplit"/>
+											<MenuItem id="idEditStoppage" text="Duruş Düzenle" icon="sap-icon://edit" press="onPressStoppageEdit"/>
+											<MenuItem text="Duruş Sil" icon="sap-icon://delete" press="onPressStoppageDelete"/>
+											<MenuItem id="idProdChange" text="Üretim Değişimi" icon="sap-icon://media-pause" press="onPressStoppageEdit"/>
+											<!--<MenuItem text="Üretim Değişimi" icon="sap-icon://media-pause" press="onPressProductionChange"/>-->
+											<MenuItem id="idProdChangeBack" text="Ürt. Değişimi Geri Al" icon="sap-icon://undo" press="onPressProductionBack"/>
+										</Menu>
+									</MenuButton>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

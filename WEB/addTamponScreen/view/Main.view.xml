@@ -1,0 +1,108 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ui="sap.ui.table" xmlns:f="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt" height="100%" controllerName="addTamponScreen.controller.Main">
+	<App>
+		<pages>
+			<Page title="Tampon Ekleme Ekranı" showHeader="false">
+				<content>
+					<tnt:ToolHeader>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ntt.png"></Image>
+						<ToolbarSpacer/>
+						<Text id="idTitleText" text="Tampon Ekleme Ekranı" wrapping="true" class="bobbinGroupingHeaderColor"/>
+						<ToolbarSpacer/>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ecz.png"></Image>
+					</tnt:ToolHeader>
+					<HBox fitContainer="true" justifyContent="SpaceBetween">
+						<form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+							<l:VerticalLayout>
+								<l:content>
+									<VBox>
+										<Label text="Tampon Giriş" design="Bold" class="sapUiTinyMargin"/>
+										<DateTimePicker width="300px" id="tamponStartTimeId" displayFormat="short" placeholder="Tampon Giriş Saati..."/>
+										<Label text="Tampon Çıkış" design="Bold" class="sapUiTinyMargin"/>
+										<DateTimePicker width="300px" id="tamponEndTimeId" displayFormat="short" placeholder="Tampon Çıkış Saati..."/>
+										<Label text="Boşa Akma (dk)" design="Bold" class="sapUiTinyMargin"/>
+										<Input id="wastedTimeId" textAlign="Center" value="{/0/WORKORDER}" width="300px" editable="{/editValue}" type="Number"></Input>
+										<Label text="Makine Hızı (m/dk)" design="Bold" class="sapUiTinyMargin"/>
+										<Input id="machineSpeedId" textAlign="Center" value="{/0/WORKORDER}" width="300px" editable="{/editValue}" type="Number"></Input>
+										<Label text="Raspa Değişimi (adet)" design="Bold" class="sapUiTinyMargin"/>
+										<Input id="raspaChangeId" textAlign="Center" value="{/0/WORKORDER}" width="300px" editable="{/editValue}" type="Number"></Input>
+										<Label text="Kalite Deşesi Tipi" design="Bold" class="sapUiTinyMargin"/>
+										<ComboBox id="qualityScraptTypeId" textAlign="Center" value="" width="300px" items="{path: '/0/Result/items/item'}"
+											change="onQualityWasteChange">
+											<core:Item key="{ncCode}" text="{description}"/>
+										</ComboBox>
+										<Label text="Kalite Deşesi" design="Bold" class="sapUiTinyMargin"/>
+										<Input id="qualityScraptId" textAlign="Center" value="{/0/WORKORDER}" width="300px" editable="{/editValue}" type="Number"></Input>
+										<Label text="Toplam Kalite Deşesi (kg)" design="Bold" class="sapUiTinyMargin"/>
+										<Input id="totalQualityScraptId" width="300px" textAlign="Center" value="{/0/WORKORDER}" editable="false" type="Number"></Input>
+									</VBox>
+								</l:content>
+							</l:VerticalLayout>
+						</form:SimpleForm>
+						<form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+							<l:VerticalLayout>
+								<l:content>
+									<VBox>
+										<Label text="Tampon Ağırlığı (kg)" design="Bold" class="sapUiTinyMargin"/>
+										<Input id="tamponWeightId" textAlign="Center" value="{/0/WORKORDER}" width="300px" editable="{/editValue}" type="Number"></Input>
+										<Label text="Tampon Genişliği (cm)" design="Bold" class="sapUiTinyMargin"/>
+										<Input id="tamponWidthId" textAlign="Center" value="{/0/WORKORDER}" width="300px" editable="{/editValue}" type="Number"></Input>
+										<Label text="Bobin Genişliği (cm)" design="Bold" class="sapUiTinyMargin"/>
+										<Input id="bobinWidthId" textAlign="Center" value="{/0/WORKORDER}" width="300px" editable="false" type="Number"></Input>
+										<Label text="Tampon Uzunluğu (km)" design="Bold" class="sapUiTinyMargin"/>
+										<Input id="lengthId" textAlign="Center" value="{/0/WORKORDER}" width="300px" editable="{/editValue}" type="Number"></Input>
+										<Label text="Kontrollü Kullanım Adeti" design="Bold" class="sapUiTinyMargin" visible="false"/>
+										<Input id="controlUsageQUantityId" textAlign="Center" value="{/0/WORKORDER}" width="300px" editable="{/editValue}" type="Number"
+											visible="false"></Input>
+										<Label text="Diğer Deşesi Tipi" design="Bold" class="sapUiTinyMargin"/>
+										<ComboBox id="otherScraptTypeId" textAlign="Center" value="" width="300px" items="{path: '/0/Result/items/item'}" change="onWasteChange">
+											<core:Item key="{ncCode}" text="{description}"/>
+										</ComboBox>
+										<Label text="Diğer Deşe (kg)" design="Bold" class="sapUiTinyMargin"/>
+										<Input id="otherScraptId" textAlign="Center" value="{/0/WORKORDER}" width="300px" editable="{/editValue}" type="Number"></Input>
+										<Label text="Toplam Diğer Deşe (kg)" design="Bold" class="sapUiTinyMargin"/>
+										<Input id="totalOtherScraptId" width="300px" textAlign="Center" value="{/0/WORKORDER}" editable="false" type="Number"></Input>
+									</VBox>
+								</l:content>
+							</l:VerticalLayout>
+						</form:SimpleForm>
+						<form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+							<l:VerticalLayout>
+								<l:content>
+									<VBox>
+										<Label text="Sipariş No" design="Bold" class="sapUiTinyMarginTopBottom"/>
+										<Text id="orderNoField" textAlign="Left" text="{/0/WORKORDER}" width="300px"></Text>
+										<Label text="SFC No" design="Bold" class="sapUiTinyMarginTopBottom"/>
+										<Text id="sfcNoField" textAlign="Left" text="{/0/WORKORDER}" width="300px"></Text>
+										<Label text="SFC Durumu" design="Bold" class="sapUiTinyMarginTopBottom"/>
+										<Text id="sfcStatusField" textAlign="Left" text="{/0/WORKORDER}" width="300px"></Text>
+										<Label text="Operasyon" design="Bold" class="sapUiTinyMarginTopBottom"/>
+										<Text id="operationFieldId" textAlign="Left" text="{/0/WORKORDER}" width="300px"></Text>
+										<Label text="Mile Sarma" design="Bold" class="sapUiTinyMarginTopBottom"/>
+										<CheckBox id="milIndicatorCheckboxId" text="" selected="false" enabled="false"/>
+										<Label text="Açıklama" design="Bold" class="sapUiTinyMarginTopBottom"/>
+										<TextArea id="InformationAreaId" valueState="Information" placeholder="Açıklama Giriniz..." growing="true" width="300px"/>
+										<Label text="Max Tampon Genislik" design="Bold" visible="false" class="sapUiTinyMarginTopBottom"/>
+										<Text id="maxTamponGenislikFieldId" textAlign="Left" text="{/0/WORKORDER}" visible="false" width="300px"></Text>
+									</VBox>
+								</l:content>
+							</l:VerticalLayout>
+						</form:SimpleForm>
+					</HBox>
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<Button width="200px" text="Deşe Kaydet" icon="sap-icon://save" press="onPressScraptSaveButton" class="sapUiTinyMargin"/>
+						<Button width="200px" text="Deşe Listele" icon="sap-icon://multiselect-all" press="onPressScraptListButton" class="sapUiTinyMargin"/>
+						<ToolbarSpacer/>
+						<Button id="tamponCreateButton" width="200px" type="Accept" text="Tampon Oluştur" icon="sap-icon://accept" press="onPressTamponCreateButton"
+							class="sapUiTinyMargin" visible="true"/>
+						<Button id="tamponChangeButton" width="200px" type="Accept" text="Tampon Düzenle" icon="sap-icon://edit" press="onPressTamponCreateButton"
+							class="sapUiTinyMargin" visible="false"/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -1,0 +1,192 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ui="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt"
+	height="100%" controllerName="orderReleaseScreen.controller.Main">
+	<App id="app">
+		<pages>
+			<Page title="Sipariş Onay Ekranı" showHeader="false">
+				<content>
+					<tnt:ToolHeader>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ntt.png"></Image>
+						<ComboBox width="250px" id="workCenterComboBox" textAlign="Center" items="{path: '/Rowsets/Rowset/Row'}" showSecondaryValues="true"
+							placeholder="İş Yeri Seçiniz..." fieldGroupIds="1">
+							<core:ListItem key="{WORK_CENTER}" text="{WORK_CENTER}" additionalText="{SITE}"/>
+						</ComboBox>
+						<ToolbarSpacer/>
+						<Text text="Sipariş Onay Ekranı" wrapping="true"/>
+						<ToolbarSpacer/>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ecz.png"></Image>
+					</tnt:ToolHeader>
+					<HBox justifyContent="SpaceBetween" alignItems="Center">
+						<HBox justifyContent="Start" alignItems="Center">
+							<Button width="200px" text="Sipariş Detay" icon="sap-icon://detail-view" press="onPressOrderDetails" type="Accept"/>
+							<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMarginBeginEnd">
+								<Label text="Tüm Siparişler " design="Bold"/>
+								<CheckBox id="idCheckBoxAllOrder" selected="false" select="onSelectAllOrderCheckBox"/>
+							</HBox>
+						</HBox>
+						<HBox justifyContent="End" alignItems="Center">
+							<Button width="200px" id="idOrderReleaseButton" type="Accept" text="Sipariş Onay" icon="sap-icon://accept" press="onPressReleaseButton"
+								class="sapUiTinyMarginBeginEnd"/>
+							<Button width="125px" id="searchOrdersButtonId" text="Ara" icon="sap-icon://search" press="onPressFilterButton"/>
+							<ComboBox width="200px" id="materialComboBox" textAlign="Center" items="{path: '/Rowsets/Rowset/Row'}" change="onChangeMaterialComboBox"
+								placeholder="Malzeme Seçiniz..." fieldGroupIds="1" visible="false" class="sapUiTinyMarginBeginEnd">
+								<core:Item key="{ITEM}" text="{ITEM} - {DESCRIPTION}"/>
+							</ComboBox>
+							<DateTimePicker width="200px" id="DTP1" displayFormat="dd/MM/yyyy HH:mm:ss" placeholder="Başlangıç Zamanı Giriniz..." visible="false"
+								change="onSelectStartTime" class="sapUiTinyMarginBeginEnd"/>
+							<DateTimePicker width="200px" id="DTP2" displayFormat="dd/MM/yyyy HH:mm:ss" placeholder="Bitiş Zamanı Giriniz..." visible="false"
+								change="onSelectEndTime" class="sapUiTinyMarginBeginEnd"/>
+							<Button width="125px" id="searchAllOrdersButton" text="Ara" icon="sap-icon://search" press="onPressOrderSearchButton" visible="false"/>
+						</HBox>
+					</HBox>
+					<VBox>
+						<ui:Table id="orderReleasedTable1" rows="{/Rowsets/Rowset/Row}" rowSelectionChange="onOrdersTableSelectionChange" alternateRowColors="true"
+							selectionMode="Single" selectionBehavior="RowOnly" columnHeaderHeight="50px" rowHeight="50px" visibleRowCount="6">
+							<ui:extension>
+								<OverflowToolbar>
+									<Label text="KM Sipariş Onay Listesi" design="Bold" class="sapUiSmallMarginBegin customText"/>
+									<ToolbarSpacer/>
+									<Button width="125px" text="Düzenle" icon="sap-icon://edit" press="onEditPriority"/>
+								</OverflowToolbar>
+							</ui:extension>
+							<ui:columns>
+								<ui:Column hAlign="Center" sortProperty="SHOP_ORDER" filterProperty="SHOP_ORDER" filterType="sap.ui.model.type.String">
+									<Label text="Sipariş No" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+									<ui:template>
+										<Text text="{SHOP_ORDER}" width="100%" textAlign="Center"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column hAlign="Center" sortProperty="ITEM" filterProperty="ITEM" filterType="sap.ui.model.type.String">
+									<Label text="Malzeme No" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+									<ui:template>
+										<Text text="{ITEM}" width="100%" textAlign="Center"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column hAlign="Center" sortProperty="ITEM_DESCRIPTION" filterProperty="ITEM_DESCRIPTION" filterType="sap.ui.model.type.String">
+									<Label text="Malzeme Tanımı" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+									<ui:template>
+										<Text text="{ITEM_DESCRIPTION}" wrapping="true" width="100%" textAlign="Center"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column hAlign="Center" sortProperty="QTY_ORDERED" filterProperty="QTY_ORDERED" filterType="sap.ui.model.type.String">
+									<Label text="Hedef Miktar" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+									<ui:template>
+										<Text text="{QTY_ORDERED}" class="orderReleaseScreenRowColor" width="100%" textAlign="Center"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column hAlign="Center" sortProperty="PLANNED_START_DATE" filterProperty="PLANNED_START_DATE" filterType="sap.ui.model.type.Date">
+									<Label text="ERP Planlanan Baslangıç" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+									<ui:template>
+										<Text text="{PLANNED_START_DATE}" wrapping="true" width="100%" textAlign="Center"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column hAlign="Center" sortProperty="PLANNED_COMP_DATE" filterProperty="PLANNED_COMP_DATE" filterType="sap.ui.model.type.Date">
+									<Label text="ERP Planlanan Bitiş" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+									<ui:template>
+										<Text text="{PLANNED_COMP_DATE}" wrapping="true" width="100%" textAlign="Center"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column hAlign="Center" sortProperty="PRIORITY" filterProperty="PRIORITY" filterType="sap.ui.model.type.String">
+									<Label text="Sıra No" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+									<ui:template>
+										<Text text="{PRIORITY}" width="100%" textAlign="Center"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column hAlign="Center" sortProperty="WORK_CENTER" filterProperty="WORK_CENTER" filterType="sap.ui.model.type.String">
+									<Label text="İş Yeri" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+									<ui:template>
+										<Text text="{WORK_CENTER}" width="100%" textAlign="Center"/>
+									</ui:template>
+								</ui:Column>
+							</ui:columns>
+						</ui:Table>
+					</VBox>
+					<VBox>
+						<ui:Table id="orderReleasedTable2" rows="{/Rowsets/Rowset/Row}" alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly"
+							columnHeaderHeight="50px" rowHeight="50px" visibleRowCount="4">
+							<ui:extension>
+								<OverflowToolbar>
+									<Label id="title2" text="DM Sipariş Onay Listesi" design="Bold" class="sapUiSmallMarginBegin customText"/>
+								</OverflowToolbar>
+							</ui:extension>
+							<ui:columns>
+								<ui:Column hAlign="Center" sortProperty="SHOP_ORDER" filterProperty="SHOP_ORDER" filterType="sap.ui.model.type.String">
+									<Label text="Sipariş No" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+									<ui:template>
+										<Text text="{SHOP_ORDER}" width="100%" textAlign="Center"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column hAlign="Center" sortProperty="ITEM" filterProperty="ITEM" filterType="sap.ui.model.type.String">
+									<Label text="Malzeme No" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+									<ui:template>
+										<Text text="{ITEM}" width="100%" textAlign="Center"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column hAlign="Center" sortProperty="ITEM_DESCRIPTION" filterProperty="ITEM_DESCRIPTION" filterType="sap.ui.model.type.String">
+									<Label text="Malzeme Tanımı" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+									<ui:template>
+										<Text text="{ITEM_DESCRIPTION}" wrapping="true" width="100%" textAlign="Center"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column hAlign="Center" sortProperty="QTY_ORDERED" filterProperty="QTY_ORDERED" filterType="sap.ui.model.type.String">
+									<Label text="Hedef Miktar" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+									<ui:template>
+										<Text text="{QTY_ORDERED}" width="100%" textAlign="Center"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column hAlign="Center" sortProperty="PLANNED_START_DATE" filterProperty="PLANNED_START_DATE" filterType="sap.ui.model.type.Date">
+									<Label text="ERP Planlanan Baslangıç" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+									<ui:template>
+										<Text text="{PLANNED_START_DATE}" wrapping="true" width="100%" textAlign="Center"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column hAlign="Center" sortProperty="PLANNED_COMP_DATE" filterProperty="PLANNED_COMP_DATE" filterType="sap.ui.model.type.Date">
+									<Label text="ERP Planlanan Bitiş" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+									<ui:template>
+										<Text text="{PLANNED_COMP_DATE}" wrapping="true" width="100%" textAlign="Center"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column hAlign="Center">
+									<Label text="Ebat (cm)" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+									<ui:template>
+										<Text text="" width="100%" textAlign="Center"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column hAlign="Center">
+									<Label text="MB Çapı (mm)" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+									<ui:template>
+										<Text text="" width="100%" textAlign="Center"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column hAlign="Center">
+									<Label text="Kat Sayısı" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+									<ui:template>
+										<Text text="" width="100%" textAlign="Center"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column hAlign="Center">
+									<Label text="Bobin Çapı" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+									<ui:template>
+										<Text text="" width="100%" textAlign="Center"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column hAlign="Center" sortProperty="WORK_CENTER" filterProperty="WORK_CENTER" filterType="sap.ui.model.type.String">
+									<Label text="İş Yeri" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+									<ui:template>
+										<Text text="{WORK_CENTER}" width="100%" textAlign="Center"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column hAlign="Center" sortProperty="PRIORITY" filterProperty="PRIORITY" filterType="sap.ui.model.type.String">
+									<Label text="Sıra No" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+									<ui:template>
+										<Text text="{PRIORITY}" width="100%" textAlign="Center"/>
+									</ui:template>
+								</ui:Column>
+							</ui:columns>
+						</ui:Table>
+					</VBox>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

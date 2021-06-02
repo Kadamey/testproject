@@ -1,0 +1,17 @@
+{
+    “ProductCollection”: [
+    {
+    “PartiNo”: “1239102”,
+    “MalzemeKodu”: “Power Projector 4713”,
+    “Miktar”: “Projector”,
+    “DepoYeri”: “Titanium”
+    },
+    {
+    “PartiNo”: “22134T”,
+    “MalzemeKodu”: “Webcam”,
+    “Miktar”: “Accessory”,
+    “DepoYeri”: “Technocom”
+    }
+   
+    ]
+    }

@@ -1,0 +1,39 @@
+/* Enter your custom styles here */
+.testText {
+            font-size: 30px  !important;
+             font-weight: bold  !important;
+	color: red !important;
+}
+.customButton > .sapMBtnInner {
+    /*    width:300px;*/
+  height:50px !important;
+        background-color: #406080 !important;
+color:white !important;
+        border: 2px solid white; 
+        border-radius: 1em;
+font-size: 50px;
+}
+.customButton > .sapMBtn{
+    /*    width:300px;*/
+     /*  height:100px !important;*/
+        background-color: brown !important;
+color:white !important;
+        border: 1px solid brown;
+        border-radius: 1em;
+}
+
+.headerText {
+            font-size: 20px  !important;
+             font-weight: bold  !important;
+            color: black !important;
+}
+.tableText {
+            font-size: 15px  !important;
+             font-weight: bold  !important;
+}
+
+.customHeightInput .sapMInputBaseInner {
+    font-size: 30px !important;
+   
+}
+

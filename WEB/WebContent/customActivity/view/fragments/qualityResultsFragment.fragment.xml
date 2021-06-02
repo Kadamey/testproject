@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core"
+	controllerName="customActivity.controller.fragments.qualityResultsFragment"> <!-- This part is redundant -->
+
+       <Table id="idQualityResultTable" items="{path : '/Rowsets/Rowset/Row'}" fixedLayout = "false" mode = "None" sticky="ColumnHeaders">
+            <columns>
+                <Column hAlign="Center">
+                    <Text text="Döküm No"/>
+                </Column>
+                <Column hAlign="Center">
+                    <Text text="Parametre"/>
+                </Column>
+                <Column hAlign="Center">
+                    <Text text="Alt Limit"/>
+                </Column>
+                <Column hAlign="Center">
+                    <Text text="Hedef Değer"/>
+                </Column>
+                <Column hAlign="Center">
+                    <Text text="Ölçülen Değer"/>
+                </Column>
+                <Column hAlign="Center">
+                    <Text text="Üst Limit"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{CASTNO}" />
+                        <Text text="{PARAMETER}" />
+                        <Text text="{LOWLIMIT}" />
+                        <Text text="{TARGETVAL}" />
+                        <Text text="{VAL}" />
+                        <Text text="{HIGHLIMIT}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+
+</core:FragmentDefinition>

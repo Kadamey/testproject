@@ -1,0 +1,406 @@
+<mvc:View controllerName="customOrderScreen.controller.tamponLoadScreen" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:ui="sap.ui.table" xmlns:dnd="sap.ui.core.dnd" xmlns:c="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" height="100%">
+	<tnt:ToolHeader>
+		<Image width="100px"
+			src="data:image/png;base64,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"></Image>
+		<FlexBox alignItems="Start" justifyContent="Center" width="100%" displayInline="Center">
+			<items>
+				<Text text="Tampon Yükleme Ekranı" wrapping="true"/>
+			</items>
+		</FlexBox>
+		<ToolbarSpacer/>
+		<Image width="100px" src="http://mext.org.tr/images/site/mext-logo-white.png"></Image>
+	</tnt:ToolHeader>
+	<l:Splitter>
+		<VBox justifyContent="Center" class="sapUiSmallMargin">
+			<Button class="sapUiSmallMarginBottom" icon="sap-icon://nav-back" tooltip="Sipariş Ekranı" press="navBack"/>
+			<ui:Table id="idTamponListTable" enableSelectAll="false" selectionMode="Single" rows="{/}" visibleRowCount="auto">
+				<ui:extension>
+					<OverflowToolbar>
+						<Title id="titleInout" text="Yüklenebilir Tamponlar"/>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column width="6em" hAlign="Center">
+						<Text text="Tampon ID"/>
+						<ui:template>
+							<Text text="{BATCH_ID}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="6em" hAlign="Center">
+						<Text text="Tampon No"/>
+						<ui:template>
+							<Text text="{BUFFER_NUMBER}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Tampon Km"/>
+						<ui:template>
+							<Text text="{TAMPONUZUNLUGU}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Kalan Tampon"/>
+						<ui:template>
+							<Text text="{QTY_ON_HAND}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column >
+						<Text text="Tampon Genişlik"/>
+						<ui:template>
+							<Text text="{TAMPONGENISLIGI}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Tampon Ağırlık"/>
+						<ui:template>
+							<Text text="{ORIGINAL_QTY}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Malzeme Kodu"/>
+						<ui:template>
+							<Text text="{ITEM_BO}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Malzeme Tanımı"/>
+						<ui:template>
+							<Text text="{ITEMDESCRIPTION}"/>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+				<ui:dragDropConfig>
+					<dnd:DragInfo groupName="moveToTable2" sourceAggregation="rows" dragStart="onDragStart"/>
+					<dnd:DropInfo groupName="moveToTable1" drop="onDropTable2"/>
+				</ui:dragDropConfig>
+			</ui:Table>
+			<layoutData>
+				<l:SplitterLayoutData size="40%" resizable="false"/>
+			</layoutData>
+		</VBox>
+		<!--  <VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" alignItems="Center" height="600px">
+            <Button class="sapUiTinyMarginBottom" icon="sap-icon://navigation-right-arrow" tooltip="Move to selected" press="moveToTable2"/>
+            <Button icon="sap-icon://navigation-left-arrow" tooltip="Move to available" press="moveToTable1"/>
+            <layoutData>
+                <l:SplitterLayoutData size="10%" resizable="false"/>
+            </layoutData>
+        </VBox>-->
+		<VBox justifyContent="Center" class="sapUiSmallMargin" height="auto">
+			<ui:Table id="firstLayerTable" enableSelectAll="false" selectionMode="Single" rows="{/}" visibleRowCount="2">
+				<ui:extension>
+					<OverflowToolbar>
+						<Title id="titleFirstLayerTable" text="1. Kat"/>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:layoutData>
+					<l:SplitterLayoutData size="50%"/>
+				</ui:layoutData>
+				<ui:columns>
+					<ui:Column width="12em" hAlign="Center">
+						<Text text="Tampon ID"/>
+						<ui:template>
+							<Text text="{BATCH_ID}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column hAlign="Center">
+						<Text text="Tampon No"/>
+						<ui:template>
+							<Text text="{BUFFER_NUMBER}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Tampon Km"/>
+						<ui:template>
+							<Text text="{TAMPONUZUNLUGU}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Kalan Tampon"/>
+						<ui:template>
+							<Text text="{QTY_ON_HAND}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column >
+						<Text text="Tampon Genişlik"/>
+						<ui:template>
+							<Text text="{TAMPONGENISLIGI}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Tampon Takılan Miktar"/>
+						<ui:template>
+							<Text text="{LAST_REMAINING_QTY}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Malzeme Kodu"/>
+						<ui:template>
+							<Text text="{ITEM_BO}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Malzeme Tanımı"/>
+						<ui:template>
+							<Text text="{ITEMDESCRIPTION}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Tüket"/>
+						<ui:template>
+							<Button text="Tampon Tüket" type="Emphasized" press="onPressTamponConsumptionButton"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column>
+						<Text text="Stok Düzenle"/>
+						<ui:template>
+							<Button text="Stok Düzenle" type="Emphasized" press="onPressManuelStockChangeButton"/>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+				<ui:dragDropConfig>
+					<dnd:DragInfo groupName="moveToTable1" sourceAggregation="rows" dragStart="onDragStart"/>
+					<dnd:DropInfo groupName="moveToTable2" targetAggregation="rows" dropPosition="Between" drop="onDropTable2"/>
+					<dnd:DragDropInfo sourceAggregation="rows" targetAggregation="rows" dropPosition="Between" dragStart="onDragStart" drop="onDropTable2"/>
+				</ui:dragDropConfig>
+			</ui:Table>
+			<ui:Table id="secondLayerTable" enableSelectAll="false" selectionMode="Single" rows="{/}" visibleRowCount="2">
+				<ui:extension>
+					<OverflowToolbar>
+						<Title id="titleSecondLayerTable" text="2. Kat"/>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:layoutData>
+					<l:SplitterLayoutData size="50%"/>
+				</ui:layoutData>
+				<ui:columns>
+					<ui:Column width="12em" hAlign="Center">
+						<Text text="Tampon ID"/>
+						<ui:template>
+							<Text text="{BATCH_ID}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column hAlign="Center">
+						<Text text="Tampon No"/>
+						<ui:template>
+							<Text text="{BUFFER_NUMBER}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Tampon Km"/>
+						<ui:template>
+							<Text text="{TAMPONUZUNLUGU}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Kalan Tampon"/>
+						<ui:template>
+							<Text text="{QTY_ON_HAND}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column >
+						<Text text="Tampon Genişlik"/>
+						<ui:template>
+							<Text text="{TAMPONGENISLIGI}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Tampon Takılan Miktar"/>
+						<ui:template>
+							<Text text="{LAST_REMAINING_QTY}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Malzeme Kodu"/>
+						<ui:template>
+							<Text text="{ITEM_BO}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Malzeme Tanımı"/>
+						<ui:template>
+							<Text text="{ITEMDESCRIPTION}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Tüket"/>
+						<ui:template>
+							<Button text="Tampon Tüket" type="Emphasized" press="onPressTamponConsumptionButton"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column>
+						<Text text="Stok Düzenle"/>
+						<ui:template>
+							<Button text="Stok Düzenle" type="Emphasized" press="onPressManuelStockChangeButton"/>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+				<ui:dragDropConfig>
+					<dnd:DragInfo groupName="moveToTable1" sourceAggregation="rows" dragStart="onDragStart"/>
+					<dnd:DropInfo groupName="moveToTable2" targetAggregation="rows" dropPosition="Between" drop="onDropTable2"/>
+					<dnd:DragDropInfo sourceAggregation="rows" targetAggregation="rows" dropPosition="Between" dragStart="onDragStart" drop="onDropTable2"/>
+				</ui:dragDropConfig>
+			</ui:Table>
+			<ui:Table id="thirdLayerTable" enableSelectAll="false" selectionMode="Single" rows="{/}" visibleRowCount="2">
+				<ui:extension>
+					<OverflowToolbar>
+						<Title id="titleThirdLayerTable" text="3. Kat"/>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:layoutData>
+					<l:SplitterLayoutData size="50%"/>
+				</ui:layoutData>
+				<ui:columns>
+					<ui:Column width="12em" hAlign="Center">
+						<Text text="Tampon ID"/>
+						<ui:template>
+							<Text text="{BATCH_ID}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column hAlign="Center">
+						<Text text="Tampon No"/>
+						<ui:template>
+							<Text text="{BUFFER_NUMBER}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Tampon Km"/>
+						<ui:template>
+							<Text text="{TAMPONUZUNLUGU}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Kalan Tampon"/>
+						<ui:template>
+							<Text text="{QTY_ON_HAND}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column >
+						<Text text="Tampon Genişlik"/>
+						<ui:template>
+							<Text text="{TAMPONGENISLIGI}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Tampon Takılan Miktar"/>
+						<ui:template>
+							<Text text="{LAST_REMAINING_QTY}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Malzeme Kodu"/>
+						<ui:template>
+							<Text text="{ITEM_BO}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Malzeme Tanımı"/>
+						<ui:template>
+							<Text text="{ITEMDESCRIPTION}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Tüket"/>
+						<ui:template>
+							<Button text="Tampon Tüket" type="Emphasized" press="onPressTamponConsumptionButton"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column>
+						<Text text="Stok Düzenle"/>
+						<ui:template>
+							<Button text="Stok Düzenle" type="Emphasized" press="onPressManuelStockChangeButton"/>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+				<ui:dragDropConfig>
+					<dnd:DragInfo groupName="moveToTable1" sourceAggregation="rows" dragStart="onDragStart"/>
+					<dnd:DropInfo groupName="moveToTable2" targetAggregation="rows" dropPosition="Between" drop="onDropTable2"/>
+					<dnd:DragDropInfo sourceAggregation="rows" targetAggregation="rows" dropPosition="Between" dragStart="onDragStart" drop="onDropTable2"/>
+				</ui:dragDropConfig>
+			</ui:Table>
+			<ui:Table id="fourthLayerTable" enableSelectAll="false" selectionMode="Single" rows="{/}" visibleRowCount="2">
+				<ui:extension>
+					<OverflowToolbar>
+						<Title id="titleFourthLayerTable" text="4. Kat"/>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:layoutData>
+					<l:SplitterLayoutData size="50%"/>
+				</ui:layoutData>
+				<ui:columns>
+					<ui:Column width="12em" hAlign="Center">
+						<Text text="Tampon ID"/>
+						<ui:template>
+							<Text text="{BATCH_ID}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column hAlign="Center">
+						<Text text="Tampon No"/>
+						<ui:template>
+							<Text text="{BUFFER_NUMBER}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Tampon Km"/>
+						<ui:template>
+							<Text text="{TAMPONUZUNLUGU}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Kalan Tampon"/>
+						<ui:template>
+							<Text text="{QTY_ON_HAND}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column >
+						<Text text="Tampon Genişlik"/>
+						<ui:template>
+							<Text text="{TAMPONGENISLIGI}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Tampon Takılan Miktar"/>
+						<ui:template>
+							<Text text="{LAST_REMAINING_QTY}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Malzeme Kodu"/>
+						<ui:template>
+							<Text text="{ITEM_BO}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Malzeme Tanımı"/>
+						<ui:template>
+							<Text text="{ITEMDESCRIPTION}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Text text="Tüket"/>
+						<ui:template>
+							<Button text="Tampon Tüket" type="Emphasized" press="onPressTamponConsumptionButton"/>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column>
+						<Text text="Stok Düzenle"/>
+						<ui:template>
+							<Button text="Stok Düzenle" type="Emphasized" press="onPressManuelStockChangeButton"/>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+				<ui:dragDropConfig>
+					<dnd:DragInfo groupName="moveToTable1" sourceAggregation="rows" dragStart="onDragStart"/>
+					<dnd:DropInfo groupName="moveToTable2" targetAggregation="rows" dropPosition="Between" drop="onDropTable2"/>
+					<dnd:DragDropInfo sourceAggregation="rows" targetAggregation="rows" dropPosition="Between" dragStart="onDragStart" drop="onDropTable2"/>
+				</ui:dragDropConfig>
+			</ui:Table>
+			<FlexBox class="sapUiSmallMarginTop item">
+				<Button text="KAYDET" type="Emphasized" press="onPresSaveButton"/>
+				<layoutData>
+					<FlexItemData alignSelf="End"/>
+				</layoutData>
+			</FlexBox>
+		</VBox>
+	</l:Splitter>
+</mvc:View>

@@ -1,0 +1,611 @@
+<mvc:View controllerName="orderReleaseScreen.controller.Main2" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:form="sap.ui.layout.form" displayBlock="true" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:c="sap.ui.commons"
+	xmlns:ui="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt">
+	<App>
+		<pages>
+			<Page id="page" title="KM Sipariş Detayı" showHeader="false">
+				<content>
+					<tnt:ToolHeader>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ntt.png"></Image>
+						<Label text="Kağıt Makinesi" design="Bold" width="auto"/>
+						<Input id="KMId" textAlign="Center" value="{/0/WORKORDER}" width="250px" editable="{/editValue}"></Input>
+						<ToolbarSpacer/>
+						<Text text="KM Sipariş Detayı" wrapping="true"/>
+						<ToolbarSpacer/>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ecz.png"></Image>
+					</tnt:ToolHeader>
+					<VBox width="100%" justifyContent="Center" alignItems="Center">
+						<HBox width="100%" justifyContent="Start" alignItems="Center" class="sapUiTinyMargin">
+							<Button width="150px" text="Geri Dön" icon="sap-icon://nav-back" press="navBack"/>
+						</HBox>
+						<HBox width="100%" justifyContent="SpaceBetween" alignItems="Center">
+							<VBox width="50%" alignItems="Center" justifyContent="Center">
+								<HBox width="100%" justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+									<VBox width="30%">
+										<Label width="100%" text="KM Sipariş No : " design="Bold" class="sapUiTinyMarginBegin customText"/>
+									</VBox>
+									<VBox width="70%">
+										<Input width="100%" id="KMSQCId" textAlign="Center" value="{/0/WORKORDER}" editable="{/editValue}"></Input>
+									</VBox>
+								</HBox>
+								<HBox width="100%" justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+									<VBox width="30%">
+										<Label text="DM Malzeme Tanımı : " design="Bold" class="sapUiTinyMarginBegin customText"/>
+									</VBox>
+									<VBox width="70%">
+										<Input width="100%" id="DMSQCId" textAlign="Center" value="{/0/WORKORDER}" editable="{/editValue}"></Input>
+									</VBox>
+								</HBox>
+							</VBox>
+							<VBox width="50%" alignItems="Center" justifyContent="Center">
+								<HBox width="100%" justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+									<VBox width="30%">
+										<Label width="100%" text="Sipariş Miktarı : " design="Bold" class="sapUiSmallMarginBegin customText"/>
+									</VBox>
+									<VBox width="70%">
+										<Input width="100%" id="OrderQTYId" textAlign="Center" value="{/0/WORKORDER}" editable="{/editValue}"></Input>
+									</VBox>
+								</HBox>
+								<HBox width="100%" justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+									<VBox width="30%">
+										<Label width="100%" text="Malzeme Tanımı : " design="Bold" class="sapUiSmallMarginBegin customText"/>
+									</VBox>
+									<VBox width="70%">
+										<Input width="100%" id="StatementId" textAlign="Center" value="{/0/WORKORDER}" editable="{/editValue}"></Input>
+									</VBox>
+								</HBox>
+							</VBox>
+						</HBox>
+						<VBox width="100%" class="sapUiTinyMargin">
+							<l:VerticalLayout width="100%">
+								<l:content>
+									<Label text="Üretim Açıklaması :" design="Bold" class="sapUiTinyMarginBegin customText"/>
+									<TextArea id="idCommentArea" placeholder="Açıklama Giriniz..." growing="true" width="100%"/>
+								</l:content>
+							</l:VerticalLayout>
+						</VBox>
+					</VBox>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<ComboBox id="idComboBoxBute" textAlign="Center" value="" items="{path: '/dummydata'}" change="onChangeComboBoxBute"
+							placeholder="Büte Seçiniz..." fieldGroupIds="1" width="20%">
+							<core:Item key="{kolon1}" text="{kolon}"/>
+						</ComboBox>
+						<Button id="saveAllButton" type="Accept" text="Tümünü Kaydet" icon="sap-icon://accept" press="saveAll" width="20%"/>
+						<Button id="idAddSelulozButton" icon="sap-icon://add" text="Harman Ekle / Düzenle" press="onPressSelulozAddButton" width="20%"/>
+					</OverflowToolbar>
+					<FlexBox alignItems="Start" width="100%">
+						<FlexBox width="50%">
+							<VBox>
+								<ui:Table id="KMSQCParamaterTable1" rows="{/Rowsets/Rowset/Row}" rowSelectionChange="onOrdersTableSelectionChange" alternateRowColors="true"
+									selectionMode="Single" selectionBehavior="RowOnly" columnHeaderHeight="50px" rowHeight="50px" visibleRowCountMode="Auto">
+									<ui:extension>
+										<OverflowToolbar>
+											<Label id="title1" text="KM SQC Parametreleri" design="Bold" class="sapUiTinyMarginBegin customText"/>
+										</OverflowToolbar>
+									</ui:extension>
+									<ui:columns>
+										<ui:Column hAlign="Center" width="40%">
+											<Label text="Parametre" design="Bold"/>
+											<ui:template>
+												<Text text="{DESCRIPTION}" wrapping="true" width="100%" textAlign="Center"/>
+											</ui:template>
+										</ui:Column>
+										<ui:Column hAlign="Center" width="12%">
+											<Label text="HED" design="Bold"/>
+											<ui:template>
+												<Text text="{TARGET_VALUE}"/>
+											</ui:template>
+										</ui:Column>
+										<ui:Column hAlign="Center" width="12%">
+											<Label text="AKL" design="Bold"/>
+											<ui:template>
+												<Text text="{MIN_VALUE}"/>
+											</ui:template>
+										</ui:Column>
+										<ui:Column hAlign="Center" width="12%">
+											<Label text="UKL" design="Bold"/>
+											<ui:template>
+												<Text text="{MAX_VALUE}"/>
+											</ui:template>
+										</ui:Column>
+										<ui:Column hAlign="Center" width="12%">
+											<Label text="ASL" design="Bold"/>
+											<ui:template>
+												<Text text="{MIN_VALUE2}"/>
+											</ui:template>
+										</ui:Column>
+										<ui:Column hAlign="Center" width="12%">
+											<Label text="USL" design="Bold"/>
+											<ui:template>
+												<Text text="{MAX_VALUE2}"/>
+											</ui:template>
+										</ui:Column>
+									</ui:columns>
+								</ui:Table>
+								<ui:Table id="DMSQCParamaterTable1" rows="{/Rowsets/Rowset/Row}" rowSelectionChange="onOrdersTableSelectionChange" alternateRowColors="true"
+									selectionMode="Single" selectionBehavior="RowOnly" columnHeaderHeight="50px" rowHeight="50px" visibleRowCountMode="Auto">
+									<ui:extension>
+										<OverflowToolbar>
+											<Label text="DM SQC PARAMETRELERİ" design="Bold" class="sapUiTinyMarginBegin customText"/>
+										</OverflowToolbar>
+									</ui:extension>
+									<ui:columns>
+										<ui:Column hAlign="Center" width="40%">
+											<Label text="Parametre" design="Bold"/>
+											<ui:template>
+												<Text text="{DESCRIPTION}" wrapping="true" width="100%" textAlign="Center"/>
+											</ui:template>
+										</ui:Column>
+										<ui:Column hAlign="Center" width="12%">
+											<Label text="HED" design="Bold"/>
+											<ui:template>
+												<Text text="{TARGET_VALUE}"/>
+											</ui:template>
+										</ui:Column>
+										<ui:Column hAlign="Center" width="12%">
+											<Label text="AKL" design="Bold"/>
+											<ui:template>
+												<Text text="{MIN_VALUE}"/>
+											</ui:template>
+										</ui:Column>
+										<ui:Column hAlign="Center" width="12%">
+											<Label text="UKL" design="Bold"/>
+											<ui:template>
+												<Text text="{MAX_VALUE}"/>
+											</ui:template>
+										</ui:Column>
+										<ui:Column hAlign="Center" width="12%">
+											<Label text="ASL" design="Bold"/>
+											<ui:template>
+												<Text text="{MIN_VALUE2}"/>
+											</ui:template>
+										</ui:Column>
+										<ui:Column hAlign="Center" width="12%">
+											<Label text="USL" design="Bold"/>
+											<ui:template>
+												<Text text="{MAX_VALUE2}"/>
+											</ui:template>
+										</ui:Column>
+									</ui:columns>
+								</ui:Table>
+							</VBox>
+						</FlexBox>
+						<FlexBox direction="Column" alignItems="Start" width="50%">
+							<ui:Table id="isdSelulozDetailTable" rows="{/Rowsets/Rowset/Row}" rowSelectionChange="onOrdersTableSelectionChange"
+								alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly" columnHeaderHeight="50px" rowHeight="50px"
+								visibleRowCountMode="Auto">
+								<ui:extension>
+									<OverflowToolbar>
+										<Label text="Selülozlar" design="Bold" class="sapUiTinyMarginBegin customText"/>
+										<!--<Button id="idDownloadSelulozButton" icon="sap-icon://download" press="onDataExportPDF"/>-->
+									</OverflowToolbar>
+								</ui:extension>
+								<ui:columns>
+									<ui:Column hAlign="Center" sortProperty="MARKA" filterProperty="MARKA" filterType="sap.ui.model.type.String" width="40%">
+										<Label text="Selüloz" design="Bold" width="100%" textAlign="Center"/>
+										<ui:template>
+											<Text text="{MARKA}" wrapping="true" width="100%" textAlign="Center"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column hAlign="Center" sortProperty="ADET" filterProperty="ADET" filterType="sap.ui.model.type.String" width="20%">
+										<Label text="Adet" design="Bold" width="100%" textAlign="Center"/>
+										<ui:template>
+											<Text text="{ADET}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column hAlign="Center" sortProperty="WEIGHT" filterProperty="WEIGHT" filterType="sap.ui.model.type.String" width="20%">
+										<Label text="Ağırlık (kg)" design="Bold" width="100%" textAlign="Center"/>
+										<ui:template>
+											<Text text="{WEIGHT}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column hAlign="Center" sortProperty="TYPE" filterProperty="TYPE" filterType="sap.ui.model.type.String" width="20%">
+										<Label text="Büte Tipi" design="Bold" width="100%" textAlign="Center"/>
+										<ui:template>
+											<Text text="{TYPE}"/>
+										</ui:template>
+									</ui:Column>
+								</ui:columns>
+							</ui:Table>
+							<HBox>
+								<ui:Table id="harmanDetailsTable" rows="{/Rowsets/Rowset/Row}" rowSelectionChange="onOrdersTableSelectionChange" alternateRowColors="true"
+									selectionMode="Single" selectionBehavior="RowOnly" columnHeaderHeight="50px" rowHeight="50px" visibleRowCountMode="Auto">
+									<ui:extension>
+										<OverflowToolbar>
+											<Label id="title2" text="Harman Oranları" design="Bold" class="sapUiTinyMarginBegin customText"/>
+										</OverflowToolbar>
+									</ui:extension>
+									<ui:columns>
+										<ui:Column hAlign="Center" sortProperty="DESCRIPTION" filterProperty="DESCRIPTION" filterType="sap.ui.model.type.String">
+											<Label text="Harman Adı" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+											<ui:template>
+												<Text text="{DESCRIPTION}" wrapping="true" width="100%" textAlign="Center"/>
+											</ui:template>
+										</ui:Column>
+										<ui:Column hAlign="Center" sortProperty="VALUE" filterProperty="VALUE" filterType="sap.ui.model.type.String">
+											<Label text="Harman Oranı (%)" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+											<ui:template>
+												<Input id="HarmanId" value="{VALUE}" enabled="true" change="onChangeHarmanRatio" textAlign="Center"/>
+											</ui:template>
+										</ui:Column>
+									</ui:columns>
+								</ui:Table>
+								<ui:Table id="chemicalDetailsTable" rows="{/Rowsets/Rowset/Row}" rowSelectionChange="onChemicalTableSelectionChange"
+									alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly" columnHeaderHeight="50px" rowHeight="50px"
+									visibleRowCountMode="Auto">
+									<ui:extension>
+										<OverflowToolbar>
+											<Label text="Kimyasallar" design="Bold" class="sapUiTinyMarginBegin customText"/>
+										</OverflowToolbar>
+									</ui:extension>
+									<ui:columns>
+										<ui:Column hAlign="Center" sortProperty="DESCRIPTION" filterProperty="DESCRIPTION" filterType="sap.ui.model.type.String">
+											<Label text="Kimyasal" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+											<ui:template>
+												<Text text="{DESCRIPTION}" wrapping="true" width="100%" textAlign="Center"/>
+											</ui:template>
+										</ui:Column>
+										<ui:Column hAlign="Center" sortProperty="VALUE" filterProperty="VALUE" filterType="sap.ui.model.type.String">
+											<Label text="Değer" design="Bold" wrapping="true" width="100%" textAlign="Center"/>
+											<ui:template>
+												<Input id="ChemicalId" value="{VALUE}" enabled="true" textAlign="Center"/>
+											</ui:template>
+										</ui:Column>
+									</ui:columns>
+								</ui:Table>
+							</HBox>
+						</FlexBox>
+					</FlexBox>
+					<HBox id="pairedOrderListHbox" width="100%" justifyContent="Start" alignItems="Start">
+						<VBox id="pairedOrderList1" visible="false" width="25%">
+							<List width="100%">
+								<InputListItem label="Sipariş No">
+									<Input id="OrderId" value="{/Rowsets/Rowset/Row/0/SHOP_ORDER}"/>
+								</InputListItem>
+								<InputListItem label="Malzeme Adı">
+									<Input id="MaterialId" value="{/Rowsets/Rowset/Row/0/ITEM_DESCRIPTION}"/>
+								</InputListItem>
+								<InputListItem label="Sipariş Miktarı">
+									<Input id="OrderQtyId" value="{/Rowsets/Rowset/Row/0/SIPARIS}"/>
+								</InputListItem>
+								<InputListItem label="Barkod Ürün Adı">
+									<Input id="BarkodId" value="{/Rowsets/Rowset/Row/0/BARKOD}"/>
+								</InputListItem>
+								<InputListItem label="Takım Bobin Adedi">
+									<Input id="BobinId" value="{/Rowsets/Rowset/Row/0/TAKIM}"/>
+								</InputListItem>
+								<InputListItem label="Sevk Tarihi">
+									<Input id="SevkId" value="{/Rowsets/Rowset/Row/0/SEVK}"/>
+								</InputListItem>
+								<InputListItem label="Kat Adedi">
+									<Input id="KatId" value="{/Rowsets/Rowset/Row/0/KAT}"/>
+								</InputListItem>
+								<InputListItem label="Ebat">
+									<Input id="input1" value="{/Rowsets/Rowset/Row/0/EBAT}"/>
+								</InputListItem>
+								<InputListItem label="Gramaj">
+									<Input id="GramajId" value="{/Rowsets/Rowset/Row/0/GRAMAJ}"/>
+								</InputListItem>
+								<InputListItem label="Çap">
+									<Input id="CapId" value="{/Rowsets/Rowset/Row/0/CAP}"/>
+								</InputListItem>
+								<InputListItem label="İhracat mı ?">
+									<Input id="IhracatId" value="{/Rowsets/Rowset/Row/0/IHRACAT}"/>
+								</InputListItem>
+								<InputListItem label="Mihver Boru Ağırlığı Düş ?">
+									<Input id="MihverId" value="{/Rowsets/Rowset/Row/0/MIHVER}"/>
+								</InputListItem>
+								<InputListItem label="ETÜ Sipariş No">
+									<Input id="EtuId" value="{/Rowsets/Rowset/Row/0/ETUSIPARISNO}"/>
+								</InputListItem>
+								<InputListItem label="ETÜ Sipariş KLM no">
+									<Input id="EtuOrderId" value="{/Rowsets/Rowset/Row/0/ETUKLM}"/>
+								</InputListItem>
+								<InputListItem label="İşyeri">
+									<Input id="WorkcenterId" value="{/Rowsets/Rowset/Row/0/WORK_CENTER}"/>
+								</InputListItem>
+								<InputListItem label="Kombinasyon">
+									<Input id="KombinasyonId" value="{/Rowsets/Rowset/Row/0/KOMBINASYON}"/>
+								</InputListItem>
+								<InputListItem label="Hacim Yumuşaklı">
+									<Input id="HacimId" value="{/Rowsets/Rowset/Row/0/HACIM}"/>
+								</InputListItem>
+								<InputListItem label="Sipariş SAS No">
+									<Input id="SasId" value="{/Rowsets/Rowset/Row/0/SASNO}"/>
+								</InputListItem>
+								<InputListItem label="Üretim Açıklaması">
+									<Input id="AciklamaId" value="{/Rowsets/Rowset/Row/0/URETIM}"/>
+								</InputListItem>
+								<InputListItem label="Ambalaj Kombinasyonu">
+									<Input id="AmbalajId" value="{/Rowsets/Rowset/Row/0/AMBALAJ}"/>
+								</InputListItem>
+								<InputListItem label="MB Çapı">
+									<Input id="MBId" value="{/Rowsets/Rowset/Row/0/MBCAPI}"/>
+								</InputListItem>
+								<InputListItem label="Customer Order No">
+									<Input id="CustomerOrderNoId" value="{/Rowsets/Rowset/Row/0/CUSTOMERORDER}"/>
+								</InputListItem>
+								<InputListItem label="Kraft">
+									<Input id="input2" value="{/Rowsets/Rowset/Row/0/KRAFT}"/>
+								</InputListItem>
+								<InputListItem label="No hook">
+									<Input id="HookId" value="{/Rowsets/Rowset/Row/0/NOHOOK}"/>
+								</InputListItem>
+								<InputListItem label="Palet">
+									<Input id="PaletId" value="{/Rowsets/Rowset/Row/0/PALET}"/>
+								</InputListItem>
+								<InputListItem label="Strech">
+									<Input id="input3" value="{/Rowsets/Rowset/Row/0/STRECH}"/>
+								</InputListItem>
+								<InputListItem label="Takoz">
+									<Input id="input4" value="{/Rowsets/Rowset/Row/0/TAKOZ}"/>
+								</InputListItem>
+							</List>
+						</VBox>
+						<VBox id="pairedOrderList2" visible="false" width="25%">
+							<List width="100%">
+								<InputListItem label="Sipariş No">
+									<Input id="idShopOrder1" value="{/Rowsets/Rowset/Row/1/SHOP_ORDER}"/>
+								</InputListItem>
+								<InputListItem label="Malzeme Adı">
+									<Input id="MaterialId1" value="{/Rowsets/Rowset/Row/1/ITEM_DESCRIPTION}"/>
+								</InputListItem>
+								<InputListItem label="Sipariş Miktarı">
+									<Input id="OrderQtyId1" value="{/Rowsets/Rowset/Row/1/SIPARIS}"/>
+								</InputListItem>
+								<InputListItem label="Barkod Ürün Adı">
+									<Input id="BarkodId1" value="{/Rowsets/Rowset/Row/1/BARKOD}"/>
+								</InputListItem>
+								<InputListItem label="Takım Bobin Adedi">
+									<Input id="BobinId1" value="{/Rowsets/Rowset/Row/1/TAKIM}"/>
+								</InputListItem>
+								<InputListItem label="Sevk Tarihi">
+									<Input id="SevkId1" value="{/Rowsets/Rowset/Row/1/SEVK}"/>
+								</InputListItem>
+								<InputListItem label="Kat Adedi">
+									<Input id="KatId1" value="{/Rowsets/Rowset/Row/1/KAT}"/>
+								</InputListItem>
+								<InputListItem label="Ebat">
+									<Input id="input11" value="{/Rowsets/Rowset/Row/1/EBAT}"/>
+								</InputListItem>
+								<InputListItem label="Gramaj">
+									<Input id="GramajId1" value="{/Rowsets/Rowset/Row/1/GRAMAJ}"/>
+								</InputListItem>
+								<InputListItem label="Çap">
+									<Input id="CapId1" value="{/Rowsets/Rowset/Row/1/CAP}"/>
+								</InputListItem>
+								<InputListItem label="İhracat mı ?">
+									<Input id="IhracatId1" value="{/Rowsets/Rowset/Row/1/IHRACAT}"/>
+								</InputListItem>
+								<InputListItem label="Mihver Boru Ağırlığı Düş ?">
+									<Input id="MihverId1" value="{/Rowsets/Rowset/Row/1/MIHVER}"/>
+								</InputListItem>
+								<InputListItem label="ETÜ Sipariş No">
+									<Input id="EtuId1" value="{/Rowsets/Rowset/Row/1/ETUSIPARISNO}"/>
+								</InputListItem>
+								<InputListItem label="ETÜ Sipariş KLM no">
+									<Input id="EtuOrderId1" value="{/Rowsets/Rowset/Row/1/ETUKLM}"/>
+								</InputListItem>
+								<InputListItem label="İşyeri">
+									<Input id="WorkcenterId1" value="{/Rowsets/Rowset/Row/1/WORK_CENTER}"/>
+								</InputListItem>
+								<InputListItem label="Kombinasyon">
+									<Input id="KombinasyonId1" value="{/Rowsets/Rowset/Row/1/KOMBINASYON}"/>
+								</InputListItem>
+								<InputListItem label="Hacim Yumuşaklı">
+									<Input id="HacimId1" value="{/Rowsets/Rowset/Row/1/HACIM}"/>
+								</InputListItem>
+								<InputListItem label="Sipariş SAS No">
+									<Input id="SasId1" value="{/Rowsets/Rowset/Row/1/SASNO}"/>
+								</InputListItem>
+								<InputListItem label="Üretim Açıklaması">
+									<Input id="AciklamaId1" value="{/Rowsets/Rowset/Row/1/URETIM}"/>
+								</InputListItem>
+								<InputListItem label="Ambalaj Kombinasyonu">
+									<Input id="AmbalajId1" value="{/Rowsets/Rowset/Row/1/AMBALAJ}"/>
+								</InputListItem>
+								<InputListItem label="MB Çapı">
+									<Input id="MBId1" value="{/Rowsets/Rowset/Row/1/MBCAPI}"/>
+								</InputListItem>
+								<InputListItem label="Customer Order No">
+									<Input id="CustomerOrderNoId1" value="{/Rowsets/Rowset/Row/1/CUSTOMERORDER}"/>
+								</InputListItem>
+								<InputListItem label="Kraft">
+									<Input id="input22" value="{/Rowsets/Rowset/Row/1/KRAFT}"/>
+								</InputListItem>
+								<InputListItem label="No hook">
+									<Input id="HookId1" value="{/Rowsets/Rowset/Row/1/NOHOOK}"/>
+								</InputListItem>
+								<InputListItem label="Palet">
+									<Input id="PaletId1" value="{/Rowsets/Rowset/Row/1/PALET}"/>
+								</InputListItem>
+								<InputListItem label="Strech">
+									<Input id="input33" value="{/Rowsets/Rowset/Row/1/STRECH}"/>
+								</InputListItem>
+								<InputListItem label="Takoz">
+									<Input id="input44" value="{/Rowsets/Rowset/Row/1/TAKOZ}"/>
+								</InputListItem>
+							</List>
+						</VBox>
+						<VBox id="pairedOrderList3" visible="false" width="25%">
+							<List width="100%">
+								<InputListItem label="Sipariş No">
+									<Input id="idShopOrder2" value="{/Rowsets/Rowset/Row/2/SHOP_ORDER}"/>
+								</InputListItem>
+								<InputListItem label="Malzeme Adı">
+									<Input id="MaterialId2" value="{/Rowsets/Rowset/Row/2/ITEM_DESCRIPTION}"/>
+								</InputListItem>
+								<InputListItem label="Sipariş Miktarı">
+									<Input id="OrderQtyId2" value="{/Rowsets/Rowset/Row/2/SIPARIS}"/>
+								</InputListItem>
+								<InputListItem label="Barkod Ürün Adı">
+									<Input id="BarkodId2" value="{/Rowsets/Rowset/Row/2/BARKOD}"/>
+								</InputListItem>
+								<InputListItem label="Takım Bobin Adedi">
+									<Input id="BobinId2" value="{/Rowsets/Rowset/Row/2/TAKIM}"/>
+								</InputListItem>
+								<InputListItem label="Sevk Tarihi">
+									<Input id="SevkId2" value="{/Rowsets/Rowset/Row/2/SEVK}"/>
+								</InputListItem>
+								<InputListItem label="Kat Adedi">
+									<Input id="KatId2" value="{/Rowsets/Rowset/Row/2/KAT}"/>
+								</InputListItem>
+								<InputListItem label="Ebat">
+									<Input id="input111" value="{/Rowsets/Rowset/Row/2/EBAT}"/>
+								</InputListItem>
+								<InputListItem label="Gramaj">
+									<Input id="GramajId2" value="{/Rowsets/Rowset/Row/2/GRAMAJ}"/>
+								</InputListItem>
+								<InputListItem label="Çap">
+									<Input id="CapId2" value="{/Rowsets/Rowset/Row/2/CAP}"/>
+								</InputListItem>
+								<InputListItem label="İhracat mı ?">
+									<Input id="IhracatId2" value="{/Rowsets/Rowset/Row/2/IHRACAT}"/>
+								</InputListItem>
+								<InputListItem label="Mihver Boru Ağırlığı Düş ?">
+									<Input id="MihverId2" value="{/Rowsets/Rowset/Row/2/MIHVER}"/>
+								</InputListItem>
+								<InputListItem label="ETÜ Sipariş No">
+									<Input id="EtuId2" value="{/Rowsets/Rowset/Row/2/ETU}"/>
+								</InputListItem>
+								<InputListItem label="ETÜ Sipariş KLM no">
+									<Input id="EtuOrderId2" value="{/Rowsets/Rowset/Row/2/ETUKLM}"/>
+								</InputListItem>
+								<InputListItem label="İşyeri">
+									<Input id="WorkcenterId2" value="{/Rowsets/Rowset/Row/2/WORK_CENTER}"/>
+								</InputListItem>
+								<InputListItem label="Kombinasyon">
+									<Input id="KombinasyonId2" value="{/Rowsets/Rowset/Row/2/KOMBINASYON}"/>
+								</InputListItem>
+								<InputListItem label="Hacim Yumuşaklı">
+									<Input id="HacimId2" value="{/Rowsets/Rowset/Row/2/HACIM}"/>
+								</InputListItem>
+								<InputListItem label="Sipariş SAS No">
+									<Input id="SasId2" value="{/Rowsets/Rowset/Row/2/SASNO}"/>
+								</InputListItem>
+								<InputListItem label="Üretim Açıklaması">
+									<Input id="AciklamaId2" value="{/Rowsets/Rowset/Row/2/URETIM}"/>
+								</InputListItem>
+								<InputListItem label="Ambalaj Kombinasyonu">
+									<Input id="AmbalajId2" value="{/Rowsets/Rowset/Row/2/AMBALAJ}"/>
+								</InputListItem>
+								<InputListItem label="MB Çapı">
+									<Input id="MBId2" value="{/Rowsets/Rowset/Row/2/MBCAPI}"/>
+								</InputListItem>
+								<InputListItem label="Customer Order No">
+									<Input id="CustomerOrderNoId2" value="{/Rowsets/Rowset/Row/2/CUSTOMERORDER}"/>
+								</InputListItem>
+								<InputListItem label="Kraft">
+									<Input id="input222" value="{/Rowsets/Rowset/Row/2/KRAFT}"/>
+								</InputListItem>
+								<InputListItem label="No hook">
+									<Input id="HookId2" value="{/Rowsets/Rowset/Row/2/NOHOOK}"/>
+								</InputListItem>
+								<InputListItem label="Palet">
+									<Input id="PaletId2" value="{/Rowsets/Rowset/Row/2/PALET}"/>
+								</InputListItem>
+								<InputListItem label="Strech">
+									<Input id="input333" value="{/Rowsets/Rowset/Row/2/STRECH}"/>
+								</InputListItem>
+								<InputListItem label="Takoz">
+									<Input id="input444" value="{/Rowsets/Rowset/Row/2/TAKOZ}"/>
+								</InputListItem>
+							</List>
+						</VBox>
+						<VBox id="pairedOrderList4" visible="false" width="25%">
+							<List width="100%">
+								<InputListItem label="Sipariş No">
+									<Input id="idShopOrder3" value="{/Rowsets/Rowset/Row/3/SHOP_ORDER}"/>
+								</InputListItem>
+								<InputListItem label="Malzeme Adı">
+									<Input id="MaterialId3" value="{/Rowsets/Rowset/Row/3/ITEM_DESCRIPTION}"/>
+								</InputListItem>
+								<InputListItem label="Sipariş Miktarı">
+									<Input id="OrderQtyId3" value="{/Rowsets/Rowset/Row/3/SIPARIS}"/>
+								</InputListItem>
+								<InputListItem label="Barkod Ürün Adı">
+									<Input id="BarkodId3" value="{/Rowsets/Rowset/Row/3/BARKOD}"/>
+								</InputListItem>
+								<InputListItem label="Takım Bobin Adedi">
+									<Input id="BobinId3" value="{/Rowsets/Rowset/Row/3/TAKIM}"/>
+								</InputListItem>
+								<InputListItem label="Sevk Tarihi">
+									<Input id="SevkId3" value="{/Rowsets/Rowset/Row/3/SEVK}"/>
+								</InputListItem>
+								<InputListItem label="Kat Adedi">
+									<Input id="KatId3" value="{/Rowsets/Rowset/Row/3/KAT}"/>
+								</InputListItem>
+								<InputListItem label="Ebat">
+									<Input id="input1111" value="{/Rowsets/Rowset/Row/3/EBAT}"/>
+								</InputListItem>
+								<InputListItem label="Gramaj">
+									<Input id="GramajId3" value="{/Rowsets/Rowset/Row/3/GRAMAJ}"/>
+								</InputListItem>
+								<InputListItem label="Çap">
+									<Input id="CapId3" value="{/Rowsets/Rowset/Row/3/CAP}"/>
+								</InputListItem>
+								<InputListItem label="İhracat mı ?">
+									<Input id="IhracatId3" value="{/Rowsets/Rowset/Row/3/IHRACAT}"/>
+								</InputListItem>
+								<InputListItem label="Mihver Boru Ağırlığı Düş ?">
+									<Input id="MihverId3" value="{/Rowsets/Rowset/Row/3/MIHVER}"/>
+								</InputListItem>
+								<InputListItem label="ETÜ Sipariş No">
+									<Input id="EtuId3" value="{/Rowsets/Rowset/Row/3/ETUSIPARISNO}"/>
+								</InputListItem>
+								<InputListItem label="ETÜ Sipariş KLM no">
+									<Input id="EtuOrderId3" value="{/Rowsets/Rowset/Row/3/ETUKLM}"/>
+								</InputListItem>
+								<InputListItem label="İşyeri">
+									<Input id="WorkcenterId3" value="{/Rowsets/Rowset/Row/3/WORK_CENTER}"/>
+								</InputListItem>
+								<InputListItem label="Kombinasyon">
+									<Input id="KombinasyonId3" value="{/Rowsets/Rowset/Row/3/KOMBINASYON}"/>
+								</InputListItem>
+								<InputListItem label="Hacim Yumuşaklı">
+									<Input id="HacimId3" value="{/Rowsets/Rowset/Row/3/HACIM}"/>
+								</InputListItem>
+								<InputListItem label="Sipariş SAS No">
+									<Input id="SasId3" value="{/Rowsets/Rowset/Row/3/SASNO}"/>
+								</InputListItem>
+								<InputListItem label="Üretim Açıklaması">
+									<Input id="AciklamaId3" value="{/Rowsets/Rowset/Row/3/URETIM}"/>
+								</InputListItem>
+								<InputListItem label="Ambalaj Kombinasyonu">
+									<Input id="AmbalajId3" value="{/Rowsets/Rowset/Row/3/AMBALAJ}"/>
+								</InputListItem>
+								<InputListItem label="MB Çapı">
+									<Input id="MBId3" value="{/Rowsets/Rowset/Row/3/MBCAPI}"/>
+								</InputListItem>
+								<InputListItem label="Customer Order No">
+									<Input id="CustomerOrderNoId3" value="{/Rowsets/Rowset/Row/3/CUSTOMERORDER}"/>
+								</InputListItem>
+								<InputListItem label="Kraft">
+									<Input id="input2222" value="{/Rowsets/Rowset/Row/3/KRAFT}"/>
+								</InputListItem>
+								<InputListItem label="No hook">
+									<Input id="HookId3" value="{/Rowsets/Rowset/Row/3/NOHOOK}"/>
+								</InputListItem>
+								<InputListItem label="Palet">
+									<Input id="PaletId3" value="{/Rowsets/Rowset/Row/3/PALET}"/>
+								</InputListItem>
+								<InputListItem label="Strech">
+									<Input id="input3333" value="{/Rowsets/Rowset/Row/3/STRECH}"/>
+								</InputListItem>
+								<InputListItem label="Takoz">
+									<Input id="input4444" value="{/Rowsets/Rowset/Row/3/TAKOZ}"/>
+								</InputListItem>
+							</List>
+						</VBox>
+					</HBox>
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<Button width="150px" type="Accept" text="Kaydet" icon="sap-icon://save" press="saveEbatButton"/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

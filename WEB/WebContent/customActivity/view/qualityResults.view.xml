@@ -1,0 +1,660 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:m="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:ui="sap.ui.table"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.ui.table" controllerName="customActivity.controller.qualityResults">
+    <m:Page showHeader="false">
+        <m:content>
+            <m:HBox width="97%" alignItems="Center" justifyContent="Start" class="sapUiMediumMarginBeginEnd sapUiMediumMarginTop sapUiMediumMarginBottom">
+                <m:Label text="Kalite:" design="Bold" class="sapUiSmallMarginBegin"/>
+                <m:ComboBox id="idQuality" placeholder="Kalite Giriniz" class="sapUiSmallMarginBegin" fieldGroupIds="4" items="{path : '/Rowsets/Rowset/Row'}" change="onQualityEnter">
+                    <core:Item key="{ZZ_Y_KALITE}" text="{ZZ_Y_KALITE}"/>
+                </m:ComboBox>
+
+                <m:Label text="Döküm No:" design="Bold" class="sapUiMediumMarginBegin"/>
+                <m:ComboBox id="idCastNo" class="sapUiSmallMarginBegin" type="Number" placeholder="Döküm No Giriniz" value="" textAlign="Center" items="{path : '/Rowsets/Rowset/Row'}" change="onCastNoEnter">
+                    <core:Item key="{ZZ_Y_DOKUM}" text="{ZZ_Y_DOKUM}"/>
+                </m:ComboBox>
+                
+            </m:HBox>
+            <!--
+            <m:Bar id="filterComboBox">
+                <m:contentLeft>
+                    <m:Label text="Tesis:" class="sapUiMediumMarginBegin"/>
+                    <m:MultiComboBox id="idComboFilterFacility" fieldGroupIds="1" selectionChange="handleSelectionChange" selectionFinish="onChangeComboFilter" width="350px" items="{ path: '/filterComboBox/0', sorter: { path: 'text' } }">
+                        <core:Item key="{USERC2}" text="{USERC2}"/>
+                    </m:MultiComboBox>
+                    <m:Label text="Numune Sırası:" class="sapUiMediumMarginBegin"/>
+                    <m:MultiComboBox id="idComboFilterSampleNr" fieldGroupIds="2" selectionChange="handleSelectionChange" selectionFinish="onChangeComboFilter" width="350px" items="{ path: '/filterComboBox/1', sorter: { path: 'text' } }">
+                        <core:Item key="{NUMUNE}" text="{NUMUNE}"/>
+                    </m:MultiComboBox>
+                    <m:Label text="Parametre:" class="sapUiMediumMarginBegin"/>
+                    <m:MultiComboBox id="idComboFilterParams" fieldGroupIds="3" selectionChange="handleSelectionChange" selectionFinish="onChangeComboFilter" width="350px" items="{ path: '/filterComboBox/2', sorter: { path: 'text' } }">
+                        <core:Item key="{KURZTEXT}" text="{KURZTEXT}"/>
+                    </m:MultiComboBox>
+                </m:contentLeft>
+            </m:Bar>
+            -->
+            <Table id="idQualityResultTable" rows="{path : '/', events: { change: '.onBindingChange' }}" columnHeaderHeight="20px" rowHeight="50px" fixedColumnCount="1">
+                <rowSettingsTemplate>
+                    <RowSettings highlight="{STATUS}"/>
+                </rowSettingsTemplate>
+                <columns>
+                    <Column width="8rem" hAlign="Center" sortProperty="INSDATE" filterProperty="INSDATE" filterType='sap.ui.model.type.Date'>
+                        <m:Label text="Tarih" design="Bold"/>
+                        <template>
+                            <m:ObjectStatus text="{INSDATE}" class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" sortProperty="USERC2" filterProperty="USERC2">
+                        <m:Label text="Tesis" design="Bold"/>
+                        <template>
+                            <m:ObjectStatus text="{USERC2}" class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="10rem" hAlign="Center" sortProperty="NUMUNE" filterProperty="NUMUNE" filterType='sap.ui.model.type.Integer'>
+                        <m:Label text="Numune Sırası" design="Bold"/>
+                        <template>
+                            <m:ObjectStatus text="{NUMUNE}" class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" sortProperty="INSTIME" filterProperty="INSTIME" filterType='sap.ui.model.type.Time'>
+                        <m:Label text="Saat" design="Bold"/>
+                        <template>
+                            <m:ObjectStatus text="{INSTIME}" class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%C" design="Bold"/>
+                            <m:Label id="C" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="CText" text="{C}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%Mn" design="Bold"/>
+                            <m:Label id="Mn" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="MnText" text="{Mn}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%Si" design="Bold"/>
+                            <m:Label id="Si" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="SiText" text="{Si}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%S" design="Bold"/>
+                            <m:Label id="S" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="SText" text="{S}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%P" design="Bold"/>
+                            <m:Label id="P" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="PText" text="{P}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%Al" design="Bold"/>
+                            <m:Label id="Al" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="AlText" text="{Al}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                        <m:Text text="%Al"/>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%Al(ins)" design="Bold"/>
+                            <m:Label id="ALINS" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="ALINSText" text="{ALINS}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%Al(sol)" design="Bold"/>
+                            <m:Label id="ALSOL" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="ALSOLText" text="{ALSOL}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%Cr" design="Bold"/>
+                            <m:Label id="Cr" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="CrText" text="{Cr}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%Ni" design="Bold"/>
+                            <m:Label id="Ni" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="NiText" text="{Ni}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%Mo" design="Bold"/>
+                            <m:Label id="Mo" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="MoText" text="{Mo}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%V" design="Bold"/>
+                            <m:Label id="V" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="VText" text="{V}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%Ti" design="Bold"/>
+                            <m:Label id="Ti" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="TiText" text="{Ti}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%Nb" design="Bold"/>
+                            <m:Label id="Nb" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="NbText" text="{Nb}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%B" design="Bold"/>
+                            <m:Label id="B" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="BText" text="{B}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%Ca" design="Bold"/>
+                            <m:Label id="Ca" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="CaText" text="{Ca}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%N" design="Bold"/>
+                            <m:Label id="N" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="NText" text="{N}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%Cu" design="Bold"/>
+                            <m:Label id="Cu" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="CuText" text="{Cu}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%As" design="Bold"/>
+                            <m:Label id="As" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="AsText" text="{As}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%Sn" design="Bold"/>
+                            <m:Label id="Sn" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="SnText" text="{Sn}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%Sb" design="Bold"/>
+                            <m:Label id="Sb" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="SbText" text="{Sb}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%Cev" design="Bold"/>
+                            <m:Label id="Cev" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="CevText" text="{Cev}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%Fe" design="Bold"/>
+                            <m:Label id="Fe" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="FeText" text="{Fe}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%Zn" design="Bold"/>
+                            <m:Label id="Zn" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="ZnText" text="{Zn}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%Pb" design="Bold"/>
+                            <m:Label id="Pb" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="PbText" text="{Pb}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                    <Column width="8rem" hAlign="Center" headerSpan="1,1">
+                        <ui:multiLabels>
+                            <m:Label text="%Zr" design="Bold"/>
+                            <m:Label id="Zr" text=""/>
+                        </ui:multiLabels>
+                        <template>
+                            <m:ObjectStatus id="ZrText" text="{Zr}"  class="sapMObjectStatusLarge" state="{= ${STATUS}==='None' ? 'Indication04' : ${STATUS}==='Error' ? 'Indication02' : 'Indication04' }"  />
+                        </template>
+                    </Column>
+                </columns>
+            </Table>
+            <Table ariaLabelledBy="title" id="idBilletQualityResults" rows="{/Rowsets/Rowset/0/Row/0}" visible ="false" selectionMode="None" alternateRowColors="true" visibleRowCountMode="Fixed" class="sapUiMediumMarginTop">
+                <columns id ="dynamicColumnsList">
+                    <Column width="17rem" hAlign="Center" sortProperty="SEQNUMBER" filterProperty="SEQNUMBER">
+                        <multiLabels>
+                            <m:Label text="Sıra" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="No" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{dummy}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="WORKORDER" filterProperty="WORKORDER">
+                        <multiLabels>
+                            <m:Label text="Sipariş" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="No" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{1}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="INSDATE" filterProperty="INSDATE">
+                        <multiLabels>
+                            <m:Label text="Tarih" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="Gün/Ay/Yıl" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{2}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="CHARGESTART" filterProperty="CHARGESTART">
+                        <multiLabels>
+                            <m:Label text="Fırın Şarj" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="Saati" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{NERVÜR AÇISI (α°)}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="CHARGEEND" filterProperty="CHARGEEND">
+                        <multiLabels>
+                            <m:Label text="Fırın Deşarj" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="Saati" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{3}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="WAITINGTIME" filterProperty="WAITINGTIME">
+                        <multiLabels>
+                            <m:Label text="Fırında Bekleme Süresi" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="Dakika" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{WAITINGTIME}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="BILLETID" filterProperty="BILLETID">
+                        <multiLabels>
+                            <m:Label text="Kütük ID" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{BILLETID}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="PRODUCTDIAMETER" filterProperty="PRODUCTDIAMETER">
+                        <multiLabels>
+                            <m:Label text="Ürün Çap" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="16 mm" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{PRODUCTDIAMETER}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="CASTNO" filterProperty="CASTNO">
+                        <multiLabels>
+                            <m:Label text="Döküm No" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{CASTNO}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="CASTCOUNT" filterProperty="CASTCOUNT">
+                        <multiLabels>
+                            <m:Label text="Döküm Adet" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="#" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{CASTCOUNT}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="QUALITY" filterProperty="QUALITY">
+                        <multiLabels>
+                            <m:Label text="Kalite" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{QUALITY}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="CHARGETEMP" filterProperty="CHARGETEMP">
+                        <multiLabels>
+                            <m:Label text="Kütük Şarj Sıcaklığı" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="C" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{CHARGETEMP}"/>
+                        </template>
+                    </Column>
+                    <Column headerSpan="3,1" width="17rem" hAlign="Center" sortProperty="OVENTEMP1" filterProperty="OVENTEMP1">
+                        <multiLabels>
+                            <m:Label text="Fırın Bölme Sıcaklıkları" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="1. Bölme C" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{OVENTEMP1}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="OVENTEMP2" filterProperty="OVENTEMP2">
+                        <multiLabels>
+                            <m:Label text="Fırın Bölme Sıcaklıkları" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="2. Bölme C" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{OVENTEMP2}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="OVENTEMP3" filterProperty="OVENTEMP3">
+                        <multiLabels>
+                            <m:Label text="Fırın Bölme Sıcaklıkları" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="3. Bölme C" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{OVENTEMP3}"/>
+                        </template>
+                    </Column>
+                    <Column headerSpan="4,1" width="17rem" hAlign="Center" sortProperty="CHEMICALSUMC" filterProperty="CHEMICALSUMC">
+                        <multiLabels>
+                            <m:Label text="Özet Kimyasal Analiz" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="%C" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{CHEMICALSUMC}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="CHEMICALSUMMN" filterProperty="CHEMICALSUMMN">
+                        <multiLabels>
+                            <m:Label text="Özet Kimyasal Analiz"/>
+                            <m:Label text="%Mn" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{CHEMICALSUMMN}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="CHEMICALSUMCEQ" filterProperty="CHEMICALSUMCEQ">
+                        <multiLabels>
+                            <m:Label text="Özet Kimyasal Analiz"/>
+                            <m:Label text="Ceq" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{CHEMICALSUMCEQ}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center">
+                        <multiLabels>
+                            <m:Label text="Özet Kimyasal Analiz"/>
+                            <m:Label text="Detay" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="Göster"/>
+                        </template>
+                    </Column>
+                    <Column headerSpan="3,1" width="17rem" hAlign="Center" sortProperty="QTBAROADWATER" filterProperty="QTBAROADWATER">
+                        <multiLabels>
+                            <m:Label text="QTB Su Verileri" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="A Yolu m^3/saat" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{QTBAROADWATER}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="QTBBROADWATER" filterProperty="QTBBROADWATER">
+                        <multiLabels>
+                            <m:Label text="QTB Su Verileri" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="B Yolu m^3/saat" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{QTBBROADWATER}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="SHORTLONGCOOLER" filterProperty="SHORTLONGCOOLER">
+                        <multiLabels>
+                            <m:Label text="QTB Su Verileri" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="Kısa/Uzun Cooler #" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{SHORTLONGCOOLER}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="ROLLINGSPEED" filterProperty="ROLLINGSPEED">
+                        <multiLabels>
+                            <m:Label text="Haddeleme Hızı" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="m/sn" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{ROLLINGSPEED}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="ROLLINGSPEED" filterProperty="ROLLINGSPEED">
+                        <multiLabels>
+                            <m:Label text="Haddeleme Hızı" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="m/sn" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{ROLLINGSPEED}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="SAMPLEUNITWEIGHTA" filterProperty="SAMPLEUNITWEIGHTA">
+                        <multiLabels>
+                            <m:Label text="Numune Birim Ağırlığı" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="A yolu gr/metre" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{SAMPLEUNITWEIGHTA}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="SAMPLEUNITWEIGHTB" filterProperty="SAMPLEUNITWEIGHTB">
+                        <multiLabels>
+                            <m:Label text="Numune Birim Ağırlığı" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="B yolu gr/metre" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{SAMPLEUNITWEIGHTB}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="ROLLINGDECHARGETEMP" filterProperty="ROLLINGDECHARGETEMP">
+                        <multiLabels>
+                            <m:Label text="Kütük Fırın Deşarj Sıcaklığı" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="C" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{ROLLINGDECHARGETEMP}"/>
+                        </template>
+                    </Column>
+                    <Column headerSpan="2,1" width="17rem" hAlign="Center" sortProperty="QTBENTRYTEMPA" filterProperty="QTBENTRYTEMPA">
+                        <multiLabels>
+                            <m:Label text="QTB Giriş Sıcaklığı" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="A yolu C" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{QTBENTRYTEMPA}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="QTBENTRYTEMPB" filterProperty="QTBENTRYTEMPB">
+                        <multiLabels>
+                            <m:Label text="QTB Giriş Sıcaklığı" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="B yolu C" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{QTBENTRYTEMPB}"/>
+                        </template>
+                    </Column>
+                    <Column headerSpan="2,1" width="17rem" hAlign="Center" sortProperty="QTBEXITTEMPA" filterProperty="QTBEXITTEMPA">
+                        <multiLabels>
+                            <m:Label text="QTB Çıkış Sıcaklığı" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="A yolu C" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{QTBEXITTEMPA}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="QTBEXITTEMPB" filterProperty="QTBEXITTEMPB">
+                        <multiLabels>
+                            <m:Label text="QTB Çıkış Sıcaklığı" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="B yolu C" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{QTBEXITTEMPB}"/>
+                        </template>
+                    </Column>
+                    <Column headerSpan="2,1" width="17rem" hAlign="Center" sortProperty="REHAKMAA" filterProperty="REHAKMAA">
+                        <multiLabels>
+                            <m:Label text="ReH-AKMA 420 min." textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="A yolu (N/mm^2)" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{REHAKMAA}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="REHAKMAB" filterProperty="REHAKMAB">
+                        <multiLabels>
+                            <m:Label text="ReH-AKMA 420 min." textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="B yolu (N/mm^2)" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{REHAKMAB}"/>
+                        </template>
+                    </Column>
+                    <Column headerSpan="2,1" width="17rem" hAlign="Center" sortProperty="RMCEKMEA" filterProperty="RMCEKMEA">
+                        <multiLabels>
+                            <m:Label text="Rm-Çekme" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="A yolu (N/mm^2)" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{RMCEKMEA}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="RMCEKMEB" filterProperty="RMCEKMEB">
+                        <multiLabels>
+                            <m:Label text="Rm-Çekme" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="B yolu (N/mm^2)" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{RMCEKMEB}"/>
+                        </template>
+                    </Column>
+                    <Column headerSpan="2,1" width="17rem" hAlign="Center" sortProperty="A5MINA" filterProperty="A5MINA">
+                        <multiLabels>
+                            <m:Label text="A5 (%)12min." textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="A yolu (N/mm^2)" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{A5MINA}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="A5MINB" filterProperty="A5MINB">
+                        <multiLabels>
+                            <m:Label text="A5 (%)12min." textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="B yolu (N/mm^2)" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{A5MINB}"/>
+                        </template>
+                    </Column>
+                    <Column headerSpan="2,1" width="17rem" hAlign="Center" sortProperty="RMREA" filterProperty="RMREA">
+                        <multiLabels>
+                            <m:Label text="Rm/Re" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="A yolu 1,35" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{RMREA}"/>
+                        </template>
+                    </Column>
+                    <Column width="17rem" hAlign="Center" sortProperty="RMREB" filterProperty="RMREB">
+                        <multiLabels>
+                            <m:Label text="Rm/Re" textAlign="Center" width="100%" design="Bold"/>
+                            <m:Label text="B yolu 1,35" textAlign="Center" width="100%" design="Bold"/>
+                        </multiLabels>
+                        <template>
+                            <m:Text text="{RMREB}"/>
+                        </template>
+                    </Column>
+                </columns>
+            </Table>
+        </m:content>
+    </m:Page>
+</mvc:View>

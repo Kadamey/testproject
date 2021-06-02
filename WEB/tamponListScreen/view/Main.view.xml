@@ -1,0 +1,152 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ui="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt"
+	height="100%" controllerName="tamponListScreen.controller.Main">
+	<App id="app">
+		<pages>
+			<Page title="Sipariş Onay Ekranı" showHeader="false">
+				<content>
+					<tnt:ToolHeader>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ntt.png"></Image>
+						<ToolbarSpacer/>
+						<Text text="Tampon Listeleme Ekranı" wrapping="true" class="bobbinGroupingHeaderColor"/>
+						<ToolbarSpacer/>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ecz.png"></Image>
+					</tnt:ToolHeader>
+					<Panel id="expandablePanel" expandable="true" expand="onExpand" class="sapUiResponsiveMargin">
+						<headerToolbar>
+							<OverflowToolbar active="true" press="onOverflowToolbarPress">
+								<Title text="Filtreleme Seçenekleri"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<content>
+							<HBox justifyContent="Start" alignItems="Center">
+								<VBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="100px" text="Tarih : " design="Bold"/>
+										<DatePicker width="250px" id="INP7" displayFormat="dd/MM/yyyy" change="onPressSearchFilter"/>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="100px" text="Vardiya : " design="Bold"/>
+										<ComboBox width="250px" id="INP8" textAlign="Center" change="onPressSearchFilter">
+											<items>
+												<core:Item xmlns:core="sap.ui.core" key="1" text="1.Vardiya (00:00 - 08:00)"/>
+												<core:Item xmlns:core="sap.ui.core" key="2" text="2.Vardiya (08:00 - 16:00)"/>
+												<core:Item xmlns:core="sap.ui.core" key="3" text="3.Vardiya (16:00 - 00:00)"/>
+											</items>
+										</ComboBox>
+									</HBox>
+								</VBox>
+								<VBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Button icon="sap-icon://delete" press="onPressCleanFilter"></Button>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Button icon="sap-icon://search" press="onPressSearchFilter"></Button>
+									</HBox>
+								</VBox>
+							</HBox>
+						</content>
+					</Panel>
+					<Table id="idInventoryListTable" inset="false" items="{ path: '/Rowsets/Rowset/Row'}" sticky="ColumnHeaders" mode="SingleSelectMaster">
+						<headerToolbar>
+							<OverflowToolbar>
+								<Text text="Toplamı Tampon Adedi :" class=".sapMTB-Transparent-CTX .sapMText "/>
+								<Text id="sumTampon" text="" class=".sapMTB-Transparent-CTX .sapMText"/>
+								<ToolbarSpacer/>
+								<Text text="Toplam Üretim :" class=".sapMTB-Transparent-CTX .sapMText "/>
+								<Text id="sumProd" text="" class=".sapMTB-Transparent-CTX .sapMText"/>
+								<ToolbarSpacer/>
+								<Text text="Toplam Kalite Deşesi :" class=".sapMTB-Transparent-CTX .sapMText "/>
+								<Text id="sumScrapQuality" text="" class=".sapMTB-Transparent-CTX .sapMText"/>
+								<ToolbarSpacer/>
+								<Text text="Toplam Diğer Deşe :" class=".sapMTB-Transparent-CTX .sapMText "/>
+								<Text id="sumOtherScrap" text="" class=".sapMTB-Transparent-CTX .sapMText"/>
+								<ToolbarSpacer/>
+								<Text text="Toplam Trim Deşesi :" class=".sapMTB-Transparent-CTX .sapMText "/>
+								<Text id="sumTrimScrap" text="" class=".sapMTB-Transparent-CTX .sapMText"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<columns>
+							<Column hAlign="Center">
+								<Label text="Tampon No" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Parti Numarası" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Orjinal Miktar" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Kalan Miktar" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Depo Yeri" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Depo Tanımı" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Malzeme Numarası" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Malzeme Tanımı" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Toplam Deşe" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Kalite Deşesi" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Diğer Deşe" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Trim Deşesi" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Kullanım Kararı" design="Bold" wrapping="true"/>
+							</Column>
+							<Column id="idBarcode" hAlign="Center">
+								<Label text="Barkod" design="Bold" wrapping="true"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Düzenle" design="Bold" wrapping="true"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem vAlign="Middle">
+								<cells>
+									<Text id="idBufferNumber" text="{BUFFERNUMBER}" wrapping="false"/>
+									<Text id="sfcNofieldId" text="{SFC}" wrapping="false"/>
+									<Text id="originalQuantityFieldId" text="{ORIGINAL_QTY2}" wrapping="false"/>
+									<Text id="remainingQuantityFieldID" text="{QTY_ON_HAND}" wrapping="false"/>
+									<Text id="storageLocationfieldId" text="{STORAGE_LOCATION}" wrapping="false"/>
+									<Text id="storageLocationDescriptionFieldId" text="{STORAGEDESCRIPTION}" wrapping="true"/>
+									<Text id="materialNofieldId" text="{MATERIAL}" wrapping="false"/>
+									<Text id="materialDescriptionFieldId" text="{MATERIALDESCRIPTION}" wrapping="true"/>
+									<Text id="totalScraptFieldId" text="{TOTALDEFECT}" wrapping="false"/>
+									<Text id="qulityScraptFieldId" text="{NC_GROUP001}" wrapping="false"/>
+									<Text id="otherScraptFieldId" text="{NC_GROUP002}" wrapping="false"/>
+									<Text id="trimScraptFieldId" text="{NC_GROUP003}" wrapping="false"/>
+									<Text id="usageDecisionFieldId" text="" wrapping="false"/>
+									<Button icon="sap-icon://bar-code" press="onPressBarcodeButton" visible="{= ${PRODTYPE} === '004' ? true:false}"/>
+									<Button icon="sap-icon://edit" press="onEditInventory"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<Button width="200px" icon="sap-icon://delete" text="Sistemden Sil" press="onDeleteDecision" type="Reject"/>
+						<ToolbarSpacer/>
+						<Button width="200px" icon="sap-icon://lab" text="Kalite Sonuçları" press="onPressQualityResults"/>
+						<Button width="200px" icon="sap-icon://journey-depart" text="Malzeme Dönüştür" press="onPressMovementButton"/>
+						<ToolbarSpacer/>
+						<Button width="200px" icon="sap-icon://save" text="Sisteme Kaydet" press="onSaveDecision" type="Accept"/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

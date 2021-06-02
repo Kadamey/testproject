@@ -1,0 +1,16 @@
+/* Enter your custom styles here */
+.testText {
+	color: red !important;
+}
+.orderReleaseScreenRowColor{
+background: ec1c24 !important;
+font-weight: bold;
+}
+.orderReleaseScreenHeaderColor{
+background: 4b4949 !important;
+font-weight: bold;
+}
+
+.testButton.sapMBtnInner {
+font-size: 2rem;
+}

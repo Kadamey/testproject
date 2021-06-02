@@ -1,0 +1,180 @@
+<mvc:View
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:c="sap.ui.commons"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:ui="sap.ui.table"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified"
+	
+	controllerName="orderReleaseScreen.controller.Main">
+	<App>
+		<pages>
+			<Page  title="Consumption Result Screen" showHeader="false">
+		<content>
+			<HBox width="97%" justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+				<VBox>
+					<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+						<Label width="150px" text="Başlangıç Zamanı : " design="Bold" class="sapUiTinyMargin"/>
+						<DateTimePicker	id="DTP1" displayFormat="short" width="200px" placeholder="Başlangıç Zamanı Giriniz..."/>
+					</HBox>
+					<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+						<Label width="150px" text="Bitiş Zamanı : " design="Bold" class="sapUiTinyMargin"/>
+						<DateTimePicker	id="DTP2" displayFormat="short" width="200px" placeholder="Bitiş Zamanı Giriniz..."/>
+					</HBox>
+				</VBox>
+				<VBox>
+					<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+						<Label width="100px" text="Sipariş No : " design="Bold" class="sapUiTinyMargin"/>
+						<Input id="INP1" width="200px" placeholder="Sipariş No Giriniz..." textAlign="Center" type="Tel" maxLength="12"/>
+					</HBox>
+					<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+						<Label width="100px" text="İş Yeri : " design="Bold" class="sapUiTinyMargin"/>
+						<Input id="INP2" width="200px" placeholder="İş Yeri Giriniz..." textAlign="Center" type="Tel" maxLength="4"/>
+					</HBox>
+				</VBox>
+			
+				<VBox>
+					<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+						<Button width="125px" icon="sap-icon://delete" text="Sıfırla" press="clearFilter" class="sapUiSmallMarginBeginEnd"/>
+					</HBox>
+					<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+						<Button width="125px" type="Accept" icon="sap-icon://search" text="Filtrele" press="applyFilter" class="sapUiSmallMarginBeginEnd"/>
+					</HBox>
+				</VBox>
+			</HBox>
+	
+			<ui:Table id="orderReleasedTable1" rows="{/Rowsets/Rowset/Row}" alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly" columnHeaderHeight="50px" rowHeight="50px" visibleRowCountMode="Auto">
+					<ui:extension>
+					<OverflowToolbar>
+						<Title id="title1" text="KM Siparişi"/>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column hAlign="Center" sortProperty="AUFNR" filterProperty="AUFNR" filterType="sap.ui.model.type.String">
+						<Label text="Sipariş No" design="Bold"/>
+						<ui:template>
+							<Text text="{AUFNR}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+				
+					<ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+						<Label text="İş Yeri" design="Bold"/>
+						<ui:template>
+							<Text text="{NAME}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+				
+					<ui:Column hAlign="Center" sortProperty="MATNR" filterProperty="MATNR" filterType="sap.ui.model.type.String">
+						<Label text="Malzeme No" design="Bold"/>
+						<ui:template>
+							<Text text="{MATNR}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column hAlign="Center" sortProperty="MAKTX" filterProperty="MAKTX" filterType="sap.ui.model.type.String">
+						<Label text="Malzeme Tanımı" design="Bold"/>
+						<ui:template>
+							<Text text="{MAKTX}" wrapping="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column hAlign="Center" sortProperty="QTY_IN_REPORT_UOM" filterProperty="QTY_IN_REPORT_UOM" filterType="sap.ui.model.type.Number">
+						<Label text="Miktar" design="Bold"/>
+						<ui:template>
+							<Text text="{QTY_IN_REPORT_UOM}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column hAlign="Center" sortProperty="REPORT_UOM" filterProperty="REPORT_UOM" filterType="sap.ui.model.type.String">
+						<Label text="Birim" design="Bold"/>
+						<ui:template>
+							<Text text="{REPORT_UOM}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column hAlign="Center" sortProperty="CREATION_TIMESTAMP" filterProperty="CREATION_TIMESTAMP" filterType="sap.ui.model.type.Date">
+						<Label text="Sıra No" design="Bold"/>
+						<ui:template>
+							<Text text="{CREATION_TIMESTAMP}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column hAlign="Center" sortProperty="CREATION_TIMESTAMP" filterProperty="CREATION_TIMESTAMP" filterType="sap.ui.model.type.Date">
+						<Label text="Kayıt Zamanı" design="Bold"/>
+						<ui:template>
+							<Text text="{CREATION_TIMESTAMP}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+
+			<ui:Table id="orderReleasedTable2" rows="{/Rowsets/Rowset/Row}" alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly" columnHeaderHeight="50px" rowHeight="50px" visibleRowCountMode="Auto">
+					<ui:extension>
+					<OverflowToolbar>
+						<Title id="title" text="DM Siparişi"/>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column hAlign="Center" sortProperty="AUFNR" filterProperty="AUFNR" filterType="sap.ui.model.type.String">
+						<Label text="Sipariş No" design="Bold"/>
+						<ui:template>
+							<Text text="{AUFNR}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+				
+					<ui:Column hAlign="Center" sortProperty="NAME" filterProperty="NAME" filterType="sap.ui.model.type.String">
+						<Label text="İş Yeri" design="Bold"/>
+						<ui:template>
+							<Text text="{NAME}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+				
+					<ui:Column hAlign="Center" sortProperty="MATNR" filterProperty="MATNR" filterType="sap.ui.model.type.String">
+						<Label text="Malzeme No" design="Bold"/>
+						<ui:template>
+							<Text text="{MATNR}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column hAlign="Center" sortProperty="MAKTX" filterProperty="MAKTX" filterType="sap.ui.model.type.String">
+						<Label text="Malzeme Tanımı" design="Bold"/>
+						<ui:template>
+							<Text text="{MAKTX}" wrapping="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column hAlign="Center" sortProperty="QTY_IN_REPORT_UOM" filterProperty="QTY_IN_REPORT_UOM" filterType="sap.ui.model.type.Number">
+						<Label text="Miktar" design="Bold"/>
+						<ui:template>
+							<Text text="{QTY_IN_REPORT_UOM}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column hAlign="Center" sortProperty="REPORT_UOM" filterProperty="REPORT_UOM" filterType="sap.ui.model.type.String">
+						<Label text="Birim" design="Bold"/>
+						<ui:template>
+							<Text text="{REPORT_UOM}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column hAlign="Center" sortProperty="CREATION_TIMESTAMP" filterProperty="CREATION_TIMESTAMP" filterType="sap.ui.model.type.Date">
+						<Label text="Sıra No" design="Bold"/>
+						<ui:template>
+							<Text text="{CREATION_TIMESTAMP}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column hAlign="Center" sortProperty="CREATION_TIMESTAMP" filterProperty="CREATION_TIMESTAMP" filterType="sap.ui.model.type.Date">
+						<Label text="Kayıt Zamanı" design="Bold"/>
+						<ui:template>
+							<Text text="{CREATION_TIMESTAMP}" wrapping="false"/>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+		
+		</content>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button width="150px" type="Reject" text="Excele Aktar" icon="sap-icon://excel-attachment" press="onExport" class="sapUiSmallMargin"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+		</pages>
+	</App>
+</mvc:View>

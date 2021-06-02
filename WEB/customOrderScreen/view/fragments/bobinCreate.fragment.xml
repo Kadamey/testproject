@@ -1,0 +1,93 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog state="Warning" id="fragmentOrderMigration" title="Bobin Oluştur" escapeHandler="onCancelBobinCreateButton" draggable="true">
+		<Table id="idBobinCreateTable" fixedLayout="false" items="{/result1/Result/item}">
+			<columns>
+				<Column hAlign="Center">
+					<Label text="Bobin No" design="Bold" width="100%" textAlign="Center" wrapping="false"/>
+				</Column>
+				<Column hAlign="Center">
+					<Label text="Ebat (cm)" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+				</Column>
+				<Column hAlign="Center">
+					<Label text="Çap (cm)" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+				</Column>
+				<Column hAlign="Center">
+					<Label text="Gramaj (gr/m2)" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+				</Column>
+				<Column hAlign="Center">
+					<Label text="Kat" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+				</Column>
+				<Column hAlign="Center">
+					<Label text="Miktar (Kg)" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+				</Column>
+				<Column hAlign="Center">
+					<Label text="Sipariş No" design="Bold" width="100%" textAlign="Center" wrapping="false"/>
+				</Column>
+				<Column hAlign="Center">
+					<Label text="Malzeme No" design="Bold" width="100%" textAlign="Center" wrapping="false"/>
+				</Column>
+				<Column hAlign="Center">
+					<Label text="Malzeme Tanımı" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+				</Column>
+				<Column hAlign="Center">
+					<Label text="Kalite Deşe Tipi" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+				</Column>
+				<Column hAlign="Center">
+					<Label text="Kalite Deşesi (kg)" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+				</Column>
+				<Column hAlign="Center">
+					<Label text="Açıklama" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+				</Column>
+				<Column hAlign="Center">
+					<Label text="Trim Deşe (Kg)" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+				</Column>
+				<Column hAlign="Center">
+					<Label text="Barkod Bas" design="Bold" width="100%" textAlign="Center" wrapping="true"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle">
+					<cells>
+						<Text text="{BOBINNO}"/>
+						<Text text="{EBAT}"/>
+						<Input id="idDiameterInp" value="{CAP}" type="Number" textAlign="Center" width="100px"/>
+						<Text text="{GRAMAJ}"/>
+						<Text text="{KAT}"/>
+						<Text text="{MIKTAR}" visible="{=!${MANUAL}}"/>
+						<Text text="{CHILDSHOPORDER}"/>
+						<Text text="{MATERIAL}"/>
+						<Text text="{MATERIALDESC}" wrapping="true"/>
+						<ComboBox id="qualityScraptTypeId" change="onChangeQualityScraptComboBox" showSecondaryValues="true"
+							items="{ path: '/result3/Result3/Result/items/item', sorter: { path: 'Name' } }" width="100px">
+							<core:ListItem key="{ncCode}" text="{description}" additionalText="{MIHVERAGIRLIK}"/>
+							<!--<core:ListItem key="{ncCode}" text="{description}" value="{DESETIPI}" additionalText="{MIHVERAGIRLIK}"/>-->
+						</ComboBox>
+						<Input id="qualityScraptValueFieldId" value="{DESEMIKTAR}" type="Number" change="onChangeQualityScraptValueField" editable="false"
+							textAlign="Center" width="100px"/>
+						<Input value="{COMMENT}" id="idExpInp" editable="false" textAlign="Center"/>
+						<Text text="{TRIMMIKTAR}" width="100px"/>
+						<Switch state="{BARCODE}" customTextOn="Evet" customTextOff="Hayır"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<FlexBox alignItems="Center" justifyContent="Center" class="sapUiSmallMargin">
+			<items>
+				<Label text="Miktar (Kg): " design="Bold" class="testText sapUiSmallMargin"/>
+				<Input id="quantityField" type="Number" change="onChangeQuantityInput" textAlign="Center"/>
+				<Label text="Mihver Boru : " design="Bold" class="testText sapUiSmallMargin"/>
+				<ComboBox id="idMihverComboboxField" change="onChangeMihverComboBox" showSecondaryValues="true" textAlign="Center"
+					items="{ path: '/Result2/Rowsets/Rowset/Row', sorter: { path: 'Name' } }">
+					<core:ListItem key="{ITEM}" text="{DESCRIPTION}" additionalText="{MIHVERAGIRLIK} - {MIHVEREBAT}"/>
+				</ComboBox>
+				<Label text="Toplam Trim Deşesi : " design="Bold" class="testText sapUiSmallMargin"/>
+				<Input id="trimQuantityField" type="Number" textAlign="Center"/>
+				<Button press="onPressCalculationButton" text="Dağıt" type="Accept" width="150px" class="sapUiMediumMargin" icon="sap-icon://accept"/>
+			</items>
+		</FlexBox>
+		<buttons>
+			<Button icon="sap-icon://save" press="onPressBobinCreateSaveButton" text="Kaydet" width="150px" type="Accept"/>
+			<Button icon="sap-icon://decline" press="onCancelBobinCreateButton" text="İptal" width="150px" type="Reject"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog state="Warning" id="fragmentOrderMigration" title="Selüloz Ekle" draggable="true">
+		<FlexBox alignItems="Center" backgroundDesign="Translucent" justifyContent="Center" class="sapUiMediumMargin">
+			<items>
+				<Label text="Selüloz Markası : " design="Bold" class="testText sapUiTinyMargin"/>
+				<ComboBox id="idMaterialCombobox" width="200px" class="sapUiTinyMargin" showSecondaryValues="true"
+					items="{ path: '/Rowsets/Rowset/Row', sorter: { path: 'Name' } }">
+					<core:ListItem key="{ITEM}" text="{ITEM}" additionalText="{WEIGHT}"/>
+				</ComboBox>
+				<Input width="200px" id="quantity" placeholder="Miktar" type="Number" class="sapUiTinyMargin" textAlign="Center"/>
+				<Button icon="sap-icon://accept" width="100px" press="onPressAddSelulozButton" text="Ekle" type="Accept" class="sapUiTinyMargin"/>
+			</items>
+		</FlexBox>
+		<buttons>
+			<Button icon="sap-icon://decline" press="onCancelSelulozButton" text="İptal" width="100px" type="Reject"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

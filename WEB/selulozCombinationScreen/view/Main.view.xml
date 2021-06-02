@@ -1,0 +1,94 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ui="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt"
+	height="100%" controllerName="selulozCombinationScreen.controller.Main">
+	<App>
+		<pages>
+			<Page title="Selüloz Kombinasyon Ekranı" showHeader="false">
+				<content>
+					<tnt:ToolHeader>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ntt.png"></Image>
+						<ToolbarSpacer/>
+						<Text text="Selüloz Kombinasyon Ekranı" wrapping="true" class="bobbinGroupingHeaderColor"/>
+						<ToolbarSpacer/>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ecz.png"></Image>
+					</tnt:ToolHeader>
+					<ui:TreeTable id="idInvTable" selectionMode="MultiToggle" enableColumnReordering="false" fixedColumnCount="3" visibleRowCountMode="Auto"
+						showColumnVisibilityMenu="true" rows="{path:'/',parameters: {arrayNames:['children']}}">
+						<ui:extension>
+							<OverflowToolbar>
+								<Button text="Tümünü Kapat" press="onCollapseAll" width="24%" icon="sap-icon://inspect-down" type="Reject"/>
+								<ToolbarSpacer/>
+								<Button text="İlk Seviyeyi Genişlet" press="onExpandFirstLevel" width="24%" icon="sap-icon://expand-all" type="Accept"/>
+								<ToolbarSpacer/>
+								<Button text="Seçileni Kapat" press="onCollapseSelection" width="24%" icon="sap-icon://sys-cancel" type="Reject"/>
+								<ToolbarSpacer/>
+								<Button text="Seçileni Genişlet" press="onExpandSelection" width="24%" icon="sap-icon://expand" type="Accept"/>
+							</OverflowToolbar>
+							<HBox justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+								<HBox justifyContent="Start" alignItems="Center">
+									<Label id="labelDTP1" text="Başlangıç Zamanı : " design="Bold" class="sapUiSmallMarginBeginEnd"/>
+									<DateTimePicker id="DTP1" displayFormat="dd/MM/yyyy HH:mm:ss" placeholder="Başlangıç Zamanı Giriniz..."/>
+									<Label id="labelDTP2" text="Bitiş Zamanı : " design="Bold" class="sapUiSmallMarginBeginEnd"/>
+									<DateTimePicker id="DTP2" displayFormat="dd/MM/yyyy HH:mm:ss" placeholder="Bitiş Zamanı Giriniz..."/>
+								</HBox>
+								<HBox justifyContent="Start" alignItems="Center">
+									<Button width="150px" id="searchAllOrdersButton" text="ARA" icon="sap-icon://search" press="onPressFilterButton"/>
+								</HBox>
+							</HBox>
+						</ui:extension>
+						<ui:columns>
+							<ui:Column hAlign="Center">
+								<Label text="İş Emri" design="Bold"/>
+								<ui:template>
+									<Text text="{SHOP_ORDER}"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column hAlign="Center">
+								<Label text="Malzeme Tanımı" design="Bold"/>
+								<ui:template>
+									<Text text="{DESCRIPTION}" wrapping="true"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column hAlign="Center">
+								<Label text="Büteler" design="Bold"/>
+								<ui:template>
+									<Text text="{TYPE}"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column hAlign="Center">
+								<Label text="Yükleme Sırası" design="Bold"/>
+								<ui:template>
+									<Text text="{ROW_NUM}"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column hAlign="Center">
+								<Label text="Harman" design="Bold"/>
+								<ui:template>
+									<Text text="{MARKA}"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column hAlign="Center">
+								<Label text="Adet" design="Bold"/>
+								<ui:template>
+									<Text text="{ADET}"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column hAlign="Center">
+								<Label text="Toplam Ağırlık" design="Bold"/>
+								<ui:template>
+									<Text text="{WEIGHT}"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column hAlign="Center" filterProperty="RECEIVE_DATE_TIME" showFilterMenuEntry="true" defaultFilterOperator="Contains">
+								<Label text="Yükleme Zamanı" design="Bold"/>
+								<ui:template>
+									<Text text="{RECEIVE_DATE_TIME}" wrapping="true"/>
+								</ui:template>
+							</ui:Column>
+						</ui:columns>
+					</ui:TreeTable>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

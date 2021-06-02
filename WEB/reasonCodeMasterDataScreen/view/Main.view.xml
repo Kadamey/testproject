@@ -1,0 +1,197 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ui="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt"
+	height="94%" controllerName="reasonCodeMasterDataScreen.controller.Main">
+	<tnt:ToolHeader>
+		<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ntt.png"></Image>
+		<Label text="Üretim Yeri : " design="Bold" class="sapUiSmallMargin"></Label>
+		<ComboBox id="idSite" textAlign="Center" width="200px" items="{path : '/Rowsets/Rowset/Row', length: 999}" change="getWorkCenterList"
+			placeholder="Üretim Yeri Seçiniz...">
+			<core:ListItem key="{SITE}" text="{SITE} - {DESCRIPTION}"/>
+		</ComboBox>
+		<Label text="İş Yeri : " design="Bold" class="sapUiSmallMargin"></Label>
+		<ComboBox id="idWorkplace" textAlign="Center" width="200px" items="{path : '/Rowsets/Rowset/Row', length: 999}" change="onChangeWorkcenter"
+			placeholder="İş Yeri Seçiniz...">
+			<core:ListItem key="{WORK_CENTER}" text="{WORK_CENTER}"/>
+		</ComboBox>
+		<ToolbarSpacer/>
+		<Label text="Makine Duruş Tipi Eşleştirme Yöntemi" wrapping="false" design="Bold"/>
+		<ToolbarSpacer/>
+		<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ecz.png"></Image>
+	</tnt:ToolHeader>
+	<App>
+		<pages>
+			<Page title="Duruş Tipi Tanımlama Ekranı" showHeader="false">
+				<content>
+					<Panel id="expandablePanel" expandable="true" expand="onExpand" width="auto" class="sapUiResponsiveMargin">
+						<headerToolbar>
+							<OverflowToolbar active="true" press="onOverflowToolbarPress">
+								<Title text="Filtreleme Seçenekleri"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<content>
+							<HBox justifyContent="SpaceAround" alignItems="Center" width="auto">
+								<VBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="125px" text="Lokasyon : " design="Bold"/>
+										<ComboBox id="INP1" textAlign="Center" width="250px" items="{path : '/Rowsets/Rowset/Row', length: 999}" change="onPressSearchFilter"
+											placeholder="Lokasyon Seçiniz...">
+											<core:ListItem key="{TOOL_NUMBER}" text="{TOOL_NUMBER} - {DESCRIPTION}"/>
+										</ComboBox>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="125px" text="Duruş Tipi 1 : " design="Bold"/>
+										<Input width="250px" id="INP2" textAlign="Center" change="onPressSearchFilter" showSuggestion="true"
+											suggestionItems="{path : '/Rowsets/Rowset/Row', length: 5000}" placeholder="Duruş Tipi Kodunu Giriniz...">
+											<suggestionItems>
+												<core:Item text="{REASON_CODE_ID}"/>
+											</suggestionItems>
+										</Input>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="125px" text="Duruş Tipi 2 : " design="Bold"/>
+										<Input width="250px" id="INP3" textAlign="Center" change="onPressSearchFilter" showSuggestion="true"
+											suggestionItems="{path : '/Rowsets/Rowset/Row', length: 5000}" placeholder="Duruş Tipi Kodunu Giriniz...">
+											<suggestionItems>
+												<core:Item text="{REASON_CODE_ID}"/>
+											</suggestionItems>
+										</Input>
+									</HBox>
+								</VBox>
+								<VBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="125px" text="Duruş Tipi 3 : " design="Bold"/>
+										<Input width="250px" id="INP4" textAlign="Center" change="onPressSearchFilter" showSuggestion="true"
+											suggestionItems="{path : '/Rowsets/Rowset/Row', length: 5000}" placeholder="Duruş Tipi Kodunu Giriniz...">
+											<suggestionItems>
+												<core:Item text="{REASON_CODE_ID}"/>
+											</suggestionItems>
+										</Input>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="125px" text="Duruş Tipi 4 : " design="Bold"/>
+										<Input width="250px" id="INP5" textAlign="Center" change="onPressSearchFilter" showSuggestion="true"
+											suggestionItems="{path : '/Rowsets/Rowset/Row', length: 5000}" placeholder="Duruş Tipi Kodunu Giriniz...">
+											<suggestionItems>
+												<core:Item text="{REASON_CODE_ID}"/>
+											</suggestionItems>
+										</Input>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="125px" text="Duruş Tipi 5 : " design="Bold"/>
+										<Input width="250px" id="INP6" textAlign="Center" change="onPressSearchFilter" showSuggestion="true"
+											suggestionItems="{path : '/Rowsets/Rowset/Row', length: 5000}" placeholder="Duruş Tipi Kodunu Giriniz...">
+											<suggestionItems>
+												<core:Item text="{REASON_CODE_ID}"/>
+											</suggestionItems>
+										</Input>
+									</HBox>
+								</VBox>
+								<VBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="125px" text="Duruş Türü : " design="Bold"/>
+										<ComboBox id="INP7" textAlign="Center" width="250px" change="onPressSearchFilter" placeholder="Duruş Türü Seçiniz...">
+											<core:ListItem key="Z1" text="Z1 - Arıza Duruşu"/>
+											<!--<core:ListItem key="Z4" text="Z4 - Planlı Duruş"/>-->
+										</ComboBox>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="125px" text="Katalog Kodu : " design="Bold"/>
+										<Input width="250px" id="INP8" textAlign="Center" change="onPressSearchFilter" placeholder="Katalog Kodu Giriniz..."/>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="125px" text="Kod Grubu : " design="Bold"/>
+										<Input width="250px" id="INP9" textAlign="Center" change="onPressSearchFilter" placeholder="Kod Grubu Giriniz..."/>
+									</HBox>
+								</VBox>
+								<VBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="125px" text="Sorumlu İş Yeri : " design="Bold"/>
+										<ComboBox id="INP10" textAlign="Center" width="250px" items="{path : '/Rowsets/Rowset/Row', length: 999}" change="onPressSearchFilter"
+											placeholder="Sorumlu İş Yeri Seçiniz...">
+											<core:ListItem key="{PM_WORKPLACE}" text="{PM_WORKPLACE} - {DESCRIPTION}"/>
+										</ComboBox>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="125px" text="" design="Bold"/>
+										<Button text="Temizle" width="250px" icon="sap-icon://delete" class="sapUiTinyMargin" press="onPressCleanFilter"></Button>
+									</HBox>
+									<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+										<Label width="125px" text="" design="Bold"/>
+										<Button text="Filtrele" width="250px" icon="sap-icon://search" class="sapUiTinyMargin" press="onPressSearchFilter"></Button>
+									</HBox>
+								</VBox>
+							</HBox>
+						</content>
+					</Panel>
+					<Table id="idReasonCodeTable" inset="false" items="{/Rowsets/Rowset/Row}" sticky="ColumnHeaders" mode="SingleSelectMaster">
+						<headerToolbar>
+							<OverflowToolbar>
+								<Button id="addReasonCode" width="250px" text="Yeni Duruş Tipi Ekle" icon="sap-icon://sys-add" press="onPressAddReasonCode" type="Reject"/>
+								<Button id="addReasonDef" width="250px" text="Duruş Tanımları Listesi" icon="sap-icon://sys-monitor" press="onPressStoppageDefList"
+									type="Reject"/>
+								<ToolbarSpacer/>
+								<Button icon="sap-icon://synchronize" width="250px" text="Tabloyu Yenile" press="onPressRefreshTable" type="Accept"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<columns>
+							<Column hAlign="Center" width="10%">
+								<Label text="Lokasyon" design="Bold" textAlign="Center"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Duruş Tipi 1" design="Bold" textAlign="Center"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Duruş Tipi 2" design="Bold" textAlign="Center"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Duruş Tipi 3" design="Bold" textAlign="Center"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Duruş Tipi 4" design="Bold" textAlign="Center"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Duruş Tipi 5" design="Bold" textAlign="Center"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Duruş Türü" design="Bold" textAlign="Center"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Katalog Kodu" design="Bold" textAlign="Center"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Kod Grubu" design="Bold" textAlign="Center"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Sorumlu PM İşyeri" design="Bold" textAlign="Center"/>
+							</Column>
+							<Column hAlign="Center" width="4%">
+								<Label text="" design="Bold" textAlign="Center"/>
+							</Column>
+							<Column hAlign="Center" width="4%">
+								<Label text="" design="Bold" textAlign="Center"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{DESCRIPTION_TEXT}" wrapping="true" class="sapUiSmallMargin"/>
+									<Text text="{REASON_CODE1_TEXT}" wrapping="true" class="sapUiSmallMargin"/>
+									<Text text="{REASON_CODE2_TEXT}" wrapping="true" class="sapUiSmallMargin"/>
+									<Text text="{REASON_CODE3_TEXT}" wrapping="true" class="sapUiSmallMargin"/>
+									<Text text="{REASON_CODE4_TEXT}" wrapping="true" class="sapUiSmallMargin"/>
+									<Text text="{REASON_CODE5_TEXT}" wrapping="true" class="sapUiSmallMargin"/>
+									<Text text="{REASON_TYPE}" wrapping="true" class="sapUiSmallMargin"/>
+									<Text text="{CATALOG_CODE}" wrapping="true" class="sapUiSmallMargin"/>
+									<Text text="{CODE_GROUP}" wrapping="true" class="sapUiSmallMargin"/>
+									<Text text="{RESP_WORK_CENTER_TEXT}" wrapping="true" class="sapUiSmallMargin"/>
+									<Button icon="sap-icon://edit" press="onPressUpdateReasonCode" type="Accept"/>
+									<Button icon="sap-icon://delete" press="onPressDeleteReasonCode" type="Reject"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

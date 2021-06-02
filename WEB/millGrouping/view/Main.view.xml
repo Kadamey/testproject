@@ -1,0 +1,67 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ui="sap.ui.table" xmlns:f="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt" height="100%" controllerName="millGrouping.controller.Main">
+	<App>
+		<pages>
+			<Page title="Mil Gruplama Ekranı" showHeader="false">
+				<content>
+					<tnt:ToolHeader>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ntt.png"></Image>
+						<ToolbarSpacer/>
+						<Text id="idTitleText" text="Mil Gruplama Ekranı" wrapping="true"/>
+						<ToolbarSpacer/>
+						<Image width="100px" src="/XMII/CM/ECZ_MES-4.0/selulozCombinationScreen/images/ecz.png"></Image>
+					</tnt:ToolHeader>
+					<Table id="idMillBobbinTable" sticky="ColumnHeaders" items="{ path: '/Rowsets/Rowset/Row' }" mode="MultiSelect"
+						selectionChange="onSelectFromTable" alternateRowColors="true">
+						<columns>
+							<Column hAlign="Center">
+								<Label text="Malzeme Kodu" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Malzeme Tanımı" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Bobin ID" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Ağırlık" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Ebat" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Makine" design="Bold"/>
+							</Column>
+							<Column hAlign="Center">
+								<Label text="Salon/Tahrik Durumu" design="Bold"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{ITEM}"/>
+									<Text text="{DESCRIPTION}" wrapping="true"/>
+									<Text text="{INVENTORY}"/>
+									<Text text="{WEIGHT}"/>
+									<Text text="{EBAT}"/>
+									<Text text="{WORK_CENTER}"/>
+									<ComboBox id="idSalon" placeholder="Durum Seçiniz..." selectionChange="onSelectFromComboBox">
+										<core:Item key="SALON" text="SALON"/>
+										<core:Item key="TAHRIK" text="TAHRİK"/>
+									</ComboBox>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<Button text="FIS'a Gönder" icon="sap-icon://accept" width="250px" press="onPressSaveButton" type="Accept"/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

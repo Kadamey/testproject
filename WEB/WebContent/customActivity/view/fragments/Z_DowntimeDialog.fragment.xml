@@ -1,0 +1,161 @@
+<core:FragmentDefinition xmlns="sap.m" 
+    xmlns:form="sap.ui.layout.form" 
+    xmlns:core="sap.ui.core" 
+    xmlns:layout="sap.ui.layout">
+
+    <Dialog id="downtimeDialog" contentHeight="52%" contentWidth="45%">
+        <content>
+            <layout:Grid defaultSpan="L12 M12 S12" width="100%">
+                <layout:content>
+                    <form:Form minWidth="1024" editable="true">
+                        <form:layout>
+                            <form:ResponsiveGridLayout labelSpanL="3" labelSpanS="3" labelSpanM="3" columnsL="6" columnsM="6" columnsS="6" />
+                        </form:layout>
+                        <form:formContainers>
+                            <form:FormContainer>
+                                <form:FormElement label="{i18n>OEE_LABEL_WORKUNIT}">
+                                    <form:fields>
+                                        <Text id="workunitforDowntime" text="{parts :[{path:'/downtimeDataForModel/nodeDataList'}],formatter : '.workunitDescriptionFormatter'}">
+                                        </Text>
+                                    </form:fields>
+                                </form:FormElement>
+                                <form:FormElement id="TypeforDowntime" label="{i18n>DOWNTIME_TYPE}">
+                                    <form:fields>
+                                        <Select id="typeforDowntime" change="onChangeType">
+                                        </Select>
+                                    </form:fields>
+                                </form:FormElement>
+                                <form:FormElement id="reasonCode" label="{i18n>OEE_LABEL_REASONCODE}">
+                                    <form:fields>
+                                        <Input id="reasonCodeforDowntime" value="{/downtimeDataForModel/reasonCodeData/description}" showValueHelp="true" editable="true" enabled="true" valueHelpOnly="true" valueHelpRequest="onChangeType">
+                                        </Input>
+                                    </form:fields>
+                                </form:FormElement>
+                                <form:FormElement id="microStoppageLabel" label="{i18n>OEE_LABEL_MICRO_STOPPAGE}">
+                                    <form:fields>
+                                        <CheckBox id="microStoppage" selected="{/downtimeDataForModel/microStoppages}" select="onSelectMicroStoppages"></CheckBox>
+                                    </form:fields>
+                                </form:FormElement>
+
+                                <form:FormElement label="{i18n>OEE_LABEL_STARTTIME}" id="startTimeLabel">
+                                    <form:fields>
+                                        <DatePicker id="startDate" enabled="true" editable="true" value="{path:'/startDate',type:'sap.ui.model.type.Date',formatOptions:{style: 'short', strictParsing: true}}" change="checkStartDateTimeInputs"></DatePicker>
+                                        <TimePicker id="startTime" enabled="true" editable="true" value="{path : '/startTime', type:'sap.ui.model.type.Time', formatOptions:{style: 'short', strictParsing: true}}" change="checkStartDateTimeInputs"></TimePicker>
+                                        <Button icon="sap-icon://history" id="setCurrentForStartTime" text="{i18n>OEE_BUTTON_SET_CURRENT}" press="onPressResetStartDate" />
+                                    </form:fields>
+                                </form:FormElement>
+                                <form:FormElement label="{i18n>OEE_LABEL_DURATION_IN_MIN}">
+                                    <form:fields>
+                                        <Input id="durationforDowntime" enabled="true" editable="true" maxLength="10" value="{path:'/downtimeDataForModel/duration' ,formatter : 'sap.oee.ui.Formatter.formatQuantityForOrderCard'}" change="setDurationInMins"
+											liveChange = "validateDurationFields"></Input>
+                                    </form:fields>
+                                </form:FormElement>
+                                <form:FormElement id="frequencyLabel" label="Frequency">
+                                    <form:fields>
+                                        <Input id="frequency" value="{/downtimeDataForModel/frequency}" liveChange="validateDurationFields" maxLength="10"></Input>
+                                    </form:fields>
+                                </form:FormElement>
+                                <form:FormElement label="{i18n>OEE_LABEL_ENDTIME}" id="endTimeLabel">
+                                    <form:fields>
+                                        <DatePicker id="endDate" enabled="true" editable="true" value="{path:'/endDate',type:'sap.ui.model.type.Date',formatOptions:{style: 'short', strictParsing: true}}" change="checkEndDateTimeInputs"></DatePicker>
+                                        <TimePicker id="endTime" enabled="true" editable="true" value="{path : '/endTime', type:'sap.ui.model.type.Time', formatOptions:{style: 'short', strictParsing: true}}" change="checkEndDateTimeInputs"></TimePicker>
+                                        <Button icon="sap-icon://history" id="setCurrentForEndTime" text="{i18n>OEE_BUTTON_SET_CURRENT}" press="onPressResetEndDate" />
+                                    </form:fields>
+                                </form:FormElement>
+                                <form:FormElement id="crewSize" label="{i18n>OEE_LABEL_CREWSIZE}" visible="{parts:[{path:'/downtimeDataForModel/eventType'} , { path:'/downtimeDataForModel/appDataCrewSize'}],formatter:'sap.oee.ui.Formatter.formatCrewSizeVisibilityForDowntime'}">
+                                    <form:fields>
+                                        <Input id="crewSizeforDowntime" enabled="true" editable="true" maxLength="5" value="{path  : '/downtimeDataForModel/crewSize'  , formatter : 'sap.oee.ui.Formatter.formatQuantityForOrderCard'}" />
+                                    </form:fields>
+                                </form:FormElement>
+                                <form:FormElement id="standardDuration" label="{i18n>OEE_LABEL_STANDARD_DURATION}" visible="{path:'/downtimeDataForModel/eventType',formatter:'sap.oee.ui.Formatter.formatStandardDurationVisibility'}">
+                                    <form:fields>
+                                        <Input id="standardDurationforDowntime" liveChange = "validateDurationFields" maxLength="10" enabled="{path : '/downtimeDataForModel/reasonCodeData/isFixed' , formatter:'sap.oee.ui.Formatter.formatStandardDuration'}" editable="true" value="{/downtimeDataForModel/reasonCodeData/targetInMin}"></Input>
+                                    </form:fields>
+                                </form:FormElement>
+                                <form:FormElement id="fromMaterial" label="{i18n>OEE_LABEL_FROM_MATERIAL}" visible="{path:'/downtimeDataForModel/eventType',formatter:'sap.oee.ui.Formatter.formatChangeoverVisibility'}">
+                                    <form:fields>
+                                        <Input id="fromMaterialforDowntime" value="{/downtimeDataForModel/selectedFromMaterial}" showValueHelp="true" editable="true" enabled="{path : '/downtimeDataForModel/selectedFromMaterial' , formatter:'sap.oee.ui.Formatter.formatMaterialVisibility'}" valueHelpOnly="true" valueHelpRequest="onChangeFromMaterial">
+                                        </Input>
+                                    </form:fields>
+                                </form:FormElement>
+                                <form:FormElement id="toMaterial" label="{i18n>OEE_LABEL_TO_MATERIAL}" visible="{path:'/downtimeDataForModel/eventType',formatter:'sap.oee.ui.Formatter.formatChangeoverVisibility'}">
+                                    <form:fields>
+                                        <Input id="toMaterialforDowntime" enabled="{path : '/downtimeDataForModel/selectedToMaterial' , formatter:'sap.oee.ui.Formatter.formatMaterialVisibility'}" editable="true" value="{/downtimeDataForModel/selectedToMaterial}" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onChangeToMaterial" />
+                                    </form:fields>
+                                </form:FormElement>
+                                <form:FormElement id="bottleneckForDowntimeLabel" label="{i18n>OEE_LABEL_IMPACTS_LINE}">
+                                    <form:fields>
+                                        <CheckBox id="bottleneckForDowntime" selected="{/downtimeDataForModel/actsAsBottleneck}"></CheckBox>
+                                    </form:fields>
+                                </form:FormElement>
+                                <form:FormElement id="assignToOrderLabel" label="{i18n>OEE_LABEL_IMPACTED_ORDER}">
+                                    <form:fields>
+                                        <Input id="assignOrder" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onPressAssignToOrderOnDowntimeDialog" value="{parts : [{path : 'i18n>OEE_HEADING_SELECT_ORDER'},{path:'/downtimeDataForModel/orderAssign'}], formatter : 'sap.oee.ui.Formatter.assignOrderToButtonOnDialogFormatter'}" />
+                                    </form:fields>
+                                </form:FormElement>
+
+
+                                <form:FormElement id="reportPMNotification" label="{i18n>OEE_BTN_REPORT_NOTIFICATION}">
+                                    <form:fields>
+                                        <CheckBox id="checkPMNotification" select="openReportPMNotification" enabled="{path:'/downtimeDataForModel/eventType',formatter:'sap.oee.ui.Formatter.formatNotificationVisibility'}" selected="false"></CheckBox>
+                                    </form:fields>
+                                </form:FormElement>
+                                <form:FormElement id="functionalLocation" label="{i18n>OEE_LABEL_FLOC}">
+                                    <form:fields>
+                                        <Input id="floc" value="{PMNotification>/downtimeDataForModel/fLocation}" showValueHelp="true" editable="true" enabled="true" valueHelpOnly="true" valueHelpRequest="onChangeTypeDownTechObj">
+                                        </Input>
+                                    </form:fields>
+                                </form:FormElement>
+                                <form:FormElement id="equipment" label="{i18n>OEE_LABEL_EQUIPMENT}">
+                                    <form:fields>
+                                        <Input id="equip" value="{path:'PMNotification>/downtimeDataForModel/equipment',formatter:'sap.oee.ui.Formatter.formatRemoveLeadingZero'}" showValueHelp="true" editable="true" enabled="true" valueHelpOnly="true" valueHelpRequest="onChangeTypeDownTechObj">
+                                        </Input>
+                                    </form:fields>
+                                </form:FormElement>
+                                <form:FormElement id="SinglePMNotificationType" label="{i18n>OEE_LABEL_NOTIFICATIONTYPE}">
+                                    <form:fields>
+                                        <Input id="SingleValue" value="{PMNotification>/downtimeDataForModel/notificationType}" enabled="false">
+                                        </Input>
+                                    </form:fields>
+                                </form:FormElement>
+                                <form:FormElement id="MultiPMNotificationType" label="{i18n>OEE_LABEL_NOTIFICATIONTYPE}">
+                                    <form:fields>
+                                        <Select id="MultiValue" items="{PMNotification>/downtimeDataForModel/notificationTypes}">
+                                            <core:Item key="{PMNotification>value}" text="{PMNotification>value}" />
+                                        </Select>
+                                    </form:fields>
+                                </form:FormElement>
+                                <form:FormElement id="breakDown" label="{i18n>OEE_LABEL_BREAKDOWN}">
+                                    <form:fields>
+                                        <CheckBox id="breakDownForPMNotification" selected="{PMNotification>/downtimeDataForModel/actsAsBreakdown}"></CheckBox>
+                                    </form:fields>
+                                </form:FormElement>
+                                <form:FormElement label="{i18n>OEE_LABEL_COMMENTS}">
+                                    <form:fields>
+                                        <TextArea id="commentsForDowntime" value="{/downtimeDataForModel/comments}" maxLength="250"></TextArea>
+                                    </form:fields>
+                                </form:FormElement>
+
+                                <form:FormElement id="idPMWorkCenter" label="{i18n>CUSTOM_PM_WORK_CENTER}">
+                                    <form:fields>
+                                        <Select id="MultiValueWorkCenter" items="{PMNotification>/downtimeDataForModel/z_pmWorkcenterList/Rowsets/Rowset/Row}">
+                                            <core:Item key="{PMNotification>Item}" text="{PMNotification>Item}" />
+                                        </Select>
+                                    </form:fields>
+                                </form:FormElement>
+
+
+                            </form:FormContainer>
+                        </form:formContainers>
+                    </form:Form>
+                </layout:content>
+            </layout:Grid>
+
+        </content>
+        <buttons>
+            <Button id="resetTimeButton" text="{i18n>OEE_BTN_RESET_TIME}" press="onPressClearDatesAndDuration"></Button>
+            <Button id="okButtonDowntimeDialog" text="{i18n>OEE_BTN_OK}" press="handleOkForDowntimeDialog"></Button>
+            <Button text="{i18n>OEE_BTN_CANCEL}" press="handleCancelForDowntimeDialog"></Button>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

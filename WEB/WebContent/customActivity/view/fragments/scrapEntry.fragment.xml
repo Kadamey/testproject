@@ -1,0 +1,24 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" >
+<ResponsivePopover class="sapUiPopupWithPadding" showHeader="false" showArrow="false" placement="Top">
+		<beginButton>
+			<Button text="Kaydet" width="100px" type="Accept" icon="sap-icon://save" press="sendScrapQuantity" class="sapUiTinyMargin"/>
+		</beginButton>
+		<endButton>
+			<Button text="İptal" width="100px" type="Reject" icon="sap-icon://sys-cancel" press="handleCloseButton" class="sapUiTinyMargin"/>
+		</endButton>
+		<content>
+			<VBox>
+                <HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                    <Label text="Zai Olan Miktar :" design="Bold" width="100px"/>
+                    <Input id="idScrapFragmentInput" textAlign="Center" type="Number" submit="sendScrapQuantity" width="150px"/>
+                    <Label text="(TO)" design="Bold" class="sapUiSmallMarginBeginEnd"/>
+                </HBox>
+                <HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                    <Label text="Toplam Miktar :" design="Bold" width="100px"/>
+                    <Input id="idScrapFragmentTotal" textAlign="Center" type="Number" width="150px" enabled="false"/>
+                    <Label text="(TO)" design="Bold" class="sapUiSmallMarginBeginEnd"/>
+                </HBox>
+            </VBox>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>
